@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    span {
+        padding: 5px 10px;
+        background-color: green;
+        color: skyblue;
+    }
+    
+    #app {
+        width: 300px;
+        border: 10px solid green;
+        height: 300px;
+    }
+</style>
+
+<body>
+    <span id="hide">隐藏</span>
+    <span id="show">显示</span>
+    <span id="toggle">切换</span>
+    <br>
+    <span id="fadeOut">淡出隐藏</span>
+    <span id="fadeIn">淡出显示</span>
+    <span id="fadeToggle">切换</span>
+    <span id="fadeTo">to</span>
+    <br>
+    <br>
+    <span id="animation">动画</span>
+    <div id="app"></div>
+    <script src="./jquery-3.6.0.min.js"></script>
+</body>
+<script>
+    $('#hide').click(function() {
+        // $('#app').hide(2000, function() {
+        //     console.log('动画结束了');
+        // })
+        $('#app').hide('fast')
+            // $('#app').hide('nomal')
+            // $('#app').hide('slow')
+    })
+    $('#show').click(function() {
+        $('#app').show("fast")
+    })
+    $('#toggle').click(function() {
+        $('#app').slideToggle('slow', function() {
+            console.log('完成了');
+            // fast slow nomal slide slideUp slideDown slideToggle toggle
+        })
+    })
+
+    $('#fadeOut').click(function() {
+        $('#app').fadeOut("slow", function() {
+            console.log(555);
+        })
+    })
+    $('#fadeIn').click(function() {
+        $('#app').fadeIn("slow", function() {
+            console.log(555);
+        })
+    })
+    $('#fadeToggle').click(function() {
+        $('#app').fadeToggle('slow', function() {
+            console.log('toggle');
+        })
+    })
+    $('#fadeTo').click(function() {
+            $('#app').fadeTo(300, 0.2, function() {
+                console.log('toggle');
+            })
+        })
+        // 动画
+    $('#animation').click(function() {
+        $('#app').animate({
+            width: 3000
+        }, 3000, function() {
+            console.log(123);
+        }).animate({
+            height: 0
+        }, 'slow', function() {
+            console.log('jiehsule');
+        })
+        setTimeout(() => {
+            $('#app').finish()
+        }, 2000);
+        setTimeout(() => {
+            $('#app').stop()
+        }, 1000);
+    })
+</script>
+
+</html>

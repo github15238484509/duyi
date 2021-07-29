@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./lodash.min.js"></script>
+</body>
+<script>
+    var arr = [1, 223, , 45, 21, 313, 546, , 231, 35, 65, 65, 6]
+        // chunk 数据块
+    console.log(_.chunk(arr, 2));
+    // compact compact compact 紧凑的 compact compacr compacr compact compact compact  compact  compact
+    console.log(_.compact(arr));
+    // concat 拼接 让数组拼接子一起
+    console.log(_.concat(arr, 1, 2, 3, [4, 5, 6]))
+        // difference 排除第一个数据中与第二个数组中相同的值
+    console.log(_.difference([1, 2, 3, 5, {}], [1, 2, 31.2, {}]))
+        //differenceBy  difference一样只不过需要传递第三个参数 iterate 改变每一项的值然后再做比较
+    console.log(_.differenceBy([1, 3, 3, 4], [1.2, 0.5, 4, 5], function(d) {
+            return d + 1
+        }), )
+        // drop 水滴 就像 shift 一样去除前的面数据 drop 
+    console.log(_.drop(arr, 2))
+        // dropRight 就像pop一样 从前面去除数组
+    console.log(_.dropRight(arr, 3))
+        //fill tianchong 
+    console.log(_.fill(Array(3), 2, 1, 2));
+    //findIndex 寻找第一个匹配的元素 第二个参数是函数
+    console.log(_.findIndex([1, 2, 3, 5], function(d) {
+        return d == 2
+    }));
+    // findLastIndex 和findIndex一样 从右边开始寻找
+    // head first 获取数组的第一位
+    console.log(_.first(arr))
+    console.log(_.head(arr))
+        // flatten 夷为平地 flatten 就是把二维数组编变成一位数组
+    console.log(_.flatten([1, 23, [1, 5, 5, [1]], 5]))
+        // flattenDeep  循环递归把多维数组变成一维数组
+    console.log(_.flattenDeep([1, 23, [1, 5, 5, [1]], 5]))
+        //flattenDepth 循环多少层
+    console.log(_.flattenDepth([1, 23, [1, 5, 5, [1]], 5], 0))
+        // fromPairs [['key','value']] 把类似这样的数组转换成对象
+        // frompairs frompairs frompairs
+    console.log(_.fromPairs([
+            ['key', 'value']
+        ]))
+        // initial 获取数组最后一为的所有值 initial
+    console.log(_.initial(arr))
+        // intersection 返回多个数组中相同的部分 与difference相反 但difference只返回第一个数组中没有的
+    console.log(_.intersection([, 1, 2, 3], [, 1, 2, 34]))
+    console.log(_.difference([, 1, 2, 3], [, 1, 2, 34]))
+        // join 拼接数组为字符串， last 返回数组的最后一位 lastIndexOf 从后面返回第一个拼配的元素的索引值  nth 传入数字返回返回数组对应的索引的值
+        // pull 移除传入的与数组相等的数字
+    console.log(_.pull([1, 2, 3], 1, 2, 3));
+    // pullAll 与pull 相等 只不过参数是数组
+    console.log(_.pullAll([, 1, 2, 3], [1, 2, 3]))
+        // remove 移除满足需求的元素 参数为一个函数 返回结果为true的值，改变原数组，原数组会删除满足条件的
+    console.log(8888);
+    console.log(_.remove([1, 2, 3], function(d) {
+            return true
+        }))
+        // revrese 反转数组，和原生的一样 sclie 剪切 和原生的一样
+        // sortedIndex  返回 value值 应该在数组array中插入的索引位置 index。
+    console.log(_.sortedIndex([0, 1, 2, 5], 0))
+        //uniq 数组去重
+    console.log(_.uniq([, 1, 1, 1, 1, 1]))
+        // uniqBy 还是去重 第二个参数可以传入一个函数，改变原先值在去重
+</script>
+
+</html>

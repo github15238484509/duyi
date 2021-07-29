@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0%;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+#app {
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid green;
+    margin: 100px auto 0;
+}
+
+.title span {
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+
+.title span.action {
+    background-color: deepskyblue;
+}
+
+ul {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+ul li {
+    padding-left: 40px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px 0 10px 50px;
+    border-bottom: 1px solid #666;
+}
+
+ul li img {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+ul li .name {
+    font-weight: 600;
+}
+
+ul li .des {
+    color: #333;
+}

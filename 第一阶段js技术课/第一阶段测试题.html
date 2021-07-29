@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class=" say   name ">
+        试题：https://www.yuque.com/docs/share/b2342d6c-1c07-4398-ac05-1e8c12ad48ee?#
+        <p>答案:https://duyiedu.yuque.com/docs/share/3682f882-0890-493b-8551-c915d94228ff?#</p>
+    </div>
+    <p class="name      say">
+        1.C 2.D 3.D 4.A 5.A
+
+        <p>4：为b没有分辨率为 navigator的属性 useragent</p>
+        <p>5：选c 因该是为className 不是class</p>
+    </p>
+    <p id="say"> 1.浏览器对象模型；浏览器</p>
+    <p id="say1">
+        2. histroy.go(-2)，<span class="say">或者 histroy.back()执行两次</span>
+    </p>
+    <p class="saysay">
+        3. for 绑定inpout元素，使用input的id ；<span id="one">或者包裹input</span>
+    </p>
+    <p class="1say" style="position: absolute; left: 0 ;top:200px;width: 90px;height: 200px;border: 1px solid red;">
+        4.for
+    </p>
+
+    <div>
+        编程题第五题
+        <p>
+            使用第四题的缓冲函数实现轮播图
+            <br> 1.布局样式
+            <br> 2.使用setTimeOut实现运动，在缓冲函数执行玩，再次执行setTimout；注意点会有边界问题
+            <br>3 .当鼠标移上轮播图的时候，让本此轮播图执完，清楚不再执行，移开再继续执行
+            <br>4.在第三步的基础上，实现点击上一步，下一步，还有指示器，计算出对应的位置，执行移动函数
+
+
+        </p>
+    </div>
+</body>
+<script>
+    // 编程第一题
+    var arr = [{
+        name: 'cst',
+        age: '18'
+    }, {
+        name: 'jc',
+        age: '20'
+    }, {
+        name: 'dxm',
+        age: '50'
+    }, {
+        name: 'dcg',
+        age: '30'
+    }]
+
+    function search(arr, searchCon) {
+        arr = arr.filter((item) => {
+            return item.name.indexOf(searchCon) !== -1
+        })
+        return arr
+    }
+
+    function double(data, num) {
+        return data.map((item) => {
+            item.age *= num
+            return item
+        })
+    }
+
+    function filterArr(obj) {
+        return function(arr) {
+            for (const key in obj) {
+                if (Object.hasOwnProperty.call(obj, key)) {
+                    arr = obj[key](arr, store[key])
+                }
+            }
+            return arr
+        }
+    }
+    var store = {
+        search: 'c',
+        double: 2
+    }
+    var overArr = filterArr({
+        search,
+        double
+    })
+    console.log(overArr(arr));
+
+
+    // 编程第二题
+
+    var str = 'https://www.baidu.com/s?ie=utf-8&f=8'
+
+    function urlGoObj(str) {
+        var obj = {}
+        var protocol = str.match(/(?<protocol>.+):\/\//).groups.protocol
+        var host = str.match(/\/\/(?<host>.+)\//).groups.host
+
+        var str1 = str.replace(/.+\//, '/')
+        var path = str1.match(/(?<path>\/.+)\?/).groups.path
+
+        var arr = str.split("?")[1].split("&")
+        var paramObj = {}
+        for (const key of arr) {
+            paramObj[key.split("=")[0]] = key.split("=")[1]
+        }
+
+        obj.host = host
+        obj.protocol = protocol
+        obj.path = path
+        obj.search = paramObj
+        return obj
+    }
+    console.log(urlGoObj(str));
+
+
+    // 编程第三题
+    var allChilren = []
+
+    function getDom(str) {
+        allChilren = []
+        var all = document.documentElement
+        getDom.forEachChilren(all)
+        if (str.startsWith("#")) {
+            return getDom.getId(str, allChilren)
+        } else if (str.startsWith(".")) {
+            return getDom.getClass(str, allChilren)
+        } else {
+            return getDom.getTag(str, allChilren)
+        }
+    }
+
+    getDom.getClass = function(type, children) {
+        var childrenItem = []
+        for (let i = 0; i < children.length; i++) {
+            children[i].classList.contains(type.replace(".", '')) ? childrenItem.push(children[i]) : ''
+        }
+        return childrenItem
+    }
+    getDom.getId = function(type, children) {
+        var childrenItem = []
+        for (let i = 0; i < children.length; i++) {
+            children[i].id == type.replace("#", '') ? childrenItem.push(children[i]) : ''
+        }
+        return childrenItem
+    }
+    getDom.getTag = function(type, children) {
+        var childrenItem = []
+        for (let i = 0; i < children.length; i++) {
+            children[i].tagName == type.trim().toLocaleUpperCase() ? childrenItem.push(children[i]) : ''
+        }
+        return childrenItem
+
+
+    }
+    getDom.forEachChilren = function(all) {
+        var lenght = all.children.length
+        allChilren.push(all)
+        for (let i = 0; i < lenght; i++) {
+            getDom.forEachChilren(all.children[i])
+        }
+    }
+    console.log(getDom(".say"));
+    console.log(getDom("#say"));
+    console.log(getDom("p"));
+
+
+
+    // 第四题  请尝试写出缓冲运动的效果。
+    function getStyle(dom, type) {
+        return parseFloat(getComputedStyle(dom, null)[type])
+    }
+
+    function moveStart(dom, option) {
+        console.log(dom);
+        console.log(option);
+        clearInterval(dom.timer)
+        var speed = null
+        dom.timer = setInterval(function() {
+            var flage = true
+            for (const key in option) {
+                if (Object.hasOwnProperty.call(option, key)) {
+                    if (key == 'opacity') {
+                        speed = (option[key] - getStyle(dom, key)) / 15
+                        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+                        dom.style[key] = (getStyle(dom, key) * 100 + speed) / 100
+                    } else {
+                        speed = (option[key] - getStyle(dom, key)) / 15
+                        console.log(getStyle(dom, key));
+                        console.log(speed);
+                        speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+                        dom.style[key] = getStyle(dom, key) + speed + 'px'
+                    }
+                }
+                if (getStyle(dom, key) !== option[key]) {
+                    flage = false
+                }
+            }
+            if (flage) {
+                clearInterval(dom.timer)
+                console.log("over");
+            }
+        }, 30)
+
+    }
+    getDom(".1say")[0].onclick = function() {
+        moveStart(getDom(".1say")[0], {
+            height: 300,
+            width: 100,
+            top: 0,
+            left: 200,
+            opacity: 0.5
+        })
+    }
+</script>
+
+</html>

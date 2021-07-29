@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">
+    用户名： <input type="text" name="username">
+  </label>
+    <label for="">
+    密码： <input type="password" name="userpassword" >
+  </label>
+    <button id="login">登录</button>
+
+    <button class="jsonp">testJsonp</button>
+</body>
+<script src="./jquery-3.6.0.min.js"></script>
+<script>
+    // http://open.duyiedu.com
+    // url:/api/student/stuLogin  post 登录接口
+    // /api/student/findAll   get 查询学生列表
+    // http: //developer.duyiedu.com/edu/testJsonp  跨域的接口
+    $('.jsonp').click(function() {
+        $.get("http://developer.duyiedu.com/edu/testJsonp", function(data) {
+            console.log(data);
+        }, 'jsonp')
+    })
+    $("#login").click(function() {
+        // $.post('http://open.duyiedu.com/api/student/stuLogin', {
+        //     appkey: 'liu_15238484809_1625197414749',
+        //     account: $("input[name=username]").val(),
+        //     password: $("input[name=userpassword]").val(),
+        // }, function(data) {
+        //     console.log(data);
+        // }, 'json')
+
+        $.ajax({
+            url: 'http://open.duyiedu.com/api/student/stuLogin',
+            method: 'post',
+            data: {
+                appkey: 'liu_15238484809_1625197414749',
+                account: $("input[name=username]").val(),
+                password: $("input[name=userpassword]").val(),
+            },
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log(data);
+                console.log('错误了');
+            }
+        })
+    })
+
+    $.get("http://open.duyiedu.com/api/student/findAll", {
+        appkey: 'liu_15238484809_1625197414749'
+    }, function(data) {
+        console.log(data);
+    }, 'json')
+    $.ajax({
+        url: "http://open.duyiedu.com/api/student/findAll",
+        method: "get",
+        data: {
+            appkey: 'liu_15238484809_1625197414749'
+        },
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+        }
+    })
+</script>
+
+</html>

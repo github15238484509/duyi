@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <ul class="oul">
+        <li>pink</li>
+        <li>green</li>
+        <li><span>yellow</span></li>
+        <li>bule</li>
+        <li>skypink</li>
+        <p>胡永乐的儿子死了</p>
+        <input type="text" value="胡永乐的妈妈死了">
+    </ul>
+</body>
+<script>
+    $(".oul li:eq(2) span").css({
+        color: 'green'
+    }).wrap("<p>草泥马胡永乐</p>").text("靠你媳妇").parents("ul").css({
+        background: 'skyblue'
+    }).children("li:eq(2)").css({
+        color: 'pink'
+    }).addClass("pink").attr("id", "胡永乐是傻逼").siblings("p").click(function(e) {
+        console.log(e);
+        console.log(this);
+        console.log(666);
+    }).closest().click(function() {
+        console.log('他的老婆被别人给强暴了');
+    })
+    console.log($(".oul li:eq(2) span").css({
+        color: 'green'
+    }).wrap("<p>草泥马胡永乐</p>").text("靠你媳妇").parents("ul").css({
+        background: 'skyblue'
+    }).children("li:eq(2)").css({
+        color: 'pink'
+    }).addClass("pink").attr("id", "胡永乐是傻逼").siblings("p").click(function(e) {
+        console.log(e);
+        console.log(this);
+        console.log(666);
+    }).closest());
+
+    $('p').css({
+        color: "red"
+    }).closest("body").addClass("tmd").click(function() {
+        $(this).toggleClass("abc")
+        console.log($(this).hasClass("abc"));
+    })
+
+    $('input[value="胡永乐的妈妈死了"]').css({
+            border: "10px solid red "
+        }).unwrap()
+        // console.log($('input[value="胡永乐的妈妈死了"]').css({
+        //     border: "10px solid red "
+        // }).remove());
+</script>
+
+</html>

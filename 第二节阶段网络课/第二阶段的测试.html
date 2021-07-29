@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>答案
+        <a href="https://duyiedu.yuque.com/docs/share/92da8933-9553-4d11-8235-e5acf244683f?#">答案</a>
+    </p>
+    <p>网址: <a href="https://duyiedu.yuque.com/docs/share/f6da54fd-2b78-4dd3-9364-92e087366349?#" target="_blank">https://duyiedu.yuque.com/docs/share/f6da54fd-2b78-4dd3-9364-92e087366349?#</a></p>
+    <p>
+        第一题： 1.200 : 200一般是请求成功过返回的状态码
+        <br> 2.301 ： 301 重定向，服务器的资源迁移了 <span style="color: red;">回答错误了</span> 服务的的资源永久迁移
+        <br> 3.302 ： 302. 也是重定向，服务器的资源永久迁移<span style="color: red;">回答错误了</span> 服务的的资源临时迁移
+        <br>4.303 ： 咱不知道 ： 搜的 查看其他地址，用get或post 请求查看
+        <br> 5。403 ： 咱不知道 ： 搜的 服务器理解客户端的请求，但拒绝执行本次请求
+        <br>6.404 ： 服务器上没有对应的资源
+        <br>7.503 ： 不会，搜的 ： 由于服务器超负载，或者服务器在维修，。延迟的时间会在 retry-after 头信息中
+    </p>
+    <p>第二题：在请求数据情况下，协议，端口，域名不一样的情况下，会产生跨域</p>
+    <p>常见解决跨域的问题
+        <br> 1.服务器做调整，这个最简单，'Access-Control-Allow-Origin':'*' 或者为协议域名端口及请求体中的origin
+        <br> 2 jsonp ： 原理：请script标签请求数据，服务器返回一个函数，函数的名称为请求参数callback的值，返回的数据包裹在这个函数的参数中，成功过，script标签会执行这个返回来的函数，所以我们需要在外面创建一个名字为返回名字的函数，这样就可以获取数据
+        <br>代码如下，有点粗糙：
+        <pre>
+          var $ = {}
+          $.ajax = function(option) {
+              if (option.responseType == "jsonp") {
+                  var newUrl = new URL(option.src)
+                  console.log(newUrl);
+                  var protocol = newUrl.protocol
+                  var host = newUrl.host
+                  if (location.host == host && loaction.protocol == protocol) {
+                      console.log('不是跨域请求');
+                  } else {
+                      var script = document.createElement("script")
+                      var random = 'ca' + Math.floor(Math.random() * 10000)
+                      window[random] = option.success
+                      if (option.src.indexOf("?") !== 0) {
+                          script.src = option.src + "?callback=" + random
+                      } else {
+                          script.src = option.src + "&callback=" + random
+                      }
+                      document.body.append(script)
+                  }
+              }
+          }
+          $.ajax({
+              src: "https://developer.duyiedu.com/edu/testJsonp",
+              type: 'get',
+              responseType: 'jsonp',
+              success: function(data) {
+                  console.log(data);
+              }
+          })
+        </pre>
+    </p>
+
+    <p>第三题</p>
+    <p>
+        1.减少网络请求，如使用精灵图<br> 2.优质的代码
+        <br>
+    </p>
+
+    <p>第四题</p>
+    <p>
+        1.cookie： 如果存在，会在每一次的请求上都加上cookie大约存储5kb
+        <br> 2.sessionStorage : 会话存储，不会随每次请求发送而发送，需要手动设置，浏览器关闭存储的信息将会丢失
+        <br>3.localStorage ： 本地存储 不会随每次请求发送而发送，需要手动设置，浏览器关闭存储的数据不会丢失，除非手动删除，大约可以存是5m
+        <br>indexedDB:也是个存储，但我不知道是啥，因该是数据库存储
+    </p>
+    <p>第五题</p>
+    <p>
+        1.get和post请求，需要看在什么条件下，
+        <br> 如果没有任何约束下，她两没有任何区别，唯一的区别就是字不一样
+        <br> 2.如果在rfc协议规范下下
+        <br>2.1：get一般用于请求数据，而post一般用于，设置数据
+        <br>2.2，请求的content-type不一样，get一般是 application/x-www-form-urlencodeed，而post就有很多的类型了如：binary； application/json；等等
+
+    </p>
+    <p>第六题</p>
+    <p>
+        1.会获取一下浏览器，是否存储了对应的url的ip，如果有将会返回对应的ip，没有将会到hosts的文件下，去寻找，有就返回ip，如果还没有，机会到区，城市cdn等等区寻找，找到返回对应的ip，如果没有返回404，返回正确的内容，浏览器渲染
+    </p>
+    <p>第七题</p>
+    <p>
+        在第六题的基础上，寻找ip， ip寻找到的的时候，会发送一下ws请求，看一下，是否支持通信。 1.第一次捂手， 我们请发送请求，对于我们不会知道任何东西，对于服务器，服务器可以知道自己可以接受到数据；
+        <br>服务器在接收到数据的时候，会发一个请求给我们。看看我们能不能接收到，接收到了，我们就可以知道，服务器可以接受到我们的请求，但服务器不知到我们能都接收到，如果我们接受不到，就会报错；
+        <br>在我们接收到请求后我们就会发送请求到服务器，服务器就会知道，我们技能发送数据也能接收数据，然后服务器发送数据，
+        <br>。。。数据发送完了，服务器将在一次，发送请求告诉我们，数据已近发送完了
+        <br>然后客户端也会发送请求告诉服务器，我知道了，我还在接收数据；
+        <br>当客户端数据接收完的时候，将会再次发送请求，告诉服务器，我接受玩了
+        <br>服务器将再次发送请求，告诉我们断开连接
+
+    </p>
+    <p>第八题</p>
+    <p>
+        tcp，udp都是一种协议
+        <br> tcp是一种长连接，连接是双向的，在发送数据的时候会保持连接
+        <br> 而udp，是单项的，在发送数据的时候，不会管你有没有接收到，发送完就结束
+    </p>
+    <p>第九题</p>
+    <p>http是网络通信一种协议</p>
+    <p>第十题</p>
+    <p>
+        http：发送数据不是加密的数据、
+        <br> https：发送数据都是加密的<br>http没有https安全
+    </p>
+    <p>第十一题</p>
+    <p>
+        他们俩都是浏览器的一种渲染方式
+        <br>重绘会在改变字体颜色，背景，不改变元素的大小的情况下，会产生；
+        <br>重排，回流 会在改变元素大小的，将会产生重排 <br> 重绘的消耗资源会小于回流
+    </p>
+</body>
+<script>
+    var $ = {}
+    $.ajax = function(option) {
+        if (option.responseType == "jsonp") {
+            var newUrl = new URL(option.src)
+            console.log(newUrl);
+            var protocol = newUrl.protocol
+            var host = newUrl.host
+            if (location.host == host && loaction.protocol == protocol) {
+                console.log('不是跨域请求');
+            } else {
+                var script = document.createElement("script")
+                var random = 'ca' + Math.floor(Math.random() * 10000)
+                window[random] = option.success
+                if (option.src.indexOf("?") !== 0) {
+                    script.src = option.src + "?callback=" + random
+                } else {
+                    script.src = option.src + "&callback=" + random
+                }
+                document.body.append(script)
+            }
+        }
+    }
+    $.ajax({
+        src: "https://developer.duyiedu.com/edu/testJsonp",
+        type: 'get',
+        responseType: 'jsonp',
+        success: function(data) {
+            console.log(data);
+        }
+    })
+</script>
+
+</html>

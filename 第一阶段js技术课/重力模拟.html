@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #app {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    app.onmousedown = function(e) {
+
+        var e = event || e
+        var disY = e.clientY - this.offsetTop
+        var disX = e.clientX - this.offsetLeft
+        var dom = this
+        var perY = 0;
+        var perX = 0;
+        var speedY = 3;
+        var speedX = 3;
+        clearInterval(dom.timer)
+        document.onmousemove = function(e) {
+            var e = event || e
+            speedX = e.clientX - disX - perX
+            speedY = e.clientY - disY - perY
+            app.style.left = e.clientX - disX + 'px'
+            app.style.top = e.clientY - disY + 'px'
+            perY = e.clientY - disY
+            perX = e.clientX - disX
+
+        }
+        document.onmouseup = function() {
+            this.onmousemove = null;
+            this.onmouseup = null;
+            startMove(dom, speedX, speedY)
+        }
+    }
+
+    function a() {
+        console.log("over");
+        clearInterval(app.timer)
+    }
+
+    function startMove(dom, iSpeedX = 3, iSpeedY = 3) {
+        clearInterval(dom.timer)
+        var g = 10
+        dom.timer = setInterval(() => {
+            iSpeedY += g
+            var newTop = dom.offsetTop + iSpeedY
+            var newLeft = dom.offsetLeft + iSpeedX
+            var viewY = document.documentElement.clientHeight - dom.clientHeight
+            var viewX = document.documentElement.clientWidth - dom.clientWidth
+
+            if (newTop >= viewY) {
+                iSpeedY *= -1
+                iSpeedY *= 0.8
+                iSpeedX *= 0.8
+                newTop = viewY
+            }
+            if (newTop < 0) {
+                iSpeedY *= -1
+                iSpeedY *= 0.8
+                iSpeedX *= 0.8
+                newTop = 0
+            }
+            if (newLeft > viewX) {
+                iSpeedX *= -1
+                newLeft = viewX
+                iSpeedY *= 0.8
+                iSpeedX *= 0.8
+            }
+            if (newLeft <= 0) {
+                iSpeedX *= -1
+                newLeft = 0
+                iSpeedY *= 0.8
+                iSpeedX *= 0.8
+            }
+            if (Math.abs(iSpeedX) < 1) {
+                iSpeedX = 0
+            }
+            if (Math.abs(iSpeedY) < Math.ceil(g / 2)) {
+                iSpeedY = 0
+            }
+            // console.log(viewY == newTop);
+            if (iSpeedY == 0 && iSpeedX == 0 && viewY == newTop) {
+                clearInterval(dom.timer)
+                console.log('over');
+            } else {
+                console.log(newTop)
+                dom.style.top = newTop + 'px'
+                dom.style.left = newLeft + 'px'
+            }
+        }, 30);
+    }
+</script>
+
+</html>

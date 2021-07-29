@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        position: absolute;
+        width: 500px;
+        height: 200px;
+        border: 10px solid black;
+        opacity: 1;
+        left: 0;
+        top: 0;
+    }
+    
+    #app1 {
+        left: 250px;
+        opacity: 0.5;
+    }
+</style>
+
+<body>
+    <div id="app"></div>
+    <div id="app1"></div>
+</body>
+<script>
+    // 1.获得属性的方法
+    function getProp(dom, prop) {
+        return window.getComputedStyle(dom, null)[prop]
+    }
+    // 2.动画
+    // app.onclick = function() {
+    //         console.log(11);
+    //         startMove(this, {
+    //             width: 1000,
+    //         }, 30)
+    //     }
+
+    app.onclick = function() {
+        startMove(this, {
+            width: 1000,
+            height: 20,
+            opacity: 0
+        }, 30, () => {
+            startMove(app1, {
+                width: 1000,
+                height: 20,
+                opacity: 0
+            }, 30, () => {
+
+            })
+        })
+    }
+
+    function startMove(dom, option, time = 30, callback) {
+        clearInterval(dom.timer)
+        var speed = null;
+        var current = null;
+        dom.timer = setInterval(() => {
+            var flage = true
+            for (const key in option) {
+                if (key == "opacity") {
+                    current = parseFloat(getProp(dom, key)) * 100;
+                } else {
+                    current = parseFloat(getProp(dom, key));
+                }
+                speed = (option[key] - current) / 7;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+                if (Object.hasOwnProperty.call(option, key)) {
+                    if (option[key] == current) {
+                        dom.style[key] = option[key] + "px"
+                    } else {
+                        if (key == "opacity") {
+                            dom.style[key] = (current + speed) / 100;
+                        } else {
+                            dom.style[key] = current + speed + "px";
+                        }
+                    }
+                }
+                if (option[key] != current) {
+                    flage = false
+                }
+            }
+            if (flage) {
+                clearInterval(dom.timer)
+                typeof callback === 'function' && callback()
+            }
+        }, time)
+    }
+</script>
+
+</html>

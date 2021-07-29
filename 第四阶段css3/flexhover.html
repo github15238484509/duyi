@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .wrappper {
+            width: 300px;
+            height: 500px;
+            box-sizing: border-box;
+            display: flex;
+        }
+        
+        .item {
+            flex: 1 1 auto;
+            text-align: center;
+            text-justify: distribute;
+            /* background: red; */
+            border: 1px solid red;
+            transition: all 0.5s;
+        }
+        
+        .item:hover {
+            background: red;
+            flex: 5 1 auto;
+        }
+    </style>
+    <div class="wrappper">
+        <div class="item">天猫</div>
+        <div class="item">淘宝</div>
+        <div class="item">京东</div>
+        <div class="item">聚划算</div>
+    </div>
+</body>
+
+</html>

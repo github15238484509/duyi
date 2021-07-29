@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    柯里化的思想：
+    <br>
+    <p>拼凑对应函数参数执行：实际参数大于或等于形参的时候才执行</p>
+    <script>
+        function add(a, b, c, d) {
+            return a + b + c + d
+        }
+
+        function Curry(fn) {
+            var outArg = Array.prototype.slice.call(arguments, 1)
+            var length = fn.length
+            return function() {
+                var innArg = Array.prototype.slice.call(arguments, 0)
+                var combineMerge = outArg.concat(innArg)
+                return (combineMerge.length >= length) ? fn(...combineMerge) : Curry(fn, ...combineMerge)
+            }
+        }
+        var nweAdd = Curry(add)
+        console.log(nweAdd(1, 1, 2));
+        console.log(nweAdd(1)(1)(1)(1));
+        console.log(nweAdd(1, 1)(1)(1));
+    </script>
+</body>
+
+</html>

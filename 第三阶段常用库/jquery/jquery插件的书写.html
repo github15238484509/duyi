@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.6.0.min.js"></script>
+<style>
+    div {
+        height: 200px;
+        width: 200px;
+        border: 15px solid green;
+    }
+</style>
+
+<body>
+
+
+    <div></div>
+    <div></div>
+    <script>
+        $.fn.extend({
+            drag: function(options) {
+                options = options || {}
+                $(this).css({
+                    position: 'absolute'
+                }).mousedown(function(el) {
+                    var disX = el.clientX - $(this).offset().left
+                    var disY = el.clientY - $(this).offset().top
+                    var This = this
+                    $(document).mousemove(function(e) {
+                        var l = e.pageX - disX
+                        var t = e.pageY - disY
+                        $(This).css({
+                            left: l,
+                            top: t
+                        })
+                    })
+                    $(document).mouseup(function() {
+                        $(this).off('mousemove mouseup')
+                    })
+                })
+            }
+        })
+    </script>
+    <script>
+        $("div").drag({
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.1-beta3/mock-min.js"></script>
+    <script>
+        var Random = Mock.Random
+        console.log(Random.boolean()) //随机长生一个boolean值
+        console.log(Mock.mock('@boolean')) //随机长生一个boolean值
+        console.log(Random.natural()) //产生一个自然数
+        console.log(Mock.mock('@natural'))
+        console.log(Mock.mock('@natural(1,10)')) //产生一个自然数
+        console.log(Random.integer()) //随机产生一个整数可以为负
+        console.log(Mock.mock('@integer(1,10)')) //随机产生一个整数
+        console.log(Random.float()) //随机长生一个浮点数
+        console.log(Mock.mock('@float(10,20)')) //随机产生一个20-10的浮点数
+        console.log(Mock.mock('@float(10,20,1,2)')) //随机产生一个10-20的随机数并且小小数位有1-2位
+        console.log(Random.character()) //随机产生一个字符 character
+        console.log(Mock.mock('@character')) //随机产生一个字符 character
+        console.log(Mock.mock('@character(lower)')) //lower lower 随机产生一个小写字符 lower
+        console.log(Mock.mock('@character(upper)')) // upper upper upper 随机产生一个大写字符 upper
+        console.log(Mock.mock('@character(number)')) //lower upper number
+        console.log(Mock.mock('@character("abcdefg")')) //从abcdefg随机查找一个
+            //boolean natural integer float character  lower upper symbol
+        console.log(Random.string()) //随机产生一串字符
+        console.log(Random.string(5)) //随机产生五个字符
+        console.log(Mock.mock('@string(3)')) //随机产生三个字符
+        console.log(Mock.mock('@string("upper",4)')) //随机长生四个大写字符
+        console.log(Mock.mock('@string("lower",1,4)')) //随机产生1-4个小写字符
+        console.log(Random.range(10)) //产生一个长度为10的数组，并且值为0-9
+        console.log(Mock.mock('@range(2,8)'))
+
+        //date
+        console.log(Random.date()) //产生一个时间2014-12-23
+        console.log(Random.date("yyyy-MM-dd")) // 随机产生一个年份
+        console.log(Random.time()) //随机产生一个时间13:04:34
+        console.log(Mock.mock('@time'))
+        console.log(Mock.mock('@time("MM")'))
+
+        console.log(Random.datetime()) //随机产生一个2020-01-11 05:54:35
+        console.log(Mock.mock('@datetime'))
+        console.log(Random.now()) //返回当前时间
+        console.log(Mock.mock('@now'))
+        console.log(Random.image()); //随机产生一张图片
+        console.log(Mock.mock('@image(200x200)')) //产生一张200x200的图片
+        console.log(Mock.mock('@image(200x200,#fff,#f0,noaho)')) //产生一张背景为#fff的字体颜色为red，文字为nohao、的图片
+        console.log(Mock.mock("@dataImage()")) //产生一个base64为的图片。参数和上面一样
+        console.log(Mock.mock('@color')) //随机产生一个颜色值#f279f0
+        console.log(Mock.mock('@hex')) //随机产生一个颜色值#f279f0
+        console.log(Mock.mock('@rgb')) //随机产生一个rgb的值
+        console.log(Mock.mock('@rgba')) //随机产生一个rgba的值
+        console.log(Mock.mock("@hsl")) //随机产生一个饱和度
+
+        // natural  自然数natural natural natural natural natural natural natural
+        // integer 整数 integer integer integer integer integer integer
+        // float 浮动 float float float float float float float 
+        //character 字符 
+
+        // paragraph 段落 paragraph  paragraph
+        console.log(Random.paragraph())
+        console.log(Mock.mock({
+            paragraph: '@paragraph'
+        }))
+        console.log(Mock.mock('@paragraph(3)'))
+        console.log(Mock.mock('@paragraph(1,2)')) //返回一段文字
+        console.log(Random.sentence()) //返回一个句子
+        console.log(Mock.mock("@sentence(1,5)")) //返回1-5个单词
+
+        // word
+        console.log(Random.word()) //返回一个词语
+        console.log(Mock.mock("@word(2,5)")) //返回两个单词
+
+        // title
+        console.log(Random.title()) //返回一段标题
+        console.log(Mock.mock('@title(1,3)')) //返回1-3个单词
+
+        console.log(Random.cparagraph()) //返回一段中文段落
+        console.log(Random.csentence(1, 2)) //返回1-2文字，参数如果不填，返回一段文字
+        console.log(Random.cword("1,6")) //返回一个文字，
+        console.log(Mock.mock('@cword(3,6)'));
+        console.log(Mock.mock('@ctitle'))
+
+        // name
+        console.log(Random.name()) //返回一个英语名字
+        console.log(Random.name(true)) //返回一个有3个单词的名字
+        console.log(Mock.mock({
+            name: '@name(true)'
+        }))
+        console.log(Random.cfirst()) //返回一个中文姓
+        console.log(Random.clast()) //返回一个名
+        console.log(Random.cname()) //返回一个名字
+
+        // Web
+        console.log(Random.url("http")) //返回一个网址 ,可以传参数，参数是协议的名字
+            // domain domain domain domain domain domain domain
+        console.log(Random.domain()) //返回一个域名
+        console.log(Mock.mock('@protocol'))
+        console.log(Random.tld())
+        console.log(Random.email()) //返回一个邮箱
+        console.log(Random.ip())
+
+        // address
+        console.log(Random.region()) //返回大区
+        console.log(Random.province()) //随机返回一个省市
+        console.log(Random.city()) //随机返回一个市 如果参数为true 可以返回省份
+        console.log(Random.county()) //随机返回一个区 参数 为true 返回省份，和县
+            // province province province  province
+            // city county province province
+        console.log(Random.zip()) //返回一个邮政编码
+
+        // helper
+        console.log(Random.capitalize("safas")) //capitalize 首字符大写
+        console.log(Random.capitalize('adf')) //capitalize 首字符大写
+        console.log(Random.upper('asdfas')) //字符大写
+        console.log(Random.lower('ASDFASDFH')) //转化成小写字母
+
+        console.log(Random.pick([1, 1, 2, 2, 2, , 33])) //参数为数组，随机获取一项
+        console.log(Random.shuffle([1, 1, 2, 2, 2, , 33])) //shuffle 重新洗牌
+        console.log(Random.guid()) //随机产生一个 guid
+        console.log(Random.id())
+            // increment increment increment increment
+
+        console.log(Random.increment())
+        console.log(Random.increment())
+        console.log(Mock.mock({
+            "name|5": [12, 1]
+        }))
+    </script>
+</body>
+
+</html>

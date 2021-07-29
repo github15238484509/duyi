@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #app {
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        position: absolute;
+        margin-top: 50px;
+        border-radius: 50%;
+    }
+    
+    .span {
+        width: 2px;
+        height: 2px;
+        background-color: black;
+        position: absolute;
+        margin-top: 50px;
+        border-radius: 50%;
+    }
+</style>
+
+<body>
+
+    <div id="app"></div>
+    <canvas id="MyCanvas" width="400" height="400"></canvas>
+</body>
+<script>
+    app.onclick = function() {
+        // starMove(this)
+        draw()
+    }
+
+    function starMove(dom) {
+        let x = 0
+        setInterval(() => {
+            var span = document.createElement("span")
+            span.className = "span"
+            span.style.left = x + 'px'
+            span.style.top = 100 * Math.sin(x) + 'px'
+            if (Math.sin(x)) {
+                document.body.appendChild(span)
+            }
+            console.log(Math.sin(x));
+            x = x + 1
+        }, 5);
+    }
+
+    function draw() {
+        var my_canvas = document.getElementById("MyCanvas");
+        var content = my_canvas.getContext("2d");
+        content.beginPath();
+        content.moveTo(10, 100);
+        // for (var i = 1; i < 200; i += 0.01) {
+        //     var x = i;
+        //     var y = Math.sin(i) * 10 + 100;
+        //     content.lineTo(x, y);
+        // }
+        var x = 1
+        var av = setInterval(() => {
+            x = x + 0.1
+            var y = Math.sin(x) * 100;
+            content.lineTo(x, y);
+            content.stroke();
+            content.closePath();
+        }, 30);
+        // content.stroke();
+        // content.closePath();
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    $('div').css({
+        width: '300px',
+        height: '300px',
+        background: "green"
+    }).appendTo("body").click(function(e) {
+        console.log(e);
+        console.log('cao');
+    })
+    $().ready(function() {
+        console.log(555);
+    })
+    $(document).ready(function() {
+        console.log(44);
+    })
+    $(function() {
+        console.log(333);
+        $("div").addClass("liu").addClass("meng").removeClass("meng")
+        console.log($("div"));
+    })
+    window.addEventListener("storage", function() {
+        console.log(5555);
+    })
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log(123);
+    })
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('3 seconds passed');
+    });
+</script>
+
+</html>

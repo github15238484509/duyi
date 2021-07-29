@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // cookie的属性
+        // 1. name cookie的名字
+        // 2. value cookie name对应的值
+        // 3. path  cookie作用与那个目录下
+        // 4。domain cookie 可以使用在个域名下
+        // 5. max-age cookie的有效期 时间为秒
+        // 6. expires cookie的有效期 单位是GMT时间
+        // 7. size 对应value 的大小
+        // 8. HttpOnly 设置cookie 不能被js获取到
+        // 9.secure 次cookie 只能在https中使用   secure secure secure secure secure
+        // 10. sameSite 相同站点 
+        // 10.1 Strict最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。换言之，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
+        // 10.2 Lax规则稍稍放宽，大多数情况也是不发送第三方 Cookie，但是导航到目标网址的 Get 请求除外。
+        // 10.3 None
+
+
+
+        // cookie 会随每次请求都会发出
+        document.cookie = "name=小刘; max-age=1000; path=/name"
+        document.cookie = "name=小刘13; max-age=1000; "
+    </script>
+</body>
+
+</html>

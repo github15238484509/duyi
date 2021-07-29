@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="./moment.js"></script>
+    <script>
+        console.log(moment());
+        console.log(moment().format())
+        console.log(moment().format('MM Do YYYY,h:mm:ss a'))
+        console.log(moment().format('dddd'))
+        console.log(moment().format('MM do YYYY'))
+        console.log(moment('20210705', 'YYYYMMDD').fromNow())
+        console.log(moment().startOf('day').fromNow())
+        console.log(moment().endOf('day').fromNow())
+        console.log(moment().startOf('hour').fromNow())
+        console.log(moment().subtract(1, 'hour').calendar())
+        console.log(moment().subtract(2, 'day').calendar())
+        console.log(moment().calendar())
+        console.log(moment().add(1, 'hour').calendar())
+        console.log(moment().locale())
+    </script>
+</body>
+<script>
+    console.log(moment(undefined))
+    console.log(moment([]))
+    var now = moment()
+    console.log(now);
+    var day = moment('19990302')
+    console.log(day);
+    console.log(moment('2013-039'))
+</script>
+<script>
+    // moment带格式
+    console.log(moment("12-25-1995", "MM-DD-YYYY"))
+    console.log(moment("12/25/1995", "MM-DD-YYYY"))
+    console.log(moment("12/25/1995").format("YYYY-MM-DD"))
+    console.log(moment(1625749074141).format("YYYY-MM-DD"))
+    console.log(moment(1625749074141).format("LLLL"))
+</script>
+<script>
+    // 多格式
+    console.log(moment("30-03-2015", ["MM-DD-YYYY", "DD-YYYY-MM", "DD-MM-YYYY"]))
+    console.log(moment("29-06-1995", ["MM-DD-YYYY", "DD-MM-YYYY"], 'true'))
+    console.log(moment("2010-01-01T05:06:07", moment.ISO_8601))
+    console.log(moment.HTML5_FMT.DATETIME_LOCAL)
+        // Object
+    console.log(moment({
+        year: 2020,
+        date: 5,
+        hours: 10,
+    }))
+    var day = moment.unix(1318781876).utc()
+    console.log(day)
+    console.log(moment(new Date(2000, 9, 16)))
+    console.log(moment(day))
+    var b = day.clone(day)
+    console.log(b);
+    console.log("________");
+    console.log(moment().format());
+    console.log(moment.utc().format());
+    console.log(moment.utc().seconds().valueOf());
+    console.log(moment.utc().seconds());
+    console.log(moment.parseZone())
+    console.log(moment.parseZone("2013-01-01T00:00:00-13:00").utcOffset())
+        // duration 时常
+        // subtract subtract subtract 减去 subtract
+</script>
+
+</html>

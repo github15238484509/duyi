@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+	:root{
+	
+	height:100%}
+    
+    body {
+        height: 100%;
+		perspective: 800px;
+        transform-style: preserve-3d;
+    }
+    
+    .wrapper {
+        position: absolute;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        top: 50%;
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+        perspective: 800px;
+        transform-style: preserve-3d;
+      
+    }
+    
+    .tiem {
+        width: 115px;
+        height: 100px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -50px 0 0 -57px;
+        border: 1px solid red;
+        
+    }
+    
+    .wrapper div:nth-child(1) {
+        transform: rotateY(0deg) translateZ(-100px);
+        color: red;
+    }
+    
+    .wrapper div:nth-child(2) {
+        transform: rotateY(60deg) translateZ(-100px);
+    }
+    
+    .wrapper div:nth-child(3) {
+        transform: rotateY(120deg) translateZ(-100px);
+    }
+    
+    .wrapper div:nth-child(4) {
+        transform: rotateY(180deg) translateZ(-100px);
+    }
+    
+    .wrapper div:nth-child(5) {
+        transform: rotateY(240deg) translateZ(-100px);
+    }
+    
+    .wrapper div:nth-child(6) {
+        transform: rotateY(300deg) translateZ(-100px);
+    }
+</style>
+
+<body>
+
+    <div class="wrapper">
+        <div class="tiem">1</div>
+        <div class="tiem">2</div>
+        <div class="tiem">3</div>
+        <div class="tiem">4</div>
+        <div class="tiem">5</div>
+        <div class="tiem">6</div>
+    </div>
+
+</body>
+
+</html>

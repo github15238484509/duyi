@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.1-beta3/mock-min.js"></script>
+</body>
+<script>
+    Mock.mock("./getUser", {
+        success: 'ok',
+        "data|10": [{
+            "name|": '@cname',
+            'age|1-60': 1,
+            "address": '@county(true) @csentence',
+            "phone": /1\d{10}/,
+            "sex": '@pick(["男", "女"])'
+        }]
+    })
+
+    $.ajax({
+        url: './getUser',
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+        }
+    })
+    $.ajax({
+        url: './getUser132',
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+        }
+    })
+</script>
+
+</html>

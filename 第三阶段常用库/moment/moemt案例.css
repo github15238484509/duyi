@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+body {
+    background-color: #2222;
+}
+
+.wrapper {
+    width: 420px;
+    margin: 200px auto 0;
+    background-color: #333;
+}
+
+.top {
+    padding: 20px 35px;
+    border-bottom: 1px solid #999;
+}
+
+.top .demo1 {
+    color: white;
+    font-size: 40px;
+}
+
+.top .demo2 {
+    color: white;
+    font-size: 21px;
+}
+
+.bottom {
+    padding: 0 30px;
+    color: white;
+}
+
+.bottom .control {
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+    line-height: 45px;
+}
+
+.bottom .control .btn {
+    display: flex;
+    height: 50px;
+}
+
+.bottom .control .btn span {
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.main {
+    padding-bottom: 30px;
+}
+
+.main .week {
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .week span {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+.main ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.main ul li {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    justify-content: space-around;
+}
+
+.main ul li span:nth-child(2) {
+    font-size: 12px;
+}
+
+.main ul li.color {
+    color: #999;
+}
+
+.main ul li.active {
+    background-color: #4f4fd5;
+}

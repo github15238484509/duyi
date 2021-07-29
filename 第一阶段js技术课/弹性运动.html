@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    ul {
+        position: relative;
+    }
+    
+    li {
+        width: 50px;
+        height: 50px;
+        border: 2px solid red;
+        box-sizing: border-boxs;
+        float: left;
+    }
+    
+    #app1 {
+        position: absolute;
+        left: 0;
+        background-color: deeppink;
+        opacity: 0.5;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li id="app1"></li>
+    </ul>
+</body>
+<script>
+    var aaa = document.querySelectorAll("li")
+    for (let i = 0; i < aaa.length - 1; i++) {
+        aaa[i].onclick = function() {
+            startMove(app1, this.offsetLeft)
+        }
+    }
+
+    function startMove(dom, target) {
+        var a = 10;
+        var speed = 0;
+        var mo = 0.8
+        clearInterval(app1.timer)
+        app1.timer = setInterval(() => {
+            a = (target - dom.offsetLeft) / 5
+            speed += a
+            speed *= mo
+            if (Math.abs(speed) < 1 && Math.abs(target - dom.offsetLeft) < 1) {
+                clearInterval(timer)
+                console.log(target);
+                dom.style.left = target + 'px'
+            }
+            dom.style.left = dom.offsetLeft + speed + 'px'
+        }, 30)
+    }
+</script>
+
+</html>

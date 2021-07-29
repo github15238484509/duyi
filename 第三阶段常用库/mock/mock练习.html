@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Mock.js/1.0.1-beta3/mock-min.js"></script>
+</body>
+<script>
+    console.log(Mock.mock({
+        'name|1-10': "a"
+    })); //重复a 1-10 任意次数
+    console.log(Mock.mock({
+            'kivan|3': "a"
+        })) //重复a3 次
+    console.log(Mock.mock({
+            'age|+1': 5
+        })) //属性值自动加 1，初始值为 number
+    console.log(Mock.mock({
+            'age|1-10': 1
+        })) //产生一个随机数
+    console.log(Mock.mock({
+            'age|1-10.1-3': 1
+        })) //产生一个1-10的随机数，并且小数位有1-3位
+    console.log(Mock.mock({
+            "boolean|1": false
+        })) //随机产生一个boolean的值
+    console.log(Mock.mock({
+            'age|1-2': false
+        })) //产生一个 1/（1+2）概率的false
+
+
+    var obj = {
+        name: "liu",
+        age: '18',
+        sex: '男',
+        wife: 'undefined'
+    }
+    console.log(Mock.mock({
+            'person|2': obj
+        })) //从对象中随机获取2属性 最为person的值
+    console.log(Mock.mock({
+            'person|1-4': obj
+        })) //从对象obj中随机获取1-4个属性作为person的值
+
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(Mock.mock({
+            'arr|3': arr
+        })) //数值为1 则从arr随机获取一个数值，如果大于1则把数组重复几次
+    console.log(Mock.mock({
+            'arr|+1': arr
+        })) //从属性值 array 中顺序选取 1 个元素，作为最终值。因该会在循环中会有用
+    function add() {
+        return 1 + 2
+    }
+    console.log(Mock.mock({
+            'fun': add
+        })) //执行函数并且值为函数执行的值
+
+    console.log(Mock.mock({
+            'num': /[0-9]/
+        })) //随机返回正则表达式的值
+    console.log(Mock.mock({
+        name: {
+            first: '@FIRST',
+            middle: '@FIRST',
+            last: '@LAST',
+            full: '@first @middle @last'
+        }
+    }));
+    var Random = Mock.Random
+    console.log(Random.email()); //随机产生一个email
+    console.log(Mock.mock({
+            "email": '@email'
+        })) //随机产生一个邮箱
+    console.log(Mock.mock('@email')) //随机产生一个邮箱email
+    console.log(Mock.mock({
+        'address': '@url'
+    }))
+</script>
+
+</html>

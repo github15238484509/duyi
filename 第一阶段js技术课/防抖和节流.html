@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    防抖和节流只有在规定的时间内执行
+    <p class="go">防抖:在规定时间内连续操作只有最后一次才会执行(<b>连续点击查看效果</b> )</p>
+    <p class="go">节流:在规定时间内只会执行一次(<b>连续点击查看效果</b>)</p>
+</body>
+<style>
+    p {
+        user-select: none;
+    }
+</style>
+<script>
+    var p = document.querySelectorAll('.go')
+    p[0].onclick = fangdou(log, 1000)
+    p[1].onclick = jieliu(log, 1000)
+
+    // 1防抖
+    function fangdou(fun, await) {
+        var time = null
+        return function(e) {
+            clearTimeout(time)
+            time = setTimeout(() => {
+                fun.call(this, ...arguments) //使用argument可能不是点击事件，而是实际的传参
+            }, await)
+        }
+    }
+    //节流
+    function jieliu(fun, await) {
+        var time = 0
+        return function(e) {
+            var lastTime = new Date().getTime()
+            if (lastTime - time >= await) {
+                fun.call(this, ...arguments)
+                time = lastTime
+            }
+        }
+    }
+
+
+    function log(e) {
+        console.log(e);
+        this.style.color = this.style.color == '' ? 'red' : ''
+    }
+</script>
+
+</html>

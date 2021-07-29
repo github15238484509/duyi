@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .seven {
+            width: 0;
+            height: 0;
+            border: 100px solid red;
+            margin: 0 auto;
+            border-top: 100px solid transparent;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+        }
+        
+        .nine {
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>试题路径 <a href="https://www.yuque.com/docs/share/8e8d1991-4419-436e-aba6-556821cacfa2?#">https://www.yuque.com/docs/share/8e8d1991-4419-436e-aba6-556821cacfa2?#</a>
+    </h1>
+    <ol>
+        <li>A</li>
+        <li>A</li>
+        <li>AD</li>
+        <li>CD</li>
+        <li>C</li>
+    </ol>
+    <P>
+        6.伪类伪类顾名思义就是个类及class样式；伪元素，就是一个元素的 after ， before，他是一个元素
+    </P>
+    <p>第七题</p>
+    <div class="seven"></div>
+    <p>8.HSL即色相、饱和度、亮度（英语：Hue, Saturation, Lightness）。 色相（H）是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。 饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。 明度（V），亮度（L），取0-100%。
+    </p>
+    <p class="nine">
+        第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题第九题
+    </p>
+    <p>第十题</p>
+    <style>
+        .box {
+            perspective: 500px;
+            transform-style: preserve-3d;
+            width: 200px;
+        }
+        
+        .red,
+        .green {
+            width: 50px;
+            height: 50px;
+            border: 1px solid red;
+        }
+        
+        .red {}
+        
+        .green {
+            border: 1px solid green;
+            transform-origin: left center;
+            transform: translate(100%, -100%) rotateY(90deg);
+        }
+    </style>
+    <div class="box">
+        <div class="red"></div>
+        <div class="green"></div>
+    </div>
+
+    <p>11.40px</p>
+    <p>12. first-letter first-child nth-child</p>
+    <p>13.不相等</p>
+    <p>14题</p>
+    <ul>
+        <li>display:none;在页面上不创建元素，不占据位置</li>
+        <li>visibility:hidden;在页面上创建元素，占据位置，不显示元素</li>
+        <li>opacity：0，在页面上创建元素，占据位置，让其变成透明色</li>
+    </ul>
+    <p>第15题</p>
+    <ul>
+        <li>1.块级元素设置宽高，然后 margin 0 auto</li>
+        <li>2. 行级元素的父级设置text-align：center</li>
+        <li>flex布局设置子元素， display：flex；justify-conten：center</li>
+        <li>定位，left 50% top 50%， 然后平移自身的一半，用margin 或者，transfrom的 translate（-50%，-50%）</li>
+    </ul>
+    <p>16.浮动float 会使高度塌陷，因为浮动会脱离文档流；清楚浮动就是为了让父级的高度不塌陷，容易布局</p>
+    <p>17. content：‘’；dispaly：block；cleat：both；</p>
+    <p>18.css的盒子默认有两种；1w3c的标准和模型；元素的大小，包括width padding border <br> 2.ie的怪异和模型元素的大小为width <br> 使用box-sizing：border-box切换盒子模型，默认的盒子模型为w3c的标准和模型
+    </p>
+    <p>19.transition是过渡，一种状态到另一种状态的平缓转换，animation animation是动画，就像动画片一样一帧一帧的执行</p>
+    <p>
+        20.网页的结构层（html），表示层（css），行为层（js)
+    </p>
+
+    <p>21. white-space：nowrap overflow：hidden； text-overflow:ellipsis ellipsis</p>
+    <p style="width: 100px;word-break:break-word">
+        22题。word-break:break-wordword-break:break-wordword-break:break-wordword-break:break-word</p>
+    <p>23.box-show阴影;传6个值 1.阴影的方向inset，内阴影，outset，外阴影，2.水平偏移量可以为负，3.垂直偏移量，可以为负，4.模糊成度，5.模糊半径，6.阴影的颜色；可以传如多个值</p>
+    <p>24.文字的基线；vertical；设置对齐方式</p>
+    <p>25.display；flex；一行用align-item，多行调用align-conten； 值为center</p>
+    <p style="background-image: linear-gradient(45deg, red, blue,green);color: white;">26.包括线性渐变，渐行渐变 background-image: linear-gradient(45deg, red, blue，green);</p>
+    <p>27.transtion: 过渡的属性， 时间 ，过渡函数 ，延迟时间</p>
+    <style>
+        #tran {
+            transition: color 1s;
+        }
+        
+        #tran:hover {
+            color: red;
+        }
+    </style>
+    <p id="tran">28.1. 当鼠标以上的时候，我们知道获得时间，使用定时器，发出事件；2.一个元素有一个函数可以监听，过渡结束 ， transitionend</p>
+    <p>29.box-show</p>
+    <style>
+        @media screen {
+            .a {
+                -ms-layout-grid: 22;
+            }
+        }
+    </style>
+    <p>30.一套页面，可以端使用，常用媒体查询实现 @media screen</p>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+<script>
+    tran.addEventListener("transitionend", function() {
+        alert("发出事件")
+    })
+</script>
+
+</html>

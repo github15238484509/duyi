@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #app {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <p>
+        使用cookie存储div的位置信息
+    </p>
+    <div id="app"></div>
+</body>
+<script>
+    // 封装cookie常用的方法
+    var manageCookie = {
+        set(name, value, data) {
+            document.cookie = name + "=" + value + '; max-age=' + data
+        },
+        remove(name) {
+            document.cookie = name + '=' + '' + '; max-age=0'
+        },
+        get(name) {
+            var getCookie = document.cookie
+            var CookieArr = getCookie.split("; ")
+            for (let i = 0; i < CookieArr.length; i++) {
+                if (CookieArr[i].split("=")[0] == name) {
+                    return CookieArr[i].split("=")[1]
+                }
+            }
+        }
+    }
+
+    var moveDom = {
+        init(dom) {
+            this.dom = dom
+            this.bindEvent()
+            var left = manageCookie.get("newleft")
+            var top = manageCookie.get("newtop")
+
+            this.dom.style.left = left && left + 'px'
+            this.dom.style.top = top && top + 'px'
+        },
+        bindEvent(dom) {
+            this.dom.onmousedown = this.mousedown.bind(this)
+        },
+        mousedown(e) {
+            this.disx = e.clientX - this.dom.offsetLeft
+            this.disy = e.clientY - this.dom.offsetTop
+            document.onmousemove = this.mousemove.bind(this)
+            document.onmouseup = this.mouseup.bind(this)
+        },
+        mousemove(e) {
+            this.newleft = e.clientX - this.disx
+            this.newtop = e.clientY - this.disy
+            this.dom.style.left = this.newleft + 'px'
+            this.dom.style.top = this.newtop + 'px'
+        },
+        mouseup() {
+            document.onmousemove = null
+            document.onmouseup = null
+            manageCookie.set("newleft", this.newleft)
+            manageCookie.set("newtop", this.newtop)
+        }
+    }
+    moveDom.init(document.getElementById("app"))
+</script>
+
+</html>
