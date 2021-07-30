@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-between;
+    width: 820px;
+    height: 400px;
+}
+
+.container>div {
+    width: 400px;
+    border: 1px solid red;
+    overflow: hidden;
+    font-size: 0;
+    position: relative;
+}
+
+.middle img {
+    width: 100%;
+}
+
+.bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    cursor: pointer;
+    background-image: url(./img/bg.png);
+}
+
+.lager img {
+    position: absolute;
+    width: 200%;
+}

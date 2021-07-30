@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* 整体容器的样式 */
+.container{
+    width: 1000px;
+    height: 600px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-template-rows: 85% 15%;
+    justify-content: space-between;
+}
+
+/* > 代表子元素 */
+.container>div{
+    border: 1px solid #eee;
+}
+
+/* 左边的中图样式 */
+.middleImg{
+    background: url('../images/imgA_2.jpg') no-repeat center/cover;
+    position: relative; /* 因为遮罩层要移动 */
+}
+
+/* 右边大图样式 */
+.largeImg{
+    background: url('../images/imgA_3.jpg') no-repeat;
+    opacity: 0;
+}
+
+/* 下面的缩略图 */
+.smallImg{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallImg li{
+    width: 60px;
+    height: 60px;
+    border: 1px solid #eee;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* 遮罩层 */
+.enlarge{
+    background: url('../images/bg.png');
+    width: 230px;
+    height: 230px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
