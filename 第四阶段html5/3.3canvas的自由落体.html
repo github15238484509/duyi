@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid pink;
+    }
+</style>
+
+<body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.querySelector("#canvas")
+    var ctx = canvas.getContext("2d")
+    var height = 50;
+    var direction = true
+    var speed = 5
+    ctx.strokeRect(100, height, 50, 50)
+    var timer = setInterval(function() {
+        ctx.clearRect(0, 0, 500, 500)
+        ctx.strokeRect(100, height, 50, 50)
+        height += speed;
+        if (height > 450) {
+            height = 450;
+            speed *= -1
+        }
+        if (height < 0) {
+            height = 0;
+            speed *= -1
+        }
+    }, 1000 / 30)
+</script>
+
+</html>

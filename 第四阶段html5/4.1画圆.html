@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        canvas {
+            width: 500px;
+            height: 500px;
+            outline: auto;
+            outline-offset: 2px;
+        }
+    </style>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <p>画圆需要六个参数，</p>
+    <ul>
+        <li>前三个是圆心和半径</li>
+        <li>第四个是起始的弧度开始的位置，</li>
+        <li>第五个是结束的弧度的位置</li>
+        <li>第六个弧度开始是顺时针还是逆时针，0是顺时针，1是逆时针</li>
+    </ul>
+    <script>
+        var canvas = document.getElementById("canvas")
+        var ctx = canvas.getContext("2d")
+        var speed = 3
+
+
+        ctx.arc(100, 100, 50, -Math.PI / speed, 0, 1)
+        ctx.lineTo(100, 100)
+        ctx.closePath()
+        ctx.stroke()
+
+        setInterval(function() {
+            speed = speed === 3 ? 8 : 3
+                //     console.log(speed);
+            ctx.clearRect(0, 0, 500, 500)
+            ctx.beginPath()
+            ctx.arc(100, 100, 50, -Math.PI / speed, 0, 1)
+            ctx.lineTo(100, 100)
+            ctx.closePath()
+            ctx.stroke()
+        }, 500)
+    </script>
+</body>
+
+</html>

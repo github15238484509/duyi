@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #drag {
+        width: 100px;
+        height: 100px;
+        background-color: #234567;
+        position: absolute;
+    }
+    
+    #target {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        border: 1px solid #789456;
+        left: 400px;
+    }
+</style>
+
+<body>
+    <div draggable="true" id="drag"></div>
+    <div id="target"></div>
+</body>
+<script>
+    // drag.ondragstart = function() {
+    //     console.log('drag元素拖拽开始');
+    // }
+    // drag.ondrag = function() {
+    //     console.log('drag元素拖拽移动');
+    // }
+    // drag.ondragend = function() {
+    //     console.log('drag元素拖拽结束');
+    // }
+    target.ondragenter = function() {
+        console.log('drag元素进入target中，并且属鼠标进入');
+    }
+    target.ondragover = function(e) {
+        e.preventDefault();
+        // console.log('drag元素进入target中并且移动,也是鼠标进入后执行');
+    }
+    target.ondragleave = function() {
+        console.log('drag元素进入target中离开了，也是鼠标离开执行，在里鼠标抬起也会执行');
+    }
+    target.ondrop = function() {
+        console.log('想要执行这个事件，必须在ondragover中组织默认事件，e.perventDefault');
+        console.log('drag元素在target中放下了');
+    }
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    div {
+        width: 200px;
+        padding: 30px;
+        border: 1px solid red;
+    }
+    
+    .box2 {
+        position: absolute;
+        left: 300px;
+    }
+    
+    ul {
+        padding: 0
+    }
+    
+    li {
+        height: 30px;
+        background-color: #abcdef;
+        list-style: none;
+        text-align: center;
+        margin: 10px auto;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="box1">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div class="box2"></div>
+    <script>
+        var target = null;
+        var box2 = document.querySelector(".box2")
+        var box1 = document.querySelector(".box1")
+        var lis = document.querySelectorAll("li")
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].setAttribute("draggable", true)
+            lis[i].ondragstart = function(e) {
+                target = e.target
+            }
+        }
+        box2.ondragover = function(e) {
+            //组织默认事件，让其可以放入目标中
+            e.preventDefault();
+
+        }
+        box2.ondrop = function() {
+            box2.appendChild(target)
+        }
+        box1.ondragover = function(e) {
+            //组织默认事件，让其可以放入目标中
+            e.preventDefault();
+
+        }
+        box1.ondrop = function() {
+            box1.appendChild(target)
+        }
+    </script>
+</body>
+
+</html>

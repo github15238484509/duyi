@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid green;
+    }
+</style>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas")
+        var ctx = canvas.getContext("2d")
+        ctx.lineWidth = 5
+            //画矩形的集中方法
+            // 1
+            // ctx.moveTo(100, 100)
+            // ctx.lineTo(200, 100)
+            // ctx.lineTo(200, 200)
+            // ctx.lineTo(100, 200)
+            //     // ctx.lineTo(100, 100)
+            // ctx.closePath()
+            // ctx.stroke()
+            // 2
+            // ctx.fillRect(100, 100, 100, 100)
+
+        // 3
+        // ctx.strokeRect(100, 100, 200, 200)
+
+        // 4
+        ctx.rect(100, 100, 300, 300)
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

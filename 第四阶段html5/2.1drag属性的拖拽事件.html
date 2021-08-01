@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #123456;
+    }
+</style>
+
+<body>
+    <div id="drag" draggable="true"></div>
+    <script>
+        // 被拖拽的元素有三部分组成
+        // 1 拖拽开始 2。拖拽的过程3拖拽结束
+        var left = 0;
+        var t = 0;
+        drag.ondragstart = function(e) {
+                left = e.clientX
+                t = e.clientY
+                console.log(e);
+                console.log('我被拖拽了');
+            }
+            // drag.ondrag = function(e) {
+            //     console.log(e);
+            //     console.log('拖拽开始了');
+            // }
+        drag.ondragend = function(e) {
+            left = e.clientX - left
+            t = e.clientY - t
+            drag.style.left = drag.offsetLeft + left + 'px'
+            drag.style.top = drag.offsetTop + t + 'px'
+            console.log(e);
+            console.log('拖拽结束了');
+        }
+    </script>
+</body>
+
+</html>

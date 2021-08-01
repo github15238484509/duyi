@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas {
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+    }
+</style>
+
+<body>
+
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas")
+        var star = canvas.getContext("2d")
+        star.lineWidth = 2
+        star.moveTo(100, 100)
+        star.lineTo(200, 200)
+        star.lineTo(300, 350)
+        star.closePath()
+        star.fill()
+        star.stroke()
+        star.beginPath()
+        star.lineWidth = 5
+        star.moveTo(100, 100)
+        star.lineTo(100, 350)
+        star.lineTo(10, 350)
+        star.closePath()
+        star.stroke()
+    </script>
+</body>
+
+</html>
