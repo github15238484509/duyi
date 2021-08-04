@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        canvas {
+            width: 500px;
+            height: 500px;
+            border: 1px solid pink;
+        }
+    </style>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+        var canvas = document.querySelector('#canvas')
+        var ctx = canvas.getContext('2d')
+            // 放射行渐变变的其实点还是坐标的起始点0 0 
+        var bg = ctx.createRadialGradient(250, 250, 50, 250, 250, 300)
+        bg.addColorStop(0, "red")
+        bg.addColorStop(0.5, "pink")
+        bg.addColorStop(1, "green")
+        ctx.fillStyle = bg
+        ctx.fillRect(0, 0, 500, 500)
+        ctx.fillRect(200, 200, 500, 500)
+    </script>
+</body>
+
+</html>

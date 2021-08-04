@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        canvas {
+            width: 500px;
+            height: 500px;
+            border: 1px solid pink;
+        }
+    </style>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+        /** @type {HTMLCanvasElement} */
+        var canvas = document.querySelector('#canvas')
+        var ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        ctx.moveTo(100, 100)
+            // ctx.lineTo(100, 200)
+            // ctx.quadraticCurveTo(200, 200, 300, 100)
+        ctx.bezierCurveTo(200, 200, 300, 100, 100, 300)
+        ctx.stroke()
+
+        // ctx.beginPath()
+        // ctx.moveTo(100, 100)
+        // ctx.lineTo(100, 200)
+        // ctx.stroke()
+    </script>
+</body>
+
+</html>

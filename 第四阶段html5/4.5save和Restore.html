@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        canvas {
+            width: 500px;
+            height: 500px;
+            border: 1px solid pink;
+        }
+    </style>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+        var canvas = document.querySelector('#canvas')
+        var ctx = canvas.getContext('2d')
+        ctx.save() //可以保存状态 比如平移，放大
+        ctx.beginPath()
+        ctx.translate(-100, -100)
+        ctx.moveTo(0, 0)
+        ctx.lineTo(200, 200)
+        ctx.stroke()
+
+        ctx.restore() //可以恢复状态
+        ctx.beginPath()
+        ctx.moveTo(100, 100)
+        ctx.lineTo(200, 100)
+        ctx.lineTo(200, 200)
+        ctx.stroke()
+    </script>
+</body>
+
+</html>
