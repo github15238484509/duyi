@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>把我们设置的奖当成背景图片放入canvas</li>
+        <li>为canvas设置个蒙层，ctx.fillStyle="gray"</li>
+        <li>设置 ctx.globalCompositeOperation = "destination-out";让下次绘画的图形放在下面</li>
+        <li>用鼠标绘制图形</li>
+        </li>
+
+    </ol>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    var canvas = document.querySelector('#canvas')
+    var ctx = canvas.getContext('2d')
+
+    var img = new Image()
+    img.src = `./p_${Math.floor(Math.random() * 2)}.jpg`
+    console.log(img);
+
+    img.onload = function() {
+        canvas.style.backgroundImage = `url(${img.src})`
+        canvas.width = img.width
+        canvas.height = img.height
+        var bg = ctx.createPattern(img, "no-repeat")
+            // ctx.fillStyle = bg
+        ctx.fillStyle = "gray"
+        ctx.fillRect(0, 0, img.width, img.height)
+        ctx.globalCompositeOperation = "destination-out";
+    }
+    var flag = false //判断鼠标是否按下
+        //鼠标按下
+    function eventDown(e) {
+        e.preventDefault();
+        flag = true
+    }
+    //鼠标移动
+    function eventMove(e) {
+        e.preventDefault();
+        if (flag) {
+            var left = e.clientX - this.offsetLeft
+            var top = e.clientY - this.offsetTop
+            ctx.beginPath()
+            ctx.arc(left, top, 10, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.stroke()
+        }
+    }
+    //鼠标抬起
+    function eventUp(e) {
+        e.preventDefault();
+        flag = false
+    }
+    canvas.addEventListener("mousedown", eventDown)
+    canvas.addEventListener("mousemove", eventMove)
+    canvas.addEventListener("mouseup", eventUp)
+</script>
+
+</html>
