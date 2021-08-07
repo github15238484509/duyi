@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        (function() {
+            function init() {
+                // 获取初始的dom和变量                
+                var canvas = document.querySelector("canvas");
+                var ctx = canvas.getContext("2d");
+
+
+                var width = null;
+                var height = null;
+                //创建得奖图片
+                var img = new Image()
+                img.src = `./p_${Math.floor(Math.random() * 2)}.jpg`
+                img.onload = function() {
+                    width = img.width
+                    height = img.height
+                        //为canvas设置背景图片及其大小
+                    setinfor()
+                        //为canvas设置蒙层及其再次绘画反显
+                    setshaow()
+                        //为canvas绑定绘画的事件
+                    addevent()
+                }
+
+                function setinfor() {
+                    canvas.height = height
+                    canvas.width = width
+                    canvas.style.backgroundImage = `url(${img.src})`
+                }
+
+                function setshaow() {
+                    ctx.fillStyle = "gray"
+                    ctx.fillRect(0, 0, width, height)
+
+                }
+
+                function addevent() {
+                    var flag = false; //判断鼠标是否按下
+                    var offsetleft = null;
+                    var offsettop = null
+                    canvas.onmousedown = function(e) {
+                        flag = true
+                        offsetleft = this.offsetLeft
+                        offsettop = this.offsetTop
+                    }
+                    canvas.onmousemove = function(e) {
+                        if (flag) {
+                            renderRect(e)
+                        }
+                    }
+                    canvas.onmouseup = function(e) {
+                        flag = false
+                    }
+
+                    function renderRect(e) {
+                        let left = e.clientX - offsetleft;
+                        let top = e.clientY - offsettop;
+                        ctx.globalCompositeOperation = "destination-out";
+
+                        ctx.beginPath()
+                        ctx.fillStyle = "red"
+                        ctx.arc(left, top, 5, 0, (Math.PI * 2), 0)
+                        ctx.fillStyle = "red"
+                        ctx.fill()
+                        ctx.stroke()
+                    }
+                }
+            }
+            init()
+        })()
+    </script>
+</body>
+
+</html>
