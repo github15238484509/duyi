@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .video_play {
+        position: relative;
+        margin: 50px auto;
+        border: 2px dotted pink;
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+    }
+    
+    video {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .video_control {
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        left: 0;
+        bottom: 0;
+        background-color: pink;
+        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        cursor: pointer;
+        transform: translateY(100%);
+    }
+    
+    .video_control div {
+        position: absolute;
+    }
+    
+    .video_control .play_control {
+        border: 1px solid red;
+        padding: 5px 10px;
+        left: 20px;
+        top: 10px;
+    }
+    
+    .video_control .play_time {
+        top: 15px;
+        left: 150px;
+    }
+    
+    .video_control .play_speed {
+        border: 1px solid red;
+        padding: 5px 10px;
+        right: 20px;
+        top: 10px;
+    }
+    
+    .video_control .play_volume {
+        border: 1px solid red;
+        padding: 5px 10px;
+        right: 120px;
+        top: 10px;
+    }
+    
+    .play_progress {
+        width: 100%;
+        height: 2px;
+        top: -2px;
+        background-color: gray;
+        transition: all 0.3s;
+    }
+    
+    .play_progress:hover {
+        height: 10px;
+        top: -10px;
+    }
+    
+    .play_progress:hover .progress {
+        height: 10px;
+    }
+    
+    .play_progress:hover .progress::after {
+        height: 14px;
+    }
+    
+    .progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        background-color: red;
+        height: 2px;
+        transition: height 0.3s;
+    }
+    
+    .progress::after {
+        content: "";
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        background-color: white;
+        right: 0px;
+        top: -2px;
+    }
+    
+    .video_play:hover .video_control {
+        transform: translateY(0)
+    }
+</style>
+
+<body>
+
+    <div class="video_play">
+        <video src=""></video>
+        <div class="video_control">
+            <div class="play_control">播放</div>
+            <div class="play_time">0：0/0：0</div>
+            <div class="play_speed">2倍</div>
+            <div class="play_volume">声音</div>
+            <div class="play_progress">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    (function() {
+        var video = document.querySelector("video")
+        var play_control = document.querySelector(".play_control")
+        var play_time = document.querySelector(".play_time")
+        var play_speed = document.querySelector(".play_speed")
+        var play_progress = document.querySelector(".play_progress")
+        var progress = document.querySelector(".progress")
+        var play_volume = document.querySelector(".play_volume")
+        var timer = null
+        video.onclick = play_control.onclick = function() {
+            if (video.paused) {
+                video.play()
+                play_control.innerHTML = "暂停"
+            } else {
+                video.pause()
+                play_control.innerHTML = "开始"
+            }
+        }
+        play_progress.onclick = function(e) {
+            e.stopPropagation();
+            console.log(e.layerX);
+            video.currentTime = e.layerX / this.offsetWidth * video.duration
+        }
+        timer = setInterval(() => {
+            play_time.innerHTML = parseInt(video.currentTime / 60) + ":" + parseInt(video.currentTime % 60) + '/' + parseInt(video.duration / 60) + ":" + parseInt(video.duration % 60)
+            progress.style.width = video.currentTime / video.duration * play_progress.offsetWidth + 'px'
+        }, 1000);
+        play_speed.onclick = function() {
+            console.log(video);
+            video.playbackRate += 0.1
+        }
+        play_volume.onclick = function() {
+            video.volume -= 0.1
+        }
+
+    })()
+</script>
+
+</html>
