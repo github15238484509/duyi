@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    @规则
+    <ol>
+        <li>@media设置媒体查询</li>
+        <li>@font-face设置字体类型</li>
+        <li>@import导入css样式</li>
+        <li>@keyframes css3关键帧</li>
+    </ol>
+    <ol>
+        <li>
+            当屏幕小于400的时候显示一个div
+        </li>
+        <li>
+            当屏幕小于600-800的时候显示二个div
+        </li>
+        <li>
+            当屏幕800-100的时候显示三个div
+        </li>
+        <li>
+            当屏幕大于1000的时候显示四个div
+        </li>
+    </ol>
+    <style>
+        div {
+            height: 50px;
+            width: 100%;
+            background: green;
+            float: left;
+        }
+        
+        @media screen and (min-width:800px) {
+            div {
+                width: 25%;
+            }
+        }
+        
+        @media screen and (max-width:800px) and (min-width:600px) {
+            div {
+                width: 33.33%;
+            }
+        }
+        
+        @media screen and (max-width:600px) and (min-width:400px) {
+            div {
+                width: 50%;
+            }
+        }
+        
+        @media screen and (max-width:400px) {
+            div {
+                width: 100%;
+            }
+        }
+    </style>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</body>
+
+</html>

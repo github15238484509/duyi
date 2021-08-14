@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .row div {
+        height: 50px;
+        background: green;
+        border: 1px solid pink;
+        box-sizing: border-box;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>如果屏幕的大小小于对应的屏幕大小，则对应的.col-(屏幕)-num会占据一行</li>
+        </li>
+        <li>
+            .col-num超小屏幕 小于567 </li>
+        <li>
+            .col-sm-num 小屏幕 大于 576 </li>
+        <li>
+            .col-md-num 中等屏幕 大于768 </li>
+        <li>
+            .col-lg-num 大屏幕 大于992 </li>
+
+        <li>
+            .col-xl-num 超大屏幕 大于1200
+        </li>
+    </ul>
+    <div class="container">
+        <h3>大屏幕</h3>
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2">132</div>
+        </div>
+        <h3>评分一行</h3>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <h3>大屏幕超出会换行</h3>
+        <div class="row">
+            <div class="col-lg-6"></div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-6"></div>
+        </div>
+        <h3>使用css换行 及class 为 w-100</h3>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="w-100"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <h3>一个固定宽度，剩余的平分</h3>
+        <div class="row mt-5">
+            <div class="col-md-3">中等屏幕站三分</div>
+            <div class="col">占据剩余的空间</div>
+            <div class="col">占据剩余的空间</div>
+        </div>
+        <h3>内容自动占去宽度</h3>
+        <div class="row mt-5">
+            <div class="col-md-auto">内容决定宽度</div>
+            <div class="col">平分剩余宽度</div>
+        </div>
+        <h3>所有的屏幕下都占据规定的列数</h3>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+        </div>
+        <h2>混排布局</h2>
+        <ol>
+            <li>在超大屏幕显示6个</li>
+            <li>在大屏幕显示4个</li>
+            <li>在中等屏幕显示3个</li>
+            <li>在小屏幕幕显示2个</li>
+            <li>在超小屏幕幕显示1个</li>
+        </ol>
+        <div class="row">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                class的位置可以换
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">超大屏有6个，大屏有4个，中等屏有3，小屏有2，超小屏1</div>
+        </div>
+        <h3>列偏移</h3>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 offset-md-2"></div>
+        </div>
+        <h2>间距 ml-模式-auto</h2>
+        <div class="row">
+            <div class="col-md-2 ml-md-auto  mr-md-auto"></div>
+            <div class="col-md-2 ml-md-auto mr-md-auto"></div>
+        </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+
+</html>

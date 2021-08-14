@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: plum;
+        }
+        
+        @media screen and (min-width:500px) {
+            div {
+                width: 200px;
+                height: 200px;
+                background-color: pink;
+            }
+        }
+        
+        @media print {
+            div {
+                color: green;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>
+            媒体查询有3部分组成
+        </h1>
+        <ol>
+            <li>媒体类型
+                <ol>
+                    <li>screen</li>
+                    <li>all</li>
+                    <li>print</li>
+                    <li>等等等主要是为了设置设备的类型</li>
+                </ol>
+            </li>
+            <li>媒体特性
+                <ol>
+                    <li>min-widht</li>
+                    <li>min-height</li>
+                    <li>等等主要是为了设置判断条件</li>
+                </ol>
+            </li>
+            <li>媒体规则（运算符）
+                <ol>
+                    <li>
+                        and
+                    </li>
+                    <li>,</li>
+                    <li>
+                        only等等主要是多种情况下的状态
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+    <div>
+
+
+    </div>
+</body>
+
+</html>

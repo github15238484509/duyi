@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: gray;
+}
+
+.box {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.box .item {
+    position: absolute;
+    display: block;
+    width: 25%;
+    float: left;
+    border: 10px solid transparent;
+    box-sizing: border-box;
+}
+
+.box .item img {
+    display: block;
+    width: 100%;
+}
