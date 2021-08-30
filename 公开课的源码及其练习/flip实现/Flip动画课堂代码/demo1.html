@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+        background: #008c8c;
+      }
+    </style>
+  </head>
+  <body>
+    <button>go</button>
+    <div class="item"></div>
+    <script>
+      var btn = document.querySelector('button');
+
+      btn.onclick = function () {
+        var div = document.querySelector('.item');
+        // // css3的方式
+        // div.style.transform = 'translate(100px, 100px)';
+        // div.style.transition = '.5s';
+
+        // h5 api
+        var animation = div.animate(
+          [
+            {
+              transform: '',
+            },
+            {
+              transform: 'translate(100px, 100px)',
+            },
+          ],
+          {
+            duration: 1500, // 动画经过的时间，单位ms
+          }
+        );
+
+        animation.onfinish = function () {
+          div.style.transform = 'translate(100px, 100px)';
+        };
+      };
+    </script>
+  </body>
+</html>

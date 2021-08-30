@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 300px;
+        margin: 0 auto;
+        line-height: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="container">
+      <li>
+        Vitae, libero.
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Lorem, ipsum.
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Totam, dicta!
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Blanditiis, magni!
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Quia, praesentium!
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Vel, harum!
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Nam, cumque?
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Sapiente, voluptates.
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Minus, laborum!
+        <button>up</button>
+        <button>down</button>
+      </li>
+      <li>
+        Asperiores, vel.
+        <button>up</button>
+        <button>down</button>
+      </li>
+    </ul>
+    <script src="./flip.js"></script>
+    <script>
+      var container = document.querySelector('.container');
+
+      container.onclick = function (e) {
+        if (e.target.tagName !== 'BUTTON') {
+          return;
+        }
+        var flipper = createFillper(container, 500);
+        var type = e.target.innerText;
+        var item = e.target.parentElement;
+        if (type === 'up') {
+          var itemPrev = item.previousElementSibling; // 拿到它的上一个元素
+          if (itemPrev) {
+            container.insertBefore(item, itemPrev);
+          }
+        } else {
+          var itemNext = item.nextElementSibling;
+          if (itemNext) {
+            container.insertBefore(itemNext, item);
+          }
+        }
+        flipper.move();
+      };
+    </script>
+  </body>
+</html>

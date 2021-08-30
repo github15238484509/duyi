@@ -12,7 +12,7 @@
         position: absolute;
         width: 500px;
         height: 200px;
-        border: 10px solid black;
+ border: 10px solid black;
         opacity: 1;
         left: 0;
         top: 0;
@@ -29,11 +29,11 @@
     <div id="app1"></div>
 </body>
 <script>
-    // 1.获得属性的方法
+    // 1.--------------------------的方法
     function getProp(dom, prop) {
         return window.getComputedStyle(dom, null)[prop]
     }
-    // 2.动画
+    // 2.动画---------------------------------------------------------------------------------
     // app.onclick = function() {
     //         console.log(11);
     //         startMove(this, {
@@ -44,7 +44,7 @@
     app.onclick = function() {
         startMove(this, {
             width: 1000,
-            height: 20,
+            height: 201,
             opacity: 0
         }, 30, () => {
             startMove(app1, {

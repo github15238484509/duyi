@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip 动画</title>
+    <style>
+      .btns {
+        text-align: center;
+      }
+      .btns button {
+        margin: 0 1em;
+        outline: none;
+        border: none;
+        background: #579ef8;
+        color: #fff;
+        padding: 7px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btns button:hover {
+        opacity: 0.8;
+      }
+
+      .container {
+        width: 500px;
+        overflow: hidden;
+        margin: 1em auto;
+      }
+      .item {
+        width: 50px;
+        height: 50px;
+        box-sizing: border-box;
+        text-align: center;
+        background: #eef5fe;
+        border: 1px solid #ddebfd;
+        line-height: 50px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btns">
+      <button id="btnAdd">添加元素</button>
+      <button id="btnRemove">删除元素</button>
+      <button id="btnShuffle">随机排序</button>
+    </div>
+    <div class="container"></div>
+    <script src="./flip.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
