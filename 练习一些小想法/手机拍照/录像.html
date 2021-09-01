@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <video id="audio" width="400" height="600" controls autoplay></video>
+    <input onclick="start()" type="button" value="开始" />
+    <input onclick="stop()" type="button" value="结束" />
+        <img src="" id="img" alt="">
+    <span id="ok">ok</span>
+</body>
+<script>
+    var v = document.getElementById("audio");
+    var c = document.getElementById("myCanvas");
+    ok.onlick = function () {
+        document.body.appendChild(newImg);
+        c.toBlob(function (blob) {
+            var newImg = document.createElement("img"),
+                url = URL.createObjectURL(blob);
+            newImg.onload = function () {
+                // no longer need to read the blob so it's revoked
+                URL.revokeObjectURL(url);
+            };
+            newImg.src = url;
+            
+        }, "image/png")
+    }
+    ctx = c.getContext('2d');
+    v.addEventListener('play', function () {
+        var i = window.setInterval(function () { ctx.drawImage(v, 0, 0, 270, 135) }, 20);
+    }, false);
+    v.addEventListener('pause', function () { window.clearInterval(i); }, false);
+    v.addEventListener('ended', function () { clearInterval(i); }, false);
+    let recorder
+    function start() {
+        let videoTarget = document.getElementById('audio');
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 400, height: 600 } })
+            .then((stream) => {
+                console.log(stream);
+                recorder = new MediaRecorder(stream);
+                videoTarget.srcObject = stream;
+                videoTarget = (...arg) => {
+                    console.log(arg);
+                }
+                recorder.ondataavailable = (event) => {
+                    let url = URL.createObjectURL(event.data);
+                    let link = document.createElement("a");
+                    link.target = "_blank";
+                    link.href = url;
+                    link.click();
+                }
+                recorder.start();
+            });
+    }
+
+    function stop() {
+        recorder.stop();
+    }
+</script>
+
+</html>

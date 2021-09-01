@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" capture="camcorder" accept="image/*" id="filetest" name="filetest">
+
+    <img src="" id="v_photoA" style="width:100%;" />
+    <script>
+        document.querySelector('#filetest').onchange = function () {
+            alert(111);
+            var fileTag = document.getElementById('filetest');
+            console.log();
+            var file = fileTag.files[0];
+            var fileReader = new FileReader();
+            fileReader.onloadend = function () {
+                if (fileReader.readyState == fileReader.DONE) {
+                    document.getElementById('v_photoA').setAttribute('src', fileReader.result);
+
+                }
+
+            };
+            fileReader.readAsDataURL(file);
+        };
+
+    </script>
+</body>
+
+</html>
