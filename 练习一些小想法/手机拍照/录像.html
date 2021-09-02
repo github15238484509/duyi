@@ -14,28 +14,30 @@
     <video id="audio" width="400" height="600" controls autoplay></video>
     <input onclick="start()" type="button" value="开始" />
     <input onclick="stop()" type="button" value="结束" />
-        <img src="" id="img" alt="">
     <span id="ok">ok</span>
 </body>
 <script>
     var v = document.getElementById("audio");
     var c = document.getElementById("myCanvas");
-    ok.onlick = function () {
-        document.body.appendChild(newImg);
+    ok.onclick = function () {
+        console.log(55555);
         c.toBlob(function (blob) {
             var newImg = document.createElement("img"),
-                url = URL.createObjectURL(blob);
-            newImg.onload = function () {
-                // no longer need to read the blob so it's revoked
-                URL.revokeObjectURL(url);
-            };
+            url = URL.createObjectURL(blob);
+            // newImg.onload = function () {
+            //     // no longer need to read the blob so it's revoked
+            //     URL.revokeObjectURL(url);
+            // };
             newImg.src = url;
-            
+            document.body.appendChild(newImg);
+
+
         }, "image/png")
     }
     ctx = c.getContext('2d');
     v.addEventListener('play', function () {
         var i = window.setInterval(function () { ctx.drawImage(v, 0, 0, 270, 135) }, 20);
+        ok.click()
     }, false);
     v.addEventListener('pause', function () { window.clearInterval(i); }, false);
     v.addEventListener('ended', function () { clearInterval(i); }, false);
@@ -57,10 +59,12 @@
                     link.href = url;
                     link.click();
                 }
+               
                 recorder.start();
             });
+        
     }
-
+    start()
     function stop() {
         recorder.stop();
     }
