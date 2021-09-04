@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频弹幕2</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/switch.css">
+</head>
+
+<body>
+    <!-- 最外层容器 -->
+    <div class="container">
+        <!-- 视频标题 -->
+        <h1>【罗罗诺亚·索隆】大千世界 无我不断者</h1>
+        <!-- 视频发布信息 -->
+        <div class="videoInfo">
+            <span>161.7万播放</span>
+            <span>4396弹幕</span>
+            <span>2020-02-11 15:29:24</span>
+        </div>
+        <!-- 视频内容 -->
+        <div id="video">
+            <video src="../source/one-piece.mp4" poster="../source/zoro.jpeg" id="vd" controls>
+                您的浏览器不支持 video 标签，请升级您的浏览器
+            </video>
+        </div>
+        <!-- 弹幕区域 -->
+        <div class="bullet">
+            <p>231 人正在看，4396 条弹幕</p>
+            <div class="switch-box">
+                <input type="checkbox" name="" id="switchButton" class="switch">
+                <label for="switchButton"></label>
+            </div>
+            <input type="text" name="" id="bulletContent" placeholder="请输入一个弹幕">
+            <button id="sendBulletBtn">发送</button>
+        </div>
+    </div>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>

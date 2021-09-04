@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+            一个函数可以有两种调用方式，一种是new fun 另一种是 fun（）；
+
+        </li>
+        <li>
+            可以使用 在函数内部使用 new.target 判断
+        </li>
+        <li>如果new.target有值则使用的是new调用的否则为undefined</li>
+    </ol>
+</body>
+<script>
+    function Person(name, age) {
+        console.log(new.target);
+        this.name = name;
+        this.age = age
+    }
+    const person = new Person("你", "好")
+    Person(1, 2)
+</script>
+
+</html>

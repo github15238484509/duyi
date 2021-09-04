@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            sex = "gril"
+            constructor(name, age) {
+                this.name = name;
+                this.age = age
+            }
+            say() {
+                console.log(this.name + this.age)
+            }
+            get son() {
+                return this.age
+            }
+            set son(value) {
+                return this.age = value
+            }
+        }
+        var dog = new Animal("嘿嘿", "12")
+        console.log(dog);
+
+        var obj = {}
+        Object.defineProperty(obj, "name", {
+            value: '465',
+            writable: true,
+            enumerable: false,
+            configurable: false
+        })
+        for (const key in obj) {
+            if (Object.hasOwnProperty.call(obj, key)) {
+                console.log(key);
+            }
+        }
+        Object.defineProperties(obj, )
+    </script>
+</body>
+
+</html>

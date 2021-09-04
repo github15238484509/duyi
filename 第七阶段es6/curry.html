@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function add(a, b, c, d) {
+            console.log(a, b, c, d);
+        }
+
+        function curry(fun, ...arg) {
+            return function(...params) {
+                const arr = [...arg, ...params]
+                if (fun.length <= arr.length) {
+                    return fun(...arr)
+                } else {
+                    return curry(fun, ...arr)
+                }
+            }
+        }
+        const getNum = curry(add)
+        const getNum1 = curry(add, 1)
+        console.log(getNum(1, 1, 1, 1));
+        console.log(getNum1(1, 1, 1));
+    </script>
+</body>
+
+</html>
