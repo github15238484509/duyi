@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 800px;
+    height: 712px;
+    border: 2px solid pink;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.sky {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 600px;
+    background: url("./img/sky.png");
+}
+
+.land {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    height: 112px;
+    background: url("./img/land.png");
+}
+
+.bird {
+    position: absolute;
+    width: 33px;
+    height: 26px;
+    background: url("./img/bird.png");
+}
+
+.bird.swing1 {
+    background-position: -8px -10px;
+}
+
+.bird.swing2 {
+    background-position: -60px -10px;
+}
+
+.bird.swing3 {
+    background-position: -113px -10px;
+}
+
+.pipe {
+    position: absolute;
+    width: 52px;
+}
+
+.pipe.up {
+    background: url("./img/pipeDown.png");
+    top: 0;
+    background-position: bottom;
+}
+
+.pipe.down {
+    background: url("./img/pipeUp.png");
+    bottom: 112px;
+}

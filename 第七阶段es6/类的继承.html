@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ol>
+
+        <li>
+            类的继承一般有两种，
+        </li>
+        <li>
+            es5的普通继承
+        </li>
+        <li>
+            class的继承
+            <ol>
+                <li>
+                    class的继承有两个关键字 extends，super；
+                </li>
+                <li>
+                    super 有两种用法； 1当成构造器，就是函数调用，需要在constructor中调用， 2调用父类的实例，当成对象用，
+                </li>
+            </ol>
+        </li>
+    </ol>
+</body>
+<script>
+    // 1.es5的普通继承
+    // Animal.prototype.print = function() {
+    //     console.log("TMD我是Animal");
+    // }
+
+    // function Animal(type, name, age, sex) {
+    //     this.type = type;
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    // }
+    // Dog.prototype.print = function() {
+    //     console.log(this);
+    //     console.log("我是dog类");
+    // }
+
+    // function Dog(name, age, sex) {
+    //     Animal.call(this, "犬类", name, age, sex)
+    // }
+    // Object.setPrototypeOf(Dog.prototype, Animal.prototype)
+    // var d = new Dog("旺财", "18", "girl")
+    // console.log(d);
+
+    // 2.class实现继承
+    class Animal {
+        constructor(type, name, age, sex) {
+            if (new.target === Animal) {
+                throw TypeError("我们不能直接new Animal")
+            }
+            this.type = type;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        print() {
+            console.log("我是Aninal");
+        }
+    }
+    class Dog extends Animal {
+        constructor(name, age, sex) {
+            super("犬类", name, age, sex)
+            this.loves = "撒尿"
+        }
+        print() {
+            console.log("我是Dog类；我偷偷的调用了父类的方法");
+            super.print() //super当作父类的prototype使用
+        }
+    }
+
+    var d = new Dog("旺财", "18", "🚹")
+        // Animal不是一个实际的动物 所以我们不能直接调用  我们要用new.target,判断，如果是Animal就报错
+    var a = new Animal("犬类", "旺财", "18", "🚹")
+</script>
+
+</html>
