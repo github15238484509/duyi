@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+
+        <li>
+            symbol的出现是为了解决js，变量重名的问题
+        </li>
+        <li>
+            symbol每一次创建用不重复，他是唯一的
+        </li>
+        <li>
+            symbol 还可以创建 贡献 symbol，使用 Symbol.for("传入标识")
+        </li>
+        <li>
+            Symbol.keyFor(symbol) 判断一个使用Symbol.for(mark)创建的symbol是否存在
+        </li>
+        <li>
+            symbol。for的实现；主要思路 就是判断symbol实例是否存在；
+            <ol>
+                <li>1.使用Symbol.keyFor(symbol)判断是否存在</li>
+                <li>2.使用对象判断是否对应的属性，判断是否存在</li>
+            </ol>
+        </li>
+    </ol>
+    <script>
+        var sym = Symbol()
+        console.log(sym);
+        console.log(typeof sym);
+        //sym 也可做一些变量 不如对象的属性 但是这个symbol做的对象属性一般你没办法输出来 必须这样输出 obj[sym]
+        var obj = {
+            [sym]: "我是大帅哥"
+        }
+        console.log(obj);
+        //symbol 还可以传一些参数，这些参数可以作为 symbol的额外信息
+        const sym1 = Symbol("我是大帅哥")
+        console.log(sym1);
+        //创建共享symbol
+
+
+        var shareSym = Symbol.for("嘿嘿")
+        var shareSym1 = Symbol.for("嘿嘿")
+        console.log("判断连个symbol是否相等", shareSym === shareSym1);
+
+        //symbol.for的实现
+        //1.使用对象的特性判断实现
+        function mySymbol() {
+            var obj = {}
+            return function(mark) {
+                //如果obj有mark的属性值 ，则返回
+                if (obj[mark]) {
+                    return obj[mark]
+                } else {
+                    obj[mark] = Symbol(mark)
+                    return obj[mark]
+                }
+            }
+        }
+        var shareSymbol = mySymbol()
+        var mySym = shareSymbol("嘿嘿")
+        var mySym1 = shareSymbol("嘿嘿")
+        console.log("自己实现的Symbol.for", mySym == mySym1);
+    </script>
+</body>
+
+</html>

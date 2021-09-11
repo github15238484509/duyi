@@ -5,7 +5,6 @@ class Pipe extends Rect {
     }
     move(num) {
         super.move(num)
-
     }
 }
 

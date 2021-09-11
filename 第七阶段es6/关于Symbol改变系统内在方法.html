@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+            改变对象的 toString 方法
+        </li>
+        <li>
+            symbol改变 instanceof； instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+        </li>
+        <li>
+            Symbol 可以改变一个系统内置的一些方法 连接地址 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator">goPage</a>
+        </li>
+    </ol>
+    <script>
+        class Person {
+            get[Symbol.toStringTag]() {
+                return "tmd"
+            }
+            static[Symbol.hasInstance]() {
+                return false
+            }
+        }
+        var per = new Person()
+        console.log(Object.prototype.toString.call(per));
+        console.log(per.toString());
+        console.log({}
+            instanceof Person);
+        console.log(per instanceof Object);
+        console.log(per instanceof Person);
+    </script>
+</body>
+
+</html>

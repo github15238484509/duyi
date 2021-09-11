@@ -20,8 +20,8 @@ class Bird extends Rect {
         this.dom.className = `bird swing${this.swing}`
         if (this.top <= 0) {
             this.top = 0
-        } else if (this.top >= 600) {
-            this.top = 600
+        } else if (this.top >= this.maxHei) {
+            this.top = this.maxHei
         }
     }
     jump() {

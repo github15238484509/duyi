@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.dome {
+    width: 660px;
+    margin: 50px auto;
+    border: 1px solid green;
+    height: 50px;
+}
+
+.pageGroup {
+    user-select: none;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.pageItem {
+    border: 1px solid pink;
+    transition: all 0.3s;
+    padding: 5px 10px;
+    cursor: pointer;
+    align-self: center;
+    margin: 0 10px;
+}
+
+.pageItem.active,
+.pageItem:hover {
+    background-color: pink;
+    color: white;
+}
