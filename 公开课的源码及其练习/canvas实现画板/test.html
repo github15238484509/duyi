@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        #cavs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cavs" width="500" height="500"></canvas>
+    <script>
+        var cavs = document.getElementById('cavs'); //获得画板 
+        var ctx = cavs.getContext('2d'); //3d -- webgl -- threejs 画笔
+        // console.log(ctx)
+        ctx.beginPath();
+        ctx.moveTo(100, 100); //落笔点
+        ctx.lineTo(200, 100) //连线
+        ctx.lineTo(200, 200);
+        ctx.lineTo(100, 100);
+        ctx.lineWidth = 20; //线条的粗细
+        ctx.strokeStyle = 'red';
+        ctx.closePath(); //闭合当前路径
+        ctx.stroke(); //确定笔触,开始执行
+
+
+
+        // ctx.beginPath();
+        // ctx.moveTo(300, 100); //落笔点
+        // ctx.lineTo(400, 100) //连线
+        // ctx.lineTo(400, 200);
+        // ctx.lineTo(300, 100);
+        // ctx.lineWidth = 20; //线条的粗细
+        // ctx.strokeStyle = '#ccc';
+        // ctx.closePath(); //闭合当前路径
+        // ctx.stroke(); //确定笔触,开始执行
+
+        var imgDaga = ctx.getImageData(70, 70, 160, 160); //获得像素数据
+        ctx.putImageData(imgDaga, 300, 300); //把获得的像素数据放到画板的某个位置
+
+
+        //清楚画布上面的矩形区域 
+
+        ctx.clearRect(0, 0, 500, 500);
+    </script>
+</body>
+
+</html>
