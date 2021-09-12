@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现在有一个数组arr 我要迭代他
+        const arr = [1, 2, 3, 4, 5, 6, 7]
+
+        // function iteratorArr() {
+        //     let i = 0
+        //     return {
+        //         next() {
+        //             const reuslt = {
+        //                 value: arr[i],
+        //                 done: i >= arr.length
+        //             }
+        //             i++
+        //             return reuslt
+        //         }
+        //     }
+        // }
+        // const arrIterator = iteratorArr()
+
+        // 优化迭代器使其可以使用任何数组
+        const arr1 = ["a", "d", "f", "g"]
+
+        // function AllIterator(arr) {
+        //   let i = 0
+        //   return {
+        //     next() {
+        //       const result = {
+        //         value: arr[i],
+        //         done: i >= arr.length
+        //       }
+        //       i++
+        //       return result
+        //     }
+        //   }
+        // }
+
+
+        //使用迭代器 创建 斐波那契数列
+        function FeiboIterator() {
+            let next1 = 1;
+            let next2 = 1;
+            let n = 1
+            return {
+                next() {
+                    if (n <= 2) {
+                        value = next1
+                    } else {
+                        value = next1 + next2
+                    }
+                    const result = {
+                        value,
+                        done: false,
+                        n
+                    }
+
+                    next1 = next2
+                    next2 = value
+                    n++
+                    return result
+                }
+            }
+        }
+        //使用迭代器实现阶乘
+        function creatJecheng() {
+            let value = 1;
+            let n = 1;
+            return {
+                next() {
+                    value = value * n
+                    const result = {
+                        done: false,
+                        value,
+                        n
+                    }
+                    n++
+                    return result
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
