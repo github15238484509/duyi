@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+            表白3女神；如果第一个女生同意，将不再往下表白，不同意表白的第二个，以此类推
+        </li>
+    </ol>
+    <script>
+        //基础版
+        // function biaobai() {
+        //     // 0.5的概率 为true同意，否则不同意
+        //     return new Promise((resolve, reject) => {
+        //         if (Math.random() < 0.5) {
+        //             console.log("女神1同意了");
+        //             resolve()
+        //         } else {
+        //             console.log("女神1没有同意");
+        //             resolve(false)
+        //         }
+        //     })
+        // }
+        // biaobai().then(result => {
+        //     if (result === undefined) {
+        //         return
+        //     } else {
+        //         if (Math.random() < 0.5) {
+        //             console.log("女神2同意了");
+        //             return
+        //         } else {
+        //             console.log("女神2没有同意");
+        //             return false
+        //         }
+        //     }
+        // }).then(result => {
+        //     if (result === undefined) {
+        //         return
+        //     } else {
+        //         if (Math.random() < 0.5) {
+        //             console.log("女神3同意了");
+        //             return
+        //         } else {
+        //             console.log("女神3没有同意");
+        //             return false
+        //         }
+        //     }
+        // })
+
+        //升级版
+        var girls = ["女神1", "女神2", "女神3", "女神4", "女神5"];
+        var pro = null;
+        for (let i = 0; i < girls.length; i++) {
+            if (i === 0) {
+                pro = new Promise((resolve, reject) => {
+                    if (Math.random() < 0.3) {
+                        console.log(`${girls[i]}同意了`);
+                        resolve()
+                    } else {
+                        console.log(`${girls[i]}没有同意`);
+                        resolve(false)
+                    }
+                })
+            } else {
+                pro = pro.then(result => {
+                    if (result === undefined) {
+                        return
+                    } else {
+                        if (Math.random() < 0.3) {
+                            console.log(`${girls[i]}同意了`);
+                            return
+                        } else {
+                            console.log(`${girls[i]}没有同意`);
+                            return false
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

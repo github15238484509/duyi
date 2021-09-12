@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./MyPromise.js"></script>
+<script>
+    //promise以 .then .then 异步resolve 失败告终 
+    const pro = new MyPromise((resolve, reject) => {
+        console.log("未决状态开始");
+        resolve(1)
+    })
+    pro.then((data) => {
+        console.log(data);
+        console.log("成功");
+        return new MyPromise((resolve) => {
+            resolve(2)
+        })
+    }).then((data) => {
+        console.log(data);
+        return 3
+    }).then(data => {
+        console.log(data);
+    })
+</script>
+
+</html>
