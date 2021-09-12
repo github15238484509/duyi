@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        测试地址: http://101.132.72.36:5100/api/local
+    </h1>
+    <ol>
+        <li>
+            fetch响应返回的是一个Promise；可以使用 async await 解析
+        </li>
+        <li>
+            fetch返回的数据使用async 和await 解析后可以使用下面的几个方法
+            <ol>
+                <li>
+                    text（） 把返回的数据 转换成文本
+                </li>
+                <li>
+                    json（） 把返回来的数据解析为 json数据
+                </li>
+                <li>
+                    blob（） 转换成二进制
+                </li>
+            </ol>
+        </li>
+        <li>
+            fetchApi有两个参数
+            <ol>
+                <li>
+                    第一个是url
+                </li>
+                <li>
+                    第二个是配置信息 是一个对象 { methods：‘’， body：“请求的参数”， headers }
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <script>
+        var url = "./index.json"
+
+        async function getInfo() {
+            const result = await fetch(url)
+                // const text = await result.text()
+                // console.log(text);
+            const josn = await result.json()
+            console.log(josn);
+            // const blob = await result.blob()
+            // console.log(blob);
+            console.log(result);
+        }
+        getInfo()
+    </script>
+</body>
+
+</html>
