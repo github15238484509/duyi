@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        for of 与迭代器的关系
+    </h1>
+    <ol>
+        for of 内部实现的原理是使用了 iterator 迭代器
+        <li>
+            可以是用iterator的有数组，数组属性中及 原型 中有个 【Symbol.iterator】方法；他是迭代器生成器for of 就是内部调用的他
+        </li>
+    </ol>
+
+    <script>
+        // 为对象添加迭代器
+        // 对象没有[Symbol.itreator]这个方法，所以对象不是可迭代的
+        //使用自己定义的迭代器 输出对象 {kye：a,value:1}{kye：b,value:2}
+        const obj = {
+                a: 1,
+                b: 2,
+                [Symbol.iterator]() {
+                    const keys = Object.keys(this);
+                    let i = 0
+                    return {
+                        next: () => {
+                            const key = keys[i];
+                            const value = this[key]
+                            const result = {
+                                key,
+                                value
+                            }
+
+                            i++
+                            return {
+                                value: result,
+                                done: i > keys.length,
+                                i
+                            }
+                        }
+                    }
+                }
+            }
+            //使用for of 内部调用迭代
+        for (const item of obj) {
+            console.log(item);
+        }
+        // 使用 自己定义的Symbol.iterator手动调用
+        var iterator = obj[Symbol.iterator]()
+        console.log(iterator.next());
+        console.log(iterator.next());
+        //迭代器和展开运算符的应用 展开运算符内部调用了 iterator
+        console.log("数组的用应用");
+        var iterArr = [...obj]
+        console.log(iterArr);
+
+        //迭代器与函数 展开的应用
+        function test(a, b) {
+            console.log("函数的应用");
+            console.log(a);
+            console.log(b);
+        }
+        test(...obj)
+    </script>
+</body>
+
+</html>

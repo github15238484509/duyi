@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>生成器的Generator</h1>
+    <ol>
+        <li>
+            Generator的创建 function * test(){ } 函数执行会返回一个迭代器
+        </li>
+        <li>
+            Generator 执行返回 是一个迭代器；说明他又 Symbol.iteratro;它可以调用next（）还可可以使用for of
+        </li>
+        <li>
+            function * test(){ } 的typeof 会是一个什么那？ function
+        </li>
+        <li>
+            生成器里面有一个关键字 yield（产量） 和async await 一样 都是配套使用
+        </li>
+    </ol>
+    <script>
+        //生成器的简单应用
+        // function* test() {}
+        // const Generator = test()
+        // console.log(Generator);
+        // console.log(typeof test);
+        // console.log(typeof Generator);
+
+        //使用生成器 到迭代器next方法的使用
+        //直接执行test（）他不会执行里面的函数
+        // function* test() {
+        //     console.log("第一次执行");
+        //     yield 1
+        //     console.log("第二次执行");
+        //     yield 2
+        //     console.log("第三次执行");
+        // }
+        // const generator = test()
+        // console.log(generator.next());
+        // console.log(generator.next());
+        // console.log(generator.next());
+        // console.log(generator.next());
+
+        //生成器里面使用while循环试试可以不 事实证明我的想法是对的 ，还有一点 阻断了 'while循环'
+        // function* test() {
+        //     var arr = [1, "asdfa", 2, 3, 4, 5, 6]
+        //     var i = 0
+        //     while (i !== arr.length) {
+        //         console.log("i现在是：", i);
+        //         yield arr[i]
+        //         i++
+        //     }
+        // }
+        // const generator = test()
+        // for (const item of generator) {
+        //     console.log(item);
+        // }
+        // console.log(5555555555);
+        // console.log(generator.next());
+
+        //生成器创建斐波那契数列数列
+        // function* feibo() {
+        //     let one = 1;
+        //     let tow = 1;
+        //     let n = 1
+        //     while (true) {
+        //         if (n <= 2) {
+        //             yield 1
+        //         } else {
+        //             const newdate = one + tow
+        //             yield newdate
+        //             one = tow
+        //             tow = newdate
+        //         }
+        //         n++
+        //     }
+        // }
+        // const fei = feibo()
+        // console.log(fei.next());
+        // console.log(fei.next());
+        // console.log(fei.next());
+        // console.log(fei.next());
+        // console.log(fei.next());
+
+
+        //生成器创建递归
+        function* digui() {
+            let current = 1;
+            let n = 1
+            while (true) {
+                var newdate = current * n
+                yield {
+                    value: newdate,
+                    n
+                }
+                n++
+                current = newdate
+            }
+        }
+        const di = digui()
+        console.log(di.next());
+        console.log(di.next());
+        console.log(di.next());
+        console.log(di.next());
+        console.log(di.next());
+    </script>
+</body>
+
+</html>
