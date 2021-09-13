@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        iterator.next(参数) 可以传入参数 ，参数将作用域 yield 前面的变量
+    </h1>
+</body>
+
+<script>
+    console.log(fetch("./fetchApi/index.json").then(data => {
+        console.log(data);
+    }));
+
+    function* start() {
+        let one = yield 1
+        console.log(one);
+        let tow = yield fetch("./ferchApi/index.json") //返回的是一个premose
+        let three = yield tow.json()
+        console.log(three);
+        let four = yield "完成"
+    }
+
+    function runGenerator(generator) {
+        const gener = generator()
+        let result = gener.next()
+        handle(result)
+
+        function handle(iterator) {
+            console.log(iterator);
+            // 判断是否结束
+            if (iterator.done) {
+                return iterator.value
+            } else {
+                //判断是否是promise
+                if (gener.next().value.then) {
+                    iterator.value.then(data => {
+                        handle(data)
+                    })
+                } else {
+                    //不是promise
+                    result = iterator.next(iterator.value)
+                    handle(result)
+                }
+            }
+        }
+    }
+    runGenerator(start)
+</script>
+
+</html>
