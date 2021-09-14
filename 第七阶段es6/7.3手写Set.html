@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const MySet = (() => {
+            const isInfo = Symbol("isInfo");
+            const _list = Symbol("list")
+            return class MySet {
+                constructor(iterator = []) {
+                    if (typeof iterator[Symbol.iterator] !== "function") {
+                        throw new TypeError(`参数${iterator}不是一个可迭代的对象`)
+                    }
+                    this[_list] = []
+                    for (const item of iterator) {
+                        //想_list添加数据，并且不能重复
+                        this.add(item)
+                    }
+                }
+                add(data) {
+                    //想_list添加数据，并且不能重复
+                    if (!this.has(data)) {
+                        this[_list].push(data)
+                    }
+                }
+                delete(data) {
+                    for (let i = 0; i < this[_list].length; i++) {
+                        if (this[isInfo](data, this[_list][i])) {
+                            this[_list].splice(i, 1)
+                            return true
+                        }
+                    }
+                    return false
+                }
+                has(data) {
+
+                    for (let i = 0; i < this[_list].length; i++) {
+                        if (this[isInfo](data, this[_list][i])) {
+                            return true
+                        }
+                    }
+                    return false
+                }
+                clear() {
+                        this[_list] = []
+                    }
+                    [isInfo](data, data1) {
+                        if (data === 0 && data1 === 0) {
+                            return true
+                        } else {
+                            return Object.is(data1, data)
+                        }
+                    }
+
+                //迭代必须要有Symbol.iterator
+                // *
+                // [Symbol.iterator]() {
+                //     for (let i = 0; i < this[_list].length; i++) {
+                //         yield this[_list][i]
+                //     }
+                // }
+                //第二种实现方式
+                [Symbol.iterator]() {
+                    let i = 0
+                    return {
+                        next: () => {
+                            const result = {
+                                value: this[_list][i],
+                                done: i >= this[_list].length
+                            }
+                            i++
+                            return result
+                        }
+                    }
+                }
+                forEach(callback) {
+                    for (let i = 0; i < this[_list].length; i++) {
+                        callback(this[_list][i], this[_list][i], this[_list])
+                    }
+                }
+            }
+        })()
+        var set = new MySet("11231324")
+        console.log(set);
+        set.add("5")
+        console.log(set.has("5"));
+        console.log(set);
+        console.log(set.delete("5"));
+        console.log(set);
+        for (const item of set) {
+            console.log(item);
+        }
+        set.forEach((item, index, data) => {
+            console.log(item, index, data);
+        })
+    </script>
+</body>
+
+</html>

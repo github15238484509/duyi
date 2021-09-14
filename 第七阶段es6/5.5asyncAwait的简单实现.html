@@ -15,17 +15,14 @@
 </body>
 
 <script>
-    console.log(fetch("./fetchApi/index.json").then(data => {
-        console.log(data);
-    }));
-
     function* start() {
         let one = yield 1
         console.log(one);
-        let tow = yield fetch("./ferchApi/index.json") //返回的是一个premose
+        let tow = yield fetch("./fetchApi/index.json") //返回的是一个premose
         let three = yield tow.json()
         console.log(three);
         let four = yield "完成"
+        console.log(four);
     }
 
     function runGenerator(generator) {
@@ -33,20 +30,20 @@
         let result = gener.next()
         handle(result)
 
-        function handle(iterator) {
-            console.log(iterator);
+        function handle(info) {
             // 判断是否结束
-            if (iterator.done) {
-                return iterator.value
+            if (info.done) {
+                return info.value
             } else {
                 //判断是否是promise
-                if (gener.next().value.then) {
-                    iterator.value.then(data => {
-                        handle(data)
+                if (info.value.then) {
+                    info.value.then(data => {
+                        result = gener.next(data)
+                        handle(result)
                     })
                 } else {
                     //不是promise
-                    result = iterator.next(iterator.value)
+                    result = gener.next(info.value)
                     handle(result)
                 }
             }

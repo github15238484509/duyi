@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> new Set</h1>
+    <ol>
+        <li>
+            Set 是一个可迭代对象
+        </li>
+        <li>
+            Set中不存在相同的数据
+        </li>
+        <li>
+            他的实例方法如下：
+            <ol>
+                <li>
+                    add（item）添加一个数据
+                </li>
+                <li>
+                    delete（item）删除一个数据
+                </li>
+                <li>
+                    has（item） 判断这个数据是否存在
+                </li>
+                <li>
+                    clear（）清空Set的
+                </li>
+                <li>
+                    values() //返回一个可迭代对象 iterator调用next（） 返回个对应的数
+                </li>
+                <li>
+                    entries()//也返回一个可迭代对象 iterator 调用next（） 返回个对象
+                </li>
+            </ol>
+        </li>
+
+    </ol>
+    <script>
+        const set = new Set()
+        set.add(1)
+        set.add(1) //无效
+        set.add(4)
+        set.add(3)
+        console.log(set);
+        set.delete(3)
+        console.log(set.has(2)); //判断是否有2
+        console.log(set.has(3)); //判断是否有3
+        console.log(1111);
+        console.log(set);
+        console.log(set.values());
+        console.log(1111);
+        console.log(222);
+        console.log(set);
+        console.log(set.entries());
+        console.log(222);
+        console.log(set);
+        // console.log("清空Set", set.clear(), set);
+
+
+        //利用set不能产生重复的值，可以去重数组
+        var arr = [1, 1, 1, 1, 2, 2, 3, 3, 5, 45]
+        arr = [...new Set(arr)] //因为set有 Symbol.iterator，所以可以使用 ...
+        console.log(arr);
+        //去重 字符串
+        var str = "aaaaadfafasfd1321" // 字符串也有 对象 Symbol.iterator,所以他一个迭代
+        var strArr = [...str] //把字符串展开变成数组
+        console.log(strArr);
+        var strSet = new Set(str)
+        strSet = [...strSet]
+        console.log(strSet);
+    </script>
+</body>
+
+</html>

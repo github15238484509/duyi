@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+            求连个数组的，并集，交集，差集
+        </li>
+    </ol>
+</body>
+<script>
+    var arr1 = [1, 2, 3, 5, 5, 42, 5, 6, 2]
+    var arr2 = [2, 55, 232, 1, 54, 652, 21, 1]
+
+    console.log('arr1', arr1);
+    console.log('arr2', arr2);
+    console.log('setarr1', new Set(arr1));
+    console.log('setarr2', new Set(arr2));
+    console.log("并集", [...new Set([...arr1, ...arr2])]);
+    console.log("交集", [...new Set(arr1)].filter(item => (new Set(arr2).has(item))));
+    console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => !(new Set(arr1).has(item) && new Set(arr2).has(item))));
+</script>
+
+</html>
