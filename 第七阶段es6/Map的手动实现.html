@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Map的手动实现</h1>
+</body>
+<script>
+    var MyMap = (() => {
+        return class {
+            constructor(iterator = []) {
+                if (typeof iterator[Symbol.iterator] !== "function") {
+                    throw new TypeError(`${iterator}不是一个可迭代对象`)
+                }
+                this._list = []
+                for (const item of iterator) {
+                    if (typeof item[Symbol.iterator] !== "function") {
+                        throw new TypeError(`${item}不是一个可迭代对象`)
+                    }
+                    console.log(item);
+                    //item也是一个可迭代对象
+                    const itemData = item[Symbol.iterator]()
+                    this.set(itemData.next().value, itemData.next().value)
+                }
+            }
+            set(key, value) {
+                //判断key是否已经存在
+                const data = this._EquaItem(key)
+                if (data) {
+                    //存在
+                    data.value = value
+                } else {
+                    //不存在
+                    this._list.push({
+                        key,
+                        value
+                    })
+                }
+
+
+            }
+            has(key) {
+                return this._EquaItem(key) ? true : false
+            }
+            delete(key) {
+                for (let i = 0; i < this._list.length; i++) {
+                    const item = this._list[i]
+                    if (this._Equal(item.key, key)) {
+                        this._list.splice(i, 1)
+                        return true
+                    }
+                }
+                return false
+            }
+            clear() {
+                this._list = []
+                return true
+            }
+            get size() {
+                return this._list.length
+            }
+            _EquaItem(key) {
+                for (const item of this._list) {
+                    if (this._Equal(item.key, key)) {
+                        return item
+                    }
+                }
+                return undefined
+            }
+            _Equal(data1, data2) {
+                if (data1 === 0 && data2 === 0) {
+                    return true
+                } else {
+                    return Object.is(data1, data2)
+                }
+            }
+
+            forEach(callback) {
+                    for (const item of this._list) {
+                        callback(item.value, item.key, this)
+                    }
+                }
+                //12
+                *
+                [Symbol.iterator]() {
+                    for (const item of this._list) {
+                        yield [item.key, item.value]
+                    }
+                }
+        }
+    })()
+</script>
+<script>
+    const mp = new MyMap([
+        ["a", 132],
+        ["b", 32],
+    ])
+    mp.set([1], [1, 23])
+    mp.set(1, 1)
+    console.log(mp);
+    console.log(mp.has(1));
+    mp.delete(1)
+    console.log(mp.has(1));
+    console.log(mp.size);
+    mp.forEach((value, key, self) => {
+        console.log(value, key, self);
+    })
+    console.log(mp);
+    for (const item of mp) {
+        console.log(item);
+    }
+    // console.log(mp.values());
+    // console.log(mp.entries());
+</script>
+
+</html>

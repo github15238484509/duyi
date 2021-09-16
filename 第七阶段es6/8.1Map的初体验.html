@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Map</h1>
+    <ol>
+        <li>
+            Map的创建 new Map() 里面可以传入可迭代的数据（iterator），并且迭代的当前项，也好可迭代，对应二维数组
+        </li>
+        <li>
+            set（key,value）网Map中添加一个项，key可以是任意值，value也可以是任意值，并且key不可重复
+        </li>
+        <li>
+            get（key） 返回对应的的值，没有返回 undefined
+        </li>
+        <li>
+            has（key）判断Map中是否有对应的key ，有返回true，否则返回false
+        </li>
+        <li>
+            delete（key）删除Map的对应的key,如果有对应的key返回true，否则返回false
+        </li>
+        <li>
+            size，返回Map的数量
+        </li>
+        <li>
+            clear（）清楚Map的所有数据
+        </li>
+        <li>
+            forEach((value,key,self)=>{})第一个参数是，值，key，和自身
+        </li>
+        <li>
+            values（）返回个可迭代的对象 因此他又【Symbol.iterator】,所有它可以使用for of;调用返回value
+        </li>
+        <li>
+            entries（）返回个可迭代的对象 因此他又【Symbol.iterator】,所有它可以使用for of；调用返回一个长度为2数组，第一个是key，第二个是value
+        </li>
+        <li>
+            Map返回个可迭代的对象 因此他又【Symbol.iterator】,所有它可以使用for of；调用[Symbol.iterator]()返回一个和entries（）一样
+        </li>
+    </ol>
+</body>
+<script>
+    const mp = new Map([
+        ["a", 132],
+        ["b", 32],
+    ])
+    mp.set([1], [1, 23])
+    mp.set(1, 1)
+    console.log(mp.has(1));
+    mp.delete(1)
+    console.log(mp.has(1));
+    console.log(mp.size);
+    mp.forEach((value, key, self) => {
+        console.log(value, key, self);
+    })
+    console.log(mp);
+
+    console.log(mp.values());
+    console.log(mp.entries());
+</script>
+
+</html>
