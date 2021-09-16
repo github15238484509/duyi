@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>对象的描述符</h1>
+    <ol>
+        <li>
+            一个对象的属性有个四个描述符
+            <ol>
+                <li>
+                    value：对象的值
+                </li>
+                <li>
+                    configurable：可配置描述符，值有true和false；如果为true 的话，还可以使用Object.defineProperty;否则则不行
+                </li>
+                <li>
+                    enumerable：配置可枚举属性，如果为true可以被forin; Object.keys();Object.values()遍历到，否则不行
+                </li>
+                <li>
+                    writeable：是否可以更改属性的值，true可以，否则不行
+                </li>
+            </ol>
+        </li>
+    </ol>
+</body>
+
+</html>
