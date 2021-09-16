@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>属性描述符</h1>
+    <ol>
+        <li>
+            对象的属性值可以设置： get
+        </li>
+        <li>
+            对象的属性值可以设置： set
+        </li>
+    </ol>
+
+    <h2>简单应用</h2>
+    <ol>
+        <li>
+            姓名: <span id="personName"></span>
+        </li>
+        <li>
+            年龄: <span id="personAge"></span>
+        </li>
+        <li>
+            在控制台中 设置 person的personName 或者personAge,使用get或者set自动为页面渲染
+        </li>
+    </ol>
+    <script>
+        var person = {}
+        Object.defineProperties(person, {
+            personName: {
+                get() {
+                    return personName.innerText
+                },
+                set(val) {
+                    personName.innerText = val
+                }
+            },
+            personAge: {
+                get() {
+                    return Number(personAge.innerText)
+                },
+                set(val) {
+                    personAge.innerText = val
+                }
+            }
+        })
+    </script>
+</body>
+<script>
+    var obj = {}
+    Object.defineProperty(obj, "a", {
+        get() {
+            console.log("访问了属性a");
+            return obj._a
+        },
+        set(val) {
+            console.log("设置了属性a，值为：", val);
+            return obj._a = val
+        }
+    })
+    console.log(obj);
+    console.log(obj.a);
+    obj.a = 132
+</script>
+
+</html>

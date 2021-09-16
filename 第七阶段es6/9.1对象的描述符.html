@@ -28,7 +28,64 @@
                 </li>
             </ol>
         </li>
+        <li>
+            设置属性值的方法：
+            <pre>
+                Object.defineProperty(obj,key,{
+                    value: value,
+                    enumerable:true||false,
+                    writeable:true||false,
+                    configurable:true||false
+                })
+            </pre> 或者
+            <pre>
+                Object.definedProperties(obj,{
+                    key:{
+                        value:value,
+                        enumerable:true||false,
+                        writeable:true||false,
+                        configurable:true||false
+                    },
+                    key:{
+                        value:value,
+                        enumerable:true||false,
+                        writeable:true||false,
+                        configurable:true||false
+                    },
+                })
+            </pre>
+        </li>
     </ol>
 </body>
+<script>
+    var obj = {
+        a: 1
+    }
+    Object.defineProperty(obj, "b", {
+        value: "b",
+        configurable: true, //设置true还可以再次使用 Object.defineProperty设置属性；false则不能再次设置
+        writable: true, //设置true可以设置obj.a = 123,可以设置成功，false则不能改变其值
+        enumerable: true, //设置为true可以被for in 遍历到还有其他遍历的，为false则不能遍历到
+    })
+    Object.defineProperties(obj, {
+        c: {
+            value: "c",
+            configurable: true,
+            writable: true,
+            enumerable: false,
+        },
+        d: {
+            value: "d",
+            configurable: true,
+            writable: false,
+            enumerable: false,
+        }
+    })
+    console.log(obj);
+    obj.c = 123
+    obj.d = 123
+    console.log("把c，d的属性值变为123",
+        obj);
+</script>
 
 </html>
