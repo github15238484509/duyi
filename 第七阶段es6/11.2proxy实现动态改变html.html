@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>在下面的div中动态的绑定一个对象的属性</h1>
+    <h1>proxy添加一个属性，页面会自动渲染</h1>
+    <div class="box">
+
+    </div>
+</body>
+<script>
+    // 1 使用Object.defineProperty实现
+    var renderObj = {
+        name: '小刘',
+        age: 18
+    }
+
+    // function observer(object) {
+    //     const proxy = {}
+    //     const keys = Object.keys(object)
+    //     const div = document.querySelector(".box")
+    //     for (const key of keys) {
+    //         Object.defineProperty(proxy, key, {
+    //             get() {
+    //                 return Reflect.get(object, key)
+    //             },
+    //             set(value) {
+    //                 Reflect.set(object, key, value)
+    //                 render()
+    //             },
+    //             enumerable: true //是定义的对象可以枚举，下面要用的循环
+    //         })
+    //     }
+    //     render()
+
+    //     function render() {
+    //         let html = ""
+    //         console.log(keys);
+    //         for (const key of keys) {
+    //             html += `<p> <span>${key}:</span><span>${object[key]}</span></p> </p>`
+    //         }
+    //         div.innerHTML = html
+    //     }
+    //     return proxy
+    // }
+    // var proxy = observer(renderObj)
+    // renderObj.sex = "男" // 使用Object.defineProperty()定义的属性添加一个属性他不渲染
+
+
+
+    function observer(object) {
+        const div = document.querySelector(".box")
+        const proxy = new Proxy(object, {
+            get(object, key) {
+                return Reflect.get(object, key)
+            },
+            set(object, key, val) {
+                Reflect.set(object, key, val)
+                render()
+            }
+        })
+
+        render()
+
+        function render() {
+            let html = ""
+            const keys = Object.keys(object)
+            for (const key of keys) {
+                html += `<p> <span>${key}:</span><span>${object[key]}</span></p> </p>`
+            }
+            div.innerHTML = html
+        }
+        return proxy
+    }
+    //使用proxy代理
+    var proxy = observer(renderObj)
+    proxy.sex = "男"
+</script>
+
+</html>

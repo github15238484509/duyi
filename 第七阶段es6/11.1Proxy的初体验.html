@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Proxy的初体验
+        <ol>
+            <li>
+                创建一个proxy 需要用 new Proxy(代理的对象,处理方法{key：(){}}) 返回一个代理的对象
+            </li>
+            <li>
+                Reflect中所有的静态方法， Proxy的都有与之对应的方法
+            </li>
+        </ol>
+    </h1>
+</body>
+<script>
+    let obj = {
+        name: "proxy",
+        age: 18
+    }
+    const pro = new Proxy(obj, {
+        //代理的目标，属性，值，代理自己
+        set(target, property, value, proxy) {
+            console.log(target, property, value, proxy);
+            // target[property]  = value
+            Reflect.set(target, property, value)
+        },
+        get(target, property) {
+            // return terget[property]
+            return Reflect.get(target, property)
+        },
+        has(target, property) { //对应in关键字
+            console.log(target, property);
+            return Reflect.has(target, property)
+        },
+    })
+    console.log("name" in pro);
+</script>
+
+</html>
