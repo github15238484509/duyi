@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Reflect 的官网描述 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect">gogogo</a></h1>
+    <ol>
+        <li>
+            Reflect.get(obj,key)//获取一个对象的属性值
+        </li>
+        <li>
+            Reflect.set(obj,key,val)//设置一个对象的属性值
+        </li>
+        <li>
+            Reflect.apply(function,绑定的this,[参数，参数])//执行一个函数
+        </li>
+        <li>
+            Reflect.construct(fucntion,[参数，参数])//使用new 创建一个对象
+        </li>
+        <li>
+            Reflect.defineProperty(obj,key,{对象描述符})//为对象创建一个属性
+        </li>
+        <li>
+            Reflect.deleteProperty(obj,key)//删除一个对象的属性
+        </li>
+        <li>
+            Reflect.getPrototypeOf(obj)//获取对象的原型
+        </li>
+        <li>
+            Reflect.setPrototypeOf(obj,target)//设置一个对象的原型
+        </li>
+    </ol>
+</body>
+<script>
+    console.log(Reflect);
+    const obj = {
+        name: "reflect"
+    }
+    console.log("get获取属性", Reflect.get(obj, "name"));
+    console.log("set设置属性age;18", Reflect.set(obj, "age", 18));
+    console.log("设置后的obj", obj);
+
+    function test(a) {
+        console.log("Reflect.apply执行穿的参数", a);
+        console.log("绑定obj输出name", this.name);
+    }
+    console.log("执行Reflct.apply开始");
+    Reflect.apply(test, obj, [1])
+    console.log("执行Reflct.apply结束");
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    console.log("使用Reflect.construct构建对象开始");
+    const per = Reflect.construct(Person, ["reflect", "18"])
+    console.log("构建的per", per);
+    console.log("使用Reflect.construct构建对象结束");
+
+    console.log("使用Reflect.defineProperty开始");
+    Reflect.defineProperty(obj, "sex", {
+        value: "男",
+        enumerable: true,
+        configruable: true,
+        writable: true
+    })
+    console.log("用Reflect.defineProperty为obj定义个sex属性", obj);
+    console.log("使用Reflect.defineProperty结束");
+
+    console.log("用Reflect.deleteProperty输出属性开始");
+    Reflect.deleteProperty(obj, "name")
+    console.log("使用Reflect.deleteProperty;删除了name", obj);
+    console.log("用Reflect.deleteProperty输出属性结束");
+
+    console.log("使用Reflect.getPrototypeOf获取原型", Reflect.getPrototypeOf(obj));
+
+    console.log("使用Reflct.setPrototypeOf设置obj的原型为per", Reflect.setPrototypeOf(obj, per));
+</script>
+
+</html>
