@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>使用proxy代理实现构造函数</h1>
+    <script>
+        function constructorProxy(target, ...arg) {
+            return new Proxy(target, {
+                construct(target, arguments) {
+                    console.log(arg);
+                    console.log("使用构造器函数");
+                    console.log(arguments);
+                    const obj = Reflect.construct(target, arguments)
+                    for (let i = 0; i < arg.length; i++) {
+                        obj[arg[i]] = arguments[i]
+                    }
+                    return obj
+                }
+            })
+        }
+        class Person {
+
+        }
+        var per = constructorProxy(class {}, "name", "age")
+        var obj = new per("小刘", 18)
+        console.log(obj);
+
+        var animal = constructorProxy(class {}, "name", "age", "sex")
+        var dog = new animal("旺财", "2", "男")
+        console.log(dog);
+    </script>
+</body>
+
+</html>
