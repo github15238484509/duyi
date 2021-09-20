@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>worker的简单应用</h1>
+    <h2>woker是多线程的</h2>
+    <ol>
+        <li>发送事件是 postMessage</li>
+        <li>接收事件是 onMessage</li>
+        主线程和辅线程 都是这样发送消息的\n 当前页面是主线程，woker。js是辅线程
+    </ol>
+</body>
+
+<script>
+    // console.log(1);
+    // new Worker("./worker.js")
+    // console.log(2);
+    // 输出12 5说明worker是异步的
+
+    const woker = new Worker("./worker.js")
+    woker.postMessage(2)
+    woker.onmessage = function(e) {
+        console.log(e.data);
+    }
+</script>
+
+</html>

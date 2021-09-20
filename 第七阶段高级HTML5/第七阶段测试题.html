@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        测试
+        <a href="https://www.yuque.com/docs/share/0d2322fd-adb6-4b33-9d61-e79fd463330a?#">
+            <(￣︶￣)↗[GO!]</a>
+    </h1>
+    <h1>
+        答案
+        <a href="https://duyiedu.yuque.com/docs/share/c9f2fbf2-b555-4ced-aca5-5114e9d3ea54">gogo</a>
+    </h1>
+    <ol>
+        <li>
+            A
+        </li>
+        <li>
+            B
+        </li>
+        <li>
+            B
+        </li>
+        <li>
+            A
+        </li>
+        <li>
+            D
+        </li>
+        <li>
+            D
+        </li>
+        <li>
+            D
+        </li>
+        <li>
+            B
+        </li>
+        <li>
+            B
+        </li>
+        <li>
+            B
+        </li>
+        <LI>
+            C
+        </LI>
+        <li>
+            C
+        </li>
+        <li>
+            D
+        </li>
+        <li>
+            B
+        </li>
+        <li>
+            b
+        </li>
+        <li>
+            a
+        </li>
+        <li>
+            b
+        </li>
+        <li>
+            a
+        </li>
+        <li>
+            a
+        </li>
+        <li>
+            D
+        </li>
+        <LI>
+            B
+        </LI>
+        <LI>
+            C
+        </LI>
+        <LI>
+            C
+        </LI>
+        C
+        </LI>
+    </ol>
+    <h1>
+        填空题
+    </h1>
+    <ol>
+        <li>
+            new.target
+        </li>
+        <li>
+            as
+        </li>
+        <li>
+            <pre>
+            const req = ___saync ()____ => {
+                return await fetch(url).then(____resp____=> resp.json());
+            }
+             
+            //请求students.json，输出得到的结果
+            req("students.json").____then_____(resp => console.log(resp))
+          </pre>
+        </li>
+        <li>
+            参数默认赋值 fun（a= 1）{}; fun(..arg){},剩余参数解决了
+
+        </li>
+        <li>
+            resolved；抛出错误，rejected
+        </li>
+        <li>
+            有一个next（）方法；iterator
+        </li>
+    </ol>
+    <h3>
+
+        解答题
+    </h3>
+    <ol>
+        <li>
+            结局了回调地狱，他是通过。then函数回调解决的；async await 解决了 promise 。then的回调
+        </li>
+        <li>
+            <pre>
+                迭代器协议：必须实现__next__()方法，要么返回迭代的下一项，要么引起StopIteration异常
+                可迭代对象：实现了__iter__方法的对象，它能将所有可迭代对象转化成迭代器
+                迭代器：不仅实现了__iter()方法，还实现了__next__()方法的对象
+                生成器：使用了yield的函数就是生成器，它是一个返回迭代器对象的函数
+            </pre>
+        </li>
+    </ol>
+    <h1>
+        第四大题
+    </h1>
+    <ol>
+        <li>
+
+            <pre>
+
+                const urls = ["1", '2', "3"]
+                var arr = []
+                for (let i = 0; i < urls.length; i++) {
+                    arr.push(new Promise((resolve, reject) => {
+                        var timer = Math.random() * 2000
+                        setTimeout(() => {
+                            resolve(Date.now())
+                        }, timer)
+                    }))
+                }
+                Promise.all(arr).then(result => {
+                    return result.map(item => {
+                        var obj = {}
+                        obj.data = item
+                        obj.responseTime = Date.now()
+                        return obj
+                    })
+                }).then(result => {
+                    console.log(result);
+                })
+            </pre>
+        </li>
+        <li>
+            第二个不会
+        </li>
+    </ol>
+</body>
+
+<script>
+    const urls = ["1", '2', "3"]
+    var arr = []
+    for (let i = 0; i < urls.length; i++) {
+        arr.push(new Promise((resolve, reject) => {
+            var timer = Math.random() * 2000
+            setTimeout(() => {
+                resolve(Date.now())
+            }, timer)
+        }))
+    }
+    Promise.all(arr).then(result => {
+        return result.map(item => {
+            var obj = {}
+            obj.data = item
+            obj.responseTime = Date.now()
+            return obj
+        })
+    }).then(result => {
+        console.log(result);
+    })
+</script>
+
+</html>
