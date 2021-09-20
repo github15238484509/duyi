@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>获取手机的加速度 devicemotion</h1>
+    <h3>手机在三维空间所以有三个加速度 devicemotion</h3>
+    <div id="devicemotion"></div>
+    <script>
+        window.addEventListener('devicemotion', function(ev) {
+            console.log(ev.acceleration);
+            var str = `<p>X${ev.acceleration.x}</p>
+          <p>Y${ev.acceleration.y}</p>
+          <p>Z${ev.acceleration.z}</p>`
+            devicemotion.innerHTML = str
+            if (Math.abs(ev.acceleration.z) > 10 && Math.abs(ev.acceleration.y) > 10 && Math.abs(ev.acceleration.x) > 10) {
+                alert('用户在摇动')
+            }
+        })
+    </script>
+</body>
+
+</html>

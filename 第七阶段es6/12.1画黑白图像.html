@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <img id="img" src="./1.webp" alt="">
+        <button onclick="change()">转换</button>
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+<script>
+    function change() {
+        var img = document.querySelector("#img")
+        var canvas = document.querySelector("#canvas")
+        canvas.height = img.height
+        canvas.width = img.width
+        var cxt = canvas.getContext("2d")
+        cxt.drawImage(img, 0, 0)
+        var imgData = cxt.getImageData(0, 0, img.width, img.height)
+        var data = imgData.data;
+        var lenght = imgData.data.length;
+        for (var i = 0; i < lenght; i + 4) {
+            data[i] = data[i + 1] = data[i + 2] = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        }
+        cxt.putImageData(imgData, 0, 0)
+    }
+</script>
+
+</html>

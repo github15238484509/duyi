@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>获取手机的陀螺仪事件 deviceorientation</h1>
+    <div id="info">
+
+    </div>
+    <dl>
+        <dt>
+        deviceorientation有三个属相alpha，gamma，beta
+      </dt>
+        <dd>
+            alpha指北取值范围【0，360），当为0的时候指北；180的时候指南
+        </dd>
+        <dd>
+            beta：将手机的短边平放的时候他的值为0，手机的短边竖直的时候他的值为90；手机屏幕对着自己
+        </dd>
+
+    </dl>
+    <script>
+        window.addEventListener("deviceorientation", function(ev) {
+
+            var str = ` <p>alpha:${ev.alpha}</p>
+                        <p>beta:${ev.beta}</p>
+                        <p>gamma:${ev.gamma}</p>`
+            info.innerHTML = str
+        })
+    </script>
+</body>
+
+</html>

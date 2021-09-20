@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #animate {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <div id="animate">
+
+    </div>
+    <script>
+        const element = document.getElementById('animate');
+        let start;
+
+        function step(timestamp) {
+            // timestamp 是requestAnimationFrame传入的参数，这个参数不是一个定值，但他会一直递增
+            if (start === undefined) {
+                start = timestamp;
+            }
+            const elapsed = timestamp - start;
+            //这里使用`Math.min()`确保元素刚好停在200px的位置。
+            var speed = Math.min(0.1 * elapsed, 200)
+                // console.log(speed);
+            element.style.transform = 'translateX(' + speed + 'px)';
+
+            if (elapsed < 2000) { // 在两秒后停止动画
+                window.requestAnimationFrame(step);
+            }
+        }
+
+        window.requestAnimationFrame(step);
+    </script>
+</body>
+
+</html>
