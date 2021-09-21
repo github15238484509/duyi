@@ -1,17 +1,20 @@
 # git 常用命令。
 
 ## 创建SSH Key
+
 ```shell
 $ ssh-keygen -t rsa -C "youremail@example.com"
 ```
 
 ## 配置用户信息
+
 ```shell
 $ git config --global user.name "Your Name"             
 $ git config --global user.email "email@example.com"
 ```
 
 ## 仓库
+
 > 在当前目录新建一个Git代码库
 ```shell
 $ git init
@@ -27,6 +30,7 @@ $ git init [project-name]
 $ git clone [url]
 ```
 ## 增加/删除文件
+
 > 添加指定文件到暂存区
 ```shell
 $ git add [file1] [file2] ...
