@@ -1,0 +1,21 @@
+{
+    "name": "heihi",
+    "version": "1.0.0",
+    "description": "tmd",
+    "main": "index.js",
+    "scripts": {
+        "test": "npmss"
+    },
+    "repository": {
+        "type": "git",
+        "url": "tmd"
+    },
+    "keywords": [
+        "sss"
+    ],
+    "author": "ddd",
+    "license": "ISC",
+    "dependencies": {
+        "jquery": "3.2"
+    }
+}
