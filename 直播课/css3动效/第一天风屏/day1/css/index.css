@@ -1,0 +1,177 @@
+body,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item {
+    width: 16%;
+    height: 100%;
+    background: #333;
+    border-radius: 20px;
+    overflow: hidden;
+    /* todo 需要调整 */
+    transition: width .5s linear, height .5s linear .5s;
+    /* transition: all .5s linear; */
+}
+
+.inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: .5s linear;
+}
+
+.init .inner {
+    transform: translateY(100%);
+}
+
+.item:nth-child(1) .inner {
+    transition-delay: .1s;
+}
+
+.item:nth-child(2) .inner {
+    transition-delay: .2s;
+}
+
+.item:nth-child(3) .inner {
+    transition-delay: .3s;
+}
+
+.item:nth-child(4) .inner {
+    transition-delay: .4s;
+}
+
+.item:nth-child(5) .inner {
+    transition-delay: .5s;
+}
+
+.item:nth-child(6) .inner {
+    transition-delay: .6s;
+}
+
+.item .banner-bg {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    opacity: .5;
+    transition: .2s;
+}
+
+.item:nth-child(1) .banner-bg {
+    background-image: url('../img/1.jpg');
+}
+
+.item:nth-child(2) .banner-bg {
+    background-image: url('../img/2.jpg');
+}
+
+.item:nth-child(3) .banner-bg {
+    background-image: url('../img/3.jpg');
+}
+
+.item:nth-child(4) .banner-bg {
+    background-image: url('../img/4.jpg');
+}
+
+.item:nth-child(5) .banner-bg {
+    background-image: url('../img/5.jpg');
+}
+
+.item:nth-child(6) .banner-bg {
+    background-image: url('../img/6.jpg');
+}
+
+.item:hover .banner-bg {
+    opacity: 1;
+}
+
+.show-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    transition: opacity .2s linear 1s;
+}
+
+.masker-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 30px;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    opacity: 0;
+}
+
+.masker-title {
+    font-size: 24px;
+    transition: opacity .2s linear 1s;
+}
+
+.masker-close {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 42px;
+    display: flex;
+    align-items: center;
+}
+
+
+/* todo 点击事件动画 */
+
+.active .show-text {
+    opacity: 0;
+    transition: all .2s linear;
+}
+
+.active .masker-container {
+    opacity: 1;
+    transition: .5s linear 1s;
+}
+
+.active .item:not(.on) {
+    height: 0;
+    width: 0;
+}
+
+.active .item {
+    transition: height .5s linear, width .5s linear .5s;
+}
+
+.active .item.on {
+    width: 100%;
+}
+
+.active .masker-close {
+    transform: rotate(360deg);
+    transition: .5s linear 1s;
+    /* 贝塞尔曲线 */
+}
