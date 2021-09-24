@@ -1,0 +1,16 @@
+{
+    "name": "test",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "cross-env NODE_ENV=test&&node index.js",
+        "start": "cross-env NODE_ENV=production&&node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}
