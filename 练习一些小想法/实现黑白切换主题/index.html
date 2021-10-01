@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <h1>实现思路就是为body，或者html添加一个类，这个类改变root的中定义的变量</h1>
+    <h1>我真的好帅呀，我要爆了</h1>
+    <button id="toggle-button">toggle</button>
+</body>
+<script>
+    let darkMode = localStorage.getItem("theme")
+
+    if (darkMode === "dark") enableDarkMode()
+    const toggleButton = document.querySelector('#toggle-button')
+    toggleButton.addEventListener('click', (e) => {
+        darkMode = localStorage.getItem('theme');
+        if (darkMode === 'dark') {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    function enableDarkMode() {
+        document.body.classList.add("dark-mode")
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function disableDarkMode() {
+        document.body.classList.remove("dark-mode")
+        localStorage.setItem('theme', 'light');
+    }
+</script>
+
+</html>
