@@ -1,0 +1,1 @@
+console.log('init执行了，但没有带出任何值');
