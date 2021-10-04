@@ -1,0 +1,1 @@
+(()=>{var o={129:o=>{console.log("a执行了"),o.exports.a="a"}},r={};function e(t){var s=r[t];if(void 0!==s)return s.exports;var n=r[t]={exports:{}};return o[t](n,n.exports,e),n.exports}(()=>{const o=e(129);console.log(o),console.log("tmd")})()})();
