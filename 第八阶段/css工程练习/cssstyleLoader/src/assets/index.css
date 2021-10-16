@@ -1,0 +1,9 @@
+/* @import "./base.css"; */
+
+.main {
+    color: red;
+    background-image: url(./1.jpg);
+    width: 500px;
+    height: 500px;
+    font-weight: 600;
+}
