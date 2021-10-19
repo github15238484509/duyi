@@ -1,3 +1,5 @@
+const { async } = require("regenerator-runtime");
+
 const a = 123;
 () => {
     console.log(1);
@@ -6,10 +8,12 @@ const a = 123;
     console.log(this);
 }
 var [b, c, d, e] = [1, 2, 3, 4]
+
 new Promise((resolve, reject) => {
-    resolve(1)
+    console.log(444);
+    resolve()
 })
-a = async() => {
+async function test() {
     await 2
 }
-console.log(a);
+console.log(test());
