@@ -1,0 +1,17 @@
+{
+    "name": "1.1babel",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "@babel src -d dist -w"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/cli": "^7.15.7",
+        "@babel/core": "^7.15.8",
+        "@babel/preset-env": "^7.15.8"
+    }
+}
