@@ -1,7 +1,1 @@
-console.log('tdm');
-
-function say(name = "tmd") {
-    console.log(name);
-}
-say()
-say("hehie")
+function say(a=0){}say(),say("hehie");
