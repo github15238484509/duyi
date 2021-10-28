@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test {
+            width: 100vw;
+            height: 50vh;
+            background-color: red;
+        }
+        
+        .test2 {
+            width: 400px;
+            height: 400px;
+            outline: 1px solid;
+            margin: 5px;
+            display: flex;
+            /* 弹性盒 */
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .test2>div {
+            width: 80px;
+            height: 80px;
+            outline: 1px solid;
+        }
+        
+        .test3 {
+            width: 300px;
+            height: 300px;
+            outline: 1px solid;
+            /* outline 是轮廓，不会占据实际像素 */
+            margin: 5px;
+            /* background-image: linear-gradient(green 40%, blue 70%); */
+            background-image: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+            /* 除了设置上面的背景图渐变以外，还设置了背景图片的大小 */
+            background-size: 400%;
+        }
+        
+        p::first-line {
+            color: red;
+        }
+        
+        .test4::before {
+            content: '©'
+        }
+        
+        .test4::after {
+            content: '©'
+        }
+        
+        .test5 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 5px;
+            filter: blur(10px);
+        }
+        
+        .test6 {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            animation: anime 3s infinite alternate;
+            /* infinite 代表无限播放动画
+            alternate 代表反项播放 */
+        }
+        /* 要使用 CSS 动画分为两步
+        1. 声明动画 2. 使用动画 */
+        
+        @keyframes anime {
+            /* 0% ~ 100%   动画开始到结束 */
+            0% {
+                top: 0;
+                left: 0;
+            }
+            50% {
+                top: 0;
+                left: 400px;
+            }
+            100% {
+                top: 200px;
+                left: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- vw 和 vh -->
+    <!-- <div class="test"></div> -->
+    <!-- 弹性盒模型 -->
+    <!-- <div class="test2">
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+    </div> -->
+    <!-- 线性渐变 -->
+    <!-- <div class="test3"></div> -->
+    <!-- 伪元素 -->
+    <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid aspernatur illum dolorem ipsa incidunt molestiae commodi consectetur est minima. Atque, corrupti fugit. Velit, fugiat non quisquam dignissimos vitae iste nesciunt consequuntur similique
+        nostrum reiciendis minus exercitationem temporibus, veniam soluta dolores commodi iusto corporis a perferendis. Incidunt temporibus fugiat magnam veniam!</p>
+    <p class="test4">this is a test</p> -->
+    <!-- 滤镜 -->
+    <!-- <div class="test5"></div> -->
+    <!-- 动画 -->
+    <div class="test6"></div>
+</body>
+
+</html>

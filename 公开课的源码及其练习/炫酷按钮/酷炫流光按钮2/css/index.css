@@ -1,0 +1,77 @@
+* {
+    /* 初始化页面里面所有元素的内外边距 */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    /* 弹性盒子 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 设置背景颜色 */
+    background-color: #000;
+}
+
+a {
+    width: 400px;
+    height: 100px;
+    /* border: 1px solid; */
+    display: block;
+    color: white;
+    text-align: center;
+    /* 文字居中 */
+    text-decoration: none;
+    /* 去除下划线 */
+    text-transform: uppercase;
+    /* 转换为大写 */
+    line-height: 100px;
+    /* 垂直居中 */
+    font-size: 24px;
+    border-radius: 50px;
+    /* 设置圆角 */
+    background-image: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    /* 设置渐变颜色 */
+    background-size: 400%;
+    position: relative;
+    /* 相对定位，因为伪元素要进行绝对定位，这里设置成相对定位作为参考 */
+    z-index: 1;
+}
+
+
+/* 下面书写发光效果，利用伪元素来制作 */
+
+a::before {
+    content: '';
+    width: 400px;
+    height: 100px;
+    background-image: linear-gradient(to right, #03a9f4, #f441a5, #ffeb3b, #09a8f4);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 50px;
+    background-size: 400%;
+    /* 通过滤镜来设置发光效果 */
+    filter: blur(20px);
+    z-index: -1;
+    /* 让发光的盒子到下面去 */
+}
+
+
+/* 使用动画 */
+
+a:hover,
+a:hover::before {
+    animation: bright 7s infinite alternate;
+}
+
+
+/* 定义动画 */
+
+@keyframes bright {
+    100% {
+        background-position: -400% 0;
+    }
+}

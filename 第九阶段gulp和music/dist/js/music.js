@@ -1,0 +1,1 @@
+!function(i){function s(){this.audio=new Audio,this.status="pause"}s.prototype={load(i){this.audio.src=i,this.audio.load()},pause(){this.audio.pause(),this.status="pause"},play(){this.audio.play(),this.status="play"},fromTo(i){this.audio.currentTime=i}},i.music=new s}(window.player||(window.player={}));

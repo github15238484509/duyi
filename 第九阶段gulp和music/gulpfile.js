@@ -21,7 +21,7 @@ function html() {
 
 function js() {
     return src(folder.entry + 'js/*')
-        .pipe(StriptDebug())
+        // .pipe(StriptDebug())
         .pipe(uglify())
         .pipe(dest(folder.output + 'js'))
         .pipe(connect.reload())

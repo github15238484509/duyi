@@ -1,0 +1,1 @@
+!function(a){a.render=function(e,n){var r,i;i=e.image,n.record.src=i,a.blurImg(i),r=e,(i=n).name.innerText=r.name,i.singer.innerText=r.singer,i.album.innerText=r.album,e=e.isLike,n.controlBtns[0].className=e?"active":""}}(window.player||(window.player={}));
