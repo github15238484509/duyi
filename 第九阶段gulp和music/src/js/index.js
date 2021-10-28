@@ -4,6 +4,7 @@
         this.dom = dom
         this.data = null
         this.now = 0
+        this.imgTimer = null
     }
     MusicPlayer.prototype = {
         init() {
@@ -17,6 +18,7 @@
                 success: (data) => {
                     this.data = data
                     this.loadMusic(this.now)
+                    this.controlMusic()
                 }
             })
         },
@@ -30,18 +32,48 @@
         loadMusic(index) {
             player.render(this.data[index], this)
             player.music.load(this.data[index].audioSrc)
-            this.controlMusic()
+            if (player.music.status === "play") {
+                this.controlBtns[2].className = 'playing'
+                player.music.play()
+            }
         },
         controlMusic() {
-            // this.controlBtns[1] 上
-            // this.controlBtns[2] 暂停
-            // this.controlBtns[3] 下
-            // this.controlBtns[1]
-            this.controlBtns[2].onclick = function() {
+            var that = this
+                // this.controlBtns[1] 上
+                // this.controlBtns[2] 暂停
+                // this.controlBtns[3] 下
+                // this.controlBtns[1]
+            this.controlBtns[1].addEventListener("touchend", () => {
+                player.music.status = 'play'
+                this.loadMusic(--this.now)
+            })
+            this.controlBtns[2].addEventListener("touchend", function() {
                 var status = player.music.status == "pause" ? 'play' : 'pause';
                 this.className = player.music.status == "pause" ? 'playing' : ''
                 player.music[status]()
-            }
+                if (status == 'play') {
+                    that.imgRotate(that.record.rotate || 0)
+                } else {
+                    that.imgStopRotate()
+                }
+
+            })
+            this.controlBtns[3].addEventListener("touchend", () => {
+                player.music.status = 'play'
+                this.loadMusic(++this.now)
+                this.imgRotate(0)
+            })
+        },
+        imgRotate(deg) {
+            clearInterval(this.imgTimer)
+            this.imgTimer = setInterval(() => {
+                deg = deg + 0.2
+                this.record.style.transform = `rotate(${deg}deg)`
+                this.record.rotate = deg
+            }, 1000 / 60);
+        },
+        imgStopRotate() {
+            clearInterval(this.imgTimer)
         }
     }
 
