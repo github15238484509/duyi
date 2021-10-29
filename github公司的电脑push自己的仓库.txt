@@ -1,0 +1,12 @@
+https://blog.csdn.net/qq_46941656/article/details/119737804   个人令牌篇
+
+查看远程仓库
+git remote -v
+origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
+origin  git@github.com:USERNAME/REPOSITORY.git (push)
+
+ 设置远程仓库  git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+	     git@github.com:USERNAME/REPOSITORY.git (push)
+ssr  
+
+ssr 需要配置
