@@ -3,8 +3,9 @@
     function MusicPlayer(dom) {
         this.dom = dom
         this.data = null
-        this.now = 0
+            // this.now = 0
         this.imgTimer = null
+        this.constructorIndex = null
     }
     MusicPlayer.prototype = {
         init() {
@@ -17,7 +18,10 @@
                 methods: "get",
                 success: (data) => {
                     this.data = data
-                    this.loadMusic(this.now)
+                    this.constructorIndex = new player.constructorIndex(data.length)
+                    console.log(this.constructorIndex);
+                    // this.loadMusic(this.now)
+                    this.loadMusic(this.constructorIndex.index)
                     this.controlMusic()
                 }
             })
@@ -45,7 +49,7 @@
                 // this.controlBtns[1]
             this.controlBtns[1].addEventListener("touchend", () => {
                 player.music.status = 'play'
-                this.loadMusic(--this.now)
+                this.loadMusic(this.constructorIndex.prev())
             })
             this.controlBtns[2].addEventListener("touchend", function() {
                 var status = player.music.status == "pause" ? 'play' : 'pause';
@@ -60,7 +64,8 @@
             })
             this.controlBtns[3].addEventListener("touchend", () => {
                 player.music.status = 'play'
-                this.loadMusic(++this.now)
+                    // this.loadMusic(++this.now)
+                this.loadMusic(this.constructorIndex.next())
                 this.imgRotate(0)
             })
         },

@@ -1,0 +1,1 @@
+!function(t){t.constructorIndex=class{constructor(t){this.length=t,this.index=0}prev(){return this.get(-1)}next(){return this.get(1)}get(t){return this.index=(this.index+t+this.length)%this.length,this.index}}}(window.player||(window.player={}));
