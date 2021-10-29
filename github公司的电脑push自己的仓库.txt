@@ -1,4 +1,10 @@
 https://blog.csdn.net/qq_46941656/article/details/119737804   个人令牌篇
+		需要输入账号密码
+			账号是 github的账号
+			密码是 个人令牌生成的那个东西 返回页面就会消失的
+
+
+
 
 查看远程仓库
 git remote -v
