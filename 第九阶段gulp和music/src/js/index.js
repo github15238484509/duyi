@@ -6,6 +6,8 @@
             // this.now = 0
         this.imgTimer = null
         this.constructorIndex = null
+        this.listConstructor = null
+
     }
     MusicPlayer.prototype = {
         init() {
@@ -19,10 +21,13 @@
                 success: (data) => {
                     this.data = data
                     this.constructorIndex = new player.constructorIndex(data.length)
-                    console.log(this.constructorIndex);
-                    // this.loadMusic(this.now)
+                    this.progess = new player.progess.Progess(player.music.audio)
                     this.loadMusic(this.constructorIndex.index)
+                    player.music.end(() => {
+                        this.loadMusic(this.constructorIndex.next())
+                    })
                     this.controlMusic()
+                    this.renderListEvent(data, this.dom)
                 }
             })
         },
@@ -36,6 +41,7 @@
         loadMusic(index) {
             player.render(this.data[index], this)
             player.music.load(this.data[index].audioSrc)
+            this.progess.init(this.data[index].duration)
             if (player.music.status === "play") {
                 this.controlBtns[2].className = 'playing'
                 player.music.play()
@@ -46,10 +52,11 @@
                 // this.controlBtns[1] 上
                 // this.controlBtns[2] 暂停
                 // this.controlBtns[3] 下
-                // this.controlBtns[1]
+                // this.controlBtns[4]
             this.controlBtns[1].addEventListener("touchend", () => {
                 player.music.status = 'play'
                 this.loadMusic(this.constructorIndex.prev())
+
             })
             this.controlBtns[2].addEventListener("touchend", function() {
                 var status = player.music.status == "pause" ? 'play' : 'pause';
@@ -57,8 +64,10 @@
                 player.music[status]()
                 if (status == 'play') {
                     that.imgRotate(that.record.rotate || 0)
+                    that.progess.move()
                 } else {
                     that.imgStopRotate()
+                    that.progess.stop()
                 }
 
             })
@@ -67,6 +76,11 @@
                     // this.loadMusic(++this.now)
                 this.loadMusic(this.constructorIndex.next())
                 this.imgRotate(0)
+                that.progess.stop()
+                that.progess.move()
+            })
+            this.controlBtns[4].addEventListener("touchend", () => {
+                this.listConstructor.show(this.constructorIndex.index)
             })
         },
         imgRotate(deg) {
@@ -79,6 +93,24 @@
         },
         imgStopRotate() {
             clearInterval(this.imgTimer)
+        },
+        renderListEvent(data, dom) {
+            this.listConstructor = new player.listConstructor(data, dom)
+            this.listConstructor.init()
+            this.listConstructor.dllist.forEach((item, index) => {
+                item.addEventListener("touchend", () => {
+                    if (index === this.constructorIndex.index) {
+                        return
+                    }
+                    this.constructorIndex.index = index
+                    player.music.status = 'play'
+                    this.loadMusic(index)
+                    this.listConstructor.show(index)
+                })
+            })
+            this.listConstructor.close.addEventListener("touchend", () => {
+                this.listConstructor.show(this.constructorIndex.index)
+            })
         }
     }
 

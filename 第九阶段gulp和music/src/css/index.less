@@ -68,7 +68,6 @@ body {
     .drag{
       flex: 1;
       height: 8vw;
-      border: 1px solid green ;
       position: relative;
       .circle{
         position: absolute;
@@ -82,6 +81,9 @@ body {
         top: 1vw;
         left: -2vw;
         border-radius:50% ;
+        &.active{
+           border: 2vw solid rgb(249 247 247 / 30%);
+        }
       }
       .frontBg,.backBg{
         position: absolute;
@@ -91,13 +93,13 @@ body {
         width: 100%;
       }
       .frontBg{
-        width: 50%;
+        width: 0%;
         background-color:#fff;
         z-index: 2;
       }
       .backBg{
         width: 100%;
-        background-color:rgba(0, 0, 0, 0.2);
+        background-color:rgb(255 255 255 / 30%);
         z-index: 1;
       }
     }
@@ -148,11 +150,14 @@ body {
     position: fixed;
     z-index: 4;
     bottom: 0;
-    max-height: 100vh;
+    max-height: 30vh;
     overflow: auto;
     background-image: linear-gradient(rgba(5,5,5,1),rgba(170,170,170,0.95));
     transform: translateY(100%);
-
+    transition: all 0.3s;
+    &.active{
+      transform: translateY(0%);
+    }
     dt,dd,.close{
       width: 100%;
       height: 12vw;
@@ -169,7 +174,7 @@ body {
     dd{
       padding-left: 5vw;
       box-sizing: border-box;
-      &.avtice{
+      &.active{
         color: #56b287;
       }
     }

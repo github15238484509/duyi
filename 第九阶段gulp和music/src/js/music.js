@@ -18,6 +18,9 @@
         },
         fromTo(time) {
             this.audio.currentTime = time
+        },
+        end(fu) {
+            return this.audio.onended = fu
         }
     }
     root.music = new CreatMusic()
