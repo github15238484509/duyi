@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <ul>
+            <li v-for="(item,index) in product">
+                名字：{{item.name}} 数量： <button @click="changeNum(item,item.num-1)">-</button>{{item.num==0?'暂无':item.num}} <button @click="changeNum(item,item.num+1)">+</button>
+                <button @click="reomve(index)">删除</button>
+            </li>
+        </ul>
+        <h2>总数：{{total}}</h2>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.common.dev.min.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: 'my frist vue',
+                product: [{
+                    name: 'apple',
+                    num: 20
+                }, {
+                    name: '小米',
+                    num: 10
+                }, ]
+            },
+            computed: {
+                total() {
+                    return this.product.reduce((a, b) => a + b.num, 0)
+                }
+            },
+            methods: {
+                changeNum(item, num) {
+                    console.log(item, num);
+                    if (num <= 0) {
+                        num = 0
+                    }
+                    item.num = num
+
+                },
+                reomve(inex) {
+                    this.product.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
