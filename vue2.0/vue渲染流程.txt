@@ -1,0 +1,12 @@
+1 注入
+	把data computed methods  的属性或方法注入到vue的实例中去，
+2 执行render函数 
+	2.1 看看是否有render函数有执行，没有
+	2.2 查看是否 template 如果有 把他的值 当成render函数的返回，没有
+	2.3 寻找绑定的el 对应的dom ，把dom的outerHTML 当成render函数的返回
+	2.4 生成虚拟dom
+3 挂载 渲染对应的dom
+
+4 查看是否更新了数据
+	4.1 更新了，比对新旧虚拟dom
+	4.2 更新更改的dom
