@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.13/vue.common.dev.min.js"></script>
+    <script>
+        const MyButton = {
+            data() {
+                return {
+                    info: 2
+                }
+            },
+            template: `
+            <button @click="info++">这是个按钮{{info}}</button>
+            `
+        }
+        Vue.component("MyButton", MyButton)
+
+        const TitleInfo = {
+            data() {
+                return {
+                    info: 2
+                }
+            },
+            props: ["title1"],
+            template: `<h1>这是个标题{{title1}}</h1>`
+        }
+        new Vue({
+            el: '#app',
+            components: {
+                "TitleInfo": TitleInfo
+            },
+            template: `
+              <div>
+                <h1>哈哈下面师组件</h1>
+                <MyButton ></MyButton>
+                <TitleInfo  title1=" Why Vue is so fun" />
+              </div>            
+              `,
+        })
+    </script>
+</body>
+
+</html>
