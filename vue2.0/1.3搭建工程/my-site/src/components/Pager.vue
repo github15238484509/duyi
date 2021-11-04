@@ -1,15 +1,38 @@
 <template>
   <div class="pager-container" v-if="pagernumber >= 1">
-    <a href="javascript:" :class="{ disable: current === 1 }"><<</a>
+    <a
+      @click="HanderClick(1)"
+      href="javascript:"
+      :class="{ disable: current === 1 }"
+      ><<<</a
+    >
+    <a
+      @click="HanderClick(current - 1)"
+      href="javascript:"
+      :class="{ disable: current === 1 }"
+      ><<</a
+    >
 
     <a
       href="javascript:"
       :class="{ active: item === current }"
       v-for="item in numpage"
       :key="item"
+      @click="HanderClick(item)"
       >{{ item }}</a
     >
-    <a href="javascript:" :class="{ disable: pagernumber === current }">>></a>
+    <a
+      @click="HanderClick(current + 1)"
+      href="javascript:"
+      :class="{ disable: pagernumber === current }"
+      >>></a
+    >
+    <a
+      @click="HanderClick(pagernumber)"
+      href="javascript:"
+      :class="{ disable: pagernumber === current }"
+      >>>></a
+    >
   </div>
   <div v-else>没有数据</div>
 </template>
@@ -22,11 +45,15 @@
   a {
     color: @primary;
     padding: 20px 10px;
+    transition: all 0.3s;
     &.disable {
       color: @lightWords;
       cursor: not-allowed;
     }
     &.active {
+      color: @dark;
+    }
+    &:hover{
       color: @dark;
     }
   }
@@ -37,7 +64,7 @@ export default {
   props: {
     current: {
       type: Number,
-      default: 10,
+      default: 1,
     },
     limit: {
       type: Number,
@@ -45,11 +72,26 @@ export default {
     },
     total: {
       type: Number,
-      default: 156120,
+      default: 0,
     },
     visibleNumber: {
       type: Number,
       default: 10,
+    },
+  },
+  methods: {
+    HanderClick(index) {
+      if (index < 1) {
+        index = 1;
+      }
+      if (index > this.pagernumber) {
+        index = this.pagernumber;
+      }
+      if (index == this.current) {
+        console.log("点击了当前页");
+        return;
+      }
+      this.$emit("ChangePage", index);
     },
   },
   computed: {
