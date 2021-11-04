@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       total: 202,
-      current: 10,
+      current: 1,
     };
   },
   components: {

@@ -46,12 +46,14 @@
     color: @primary;
     padding: 20px 10px;
     transition: all 0.3s;
+    cursor: pointer;
     &.disable {
       color: @lightWords;
       cursor: not-allowed;
     }
     &.active {
       color: @dark;
+      font-weight: 600;
     }
     &:hover{
       color: @dark;
