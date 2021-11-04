@@ -12,7 +12,7 @@ origin  git@github.com:USERNAME/REPOSITORY.git (fetch)
 origin  git@github.com:USERNAME/REPOSITORY.git (push)
 
  设置远程仓库  git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
-	     git@github.com:USERNAME/REPOSITORY.git (push)
+	     		            git@github.com:USERNAME/REPOSITORY.git 
 ssr  
 
 ssr 需要配置

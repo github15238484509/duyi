@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>可验函数的参数</h1>
+</body>
+<script>
+    function add(a, b) { //ab必须都是数字
+        return a + b + this.name
+    }
+    //普通函数实现
+    function checkArguments(fun, ...arg) {
+        return (...argu) => {
+            argu.forEach((item, index) => {
+                if (typeof item !== arg[index]) {
+                    throw TypeError(`第${index+1}的参数${item}的类型不是${arg[index]}`)
+                }
+            })
+            return fun(...argu)
+        }
+    }
+    //代理实现
+    function checkArguments(fun, ...arg) {
+        return new Proxy(fun, {
+            apply(target, thisarguments, arguments) {
+                console.log(target, thisarguments, arguments);
+                arguments.forEach((item, index) => {
+                    if (typeof item !== arg[index]) {
+                        throw TypeError(`第${index+1}的参数${item}的类型不是${arg[index]}`)
+                    }
+                })
+                return Reflect.apply(target, thisarguments, arguments)
+            }
+        })
+    }
+    var add1 = checkArguments(add, "number", "number")
+    var obj = {
+            name: 132
+        }
+        //可以绑定this 没有办发验证函数this的值的类型
+    console.log(add1.call(obj, 1, 2));
+</script>
+
+</html>
