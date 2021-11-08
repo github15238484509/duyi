@@ -1,25 +1,44 @@
 <template>
   <div id="app">
-    <Pager :total="total" :current="current" @ChangePage="ChangePage" :limit="8" />
+    <div class="app-container">
+      <Layout>
+        <template #left>
+          <div class="left">
+            <SiteSidebar />
+          </div>
+        </template>
+        <template #default>
+          221
+        </template>
+      </Layout>
+    </div>
   </div>
 </template>
 <script>
-import Pager from "@/components/Pager";
+import Layout from "@/components/Layout";
+import SiteSidebar from "@/components/SiteSidebar";
 export default {
   name: "App",
   data() {
-    return {
-      total: 202,
-      current: 1,
-    };
+    return {};
   },
   components: {
-    Pager,
+    Layout,
+    SiteSidebar,
   },
-  methods: {
-    ChangePage(e) {
-      this.current = e;
-    },
-  },
+  methods: {},
 };
 </script>
+<style lang="less" scoped>
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: pink;
+  .left {
+    width: 250px;
+    height: 100%;
+    background: black;
+  }
+}
+</style>

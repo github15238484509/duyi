@@ -9,7 +9,8 @@
         "test:Contact": "vue serve ./src/components/Contact/test.vue",
         "test:Menu": "vue serve ./src/components/Menu/test.vue",
         "test:Empty": "vue serve ./src/components/Empty/test.vue",
-        "test:SiteSidebar": "vue serve ./src/components/SiteSidebar/test.vue"
+        "test:SiteSidebar": "vue serve ./src/components/SiteSidebar/test.vue",
+        "test:Layout": "vue serve ./src/components/Layout/test.vue"
     },
     "dependencies": {
         "core-js": "^3.6.5",
