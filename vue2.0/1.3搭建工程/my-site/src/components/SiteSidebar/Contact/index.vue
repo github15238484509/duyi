@@ -2,11 +2,29 @@
   <div class="contact-container">
     <ul>
       <li>
-        <a href="">
+        <a>
           <div class="icon">
-            <Icon type="home" />
+            <Icon type="github" />
           </div>
-          1323
+          <span>DuYi-Edu</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:1138075190@qq.com">
+          <div class="icon">
+            <Icon type="mail" />
+          </div>
+          <span>1138075190@qq.com</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="tencent://message/?Menu=yes&uin=1138075190&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"
+        >
+          <div class="icon">
+            <Icon type="qq" />
+          </div>
+          <span>3263023350</span>
         </a>
         <div class="pop">
           <img
@@ -18,9 +36,9 @@
       <li>
         <a href="">
           <div class="icon">
-            <Icon type="home" />
+            <Icon type="weixin" />
           </div>
-          1323
+          <span>这是微信</span>
         </a>
         <div class="pop">
           <img
@@ -43,10 +61,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/color.less";
+@import "~@/style/reset.less";
 .contact-container {
-  width: 100%;
-  height: 100%;
   @liheight: 38px;
   ul,
   li {
@@ -63,6 +79,7 @@ export default {
     height: @liheight;
     line-height: @liheight;
     position: relative;
+    color: @gray;
     &:hover {
       .pop {
         transform: scaleY(1);
@@ -75,6 +92,9 @@ export default {
       background: inherit;
       .icon {
         margin-right: 5px;
+      }
+      &:hover {
+        color: white;
       }
     }
     .pop {
