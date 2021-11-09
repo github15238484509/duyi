@@ -4,11 +4,12 @@
       <Layout>
         <template #left>
           <div class="left">
-            <SiteSidebar />
+            <!-- <SiteSidebar /> -->
           </div>
         </template>
         <template #default>
-          221
+          123
+          <router-view></router-view>
         </template>
       </Layout>
     </div>

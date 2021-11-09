@@ -2,9 +2,9 @@
   <div class="menu-container">
     <ul>
       <li v-for="item in lists" :key="item.like">
-        <a :class="{ active: isActive(item) }" :href="item.link">
+        <router-link :exact="item.exact" :to="{ name: item.name }">
           <Icon :type="item.icon" /> {{ item.title }}
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -20,30 +20,34 @@ export default {
     return {
       lists: [
         {
-          link: "/",
+          name: "Home",
           title: "首页",
           icon: "home",
+          exact: true,
         },
         {
-          link: "/blog",
+          name: "Blog",
           title: "文章",
           icon: "blog",
-          startWith: true, // 只要当前路径以link开头，当前菜单就是选中的
+          exact: false, // 只要当前路径以name开头，当前菜单就是选中的
         },
         {
-          link: "/about",
+          name: "About",
           title: "关于我",
           icon: "about",
+          exact: true,
         },
         {
-          link: "/project",
+          name: "Project",
           title: "项目&效果",
           icon: "code",
+          exact: true,
         },
         {
-          link: "/message",
+          name: "Message",
           title: "留言板",
           icon: "chat",
+          exact: true,
         },
       ],
     };
@@ -78,7 +82,7 @@ export default {
         background: @dark;
         color: white;
       }
-      &.active {
+      &.router-link-active {
         background: @dark;
         color: white;
       }
