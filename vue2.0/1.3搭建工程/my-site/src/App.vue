@@ -4,7 +4,7 @@
       <Layout>
         <template #left>
           <div class="left">
-            <SiteSidebar />
+            <!-- <SiteSidebar /> -->
           </div>
         </template>
         <template #default>
@@ -34,11 +34,11 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: pink;
+  // background: pink;
   .left {
     width: 250px;
     height: 100%;
-    background: black;
+    // background: black;
   }
 }
 </style>

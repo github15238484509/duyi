@@ -1,3 +1,36 @@
-.one{
-  color: red;
+@import "~@/style/mixin.less";
+@import "~@/style/color.less";
+
+.box-container{
+  .self-center();
+  // box-shadow: 1px 1px 2px #00000080;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 3px;
+  user-select: none;
+  z-index: 99999;
+  transition: all 0.5s;
+  transform: translate(-50%,-50%) translateY(30px);
+  font-size: 20px;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.module_success{
+  background: @success;
+}
+.module_error{
+  background: @danger;
+}
+.module_warn{
+  background: @warn;
+}
+.module_info {
+  background: @primary;
+}
+.icon{
+  margin-right: 5px;
 }
