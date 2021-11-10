@@ -37,7 +37,7 @@ export default function showMessage(options = {}) {
         div.style.transform = "translate(-50%,-50%) translateY(-30px)"
         div.style.opacity = "0"
         div.addEventListener("transitionend", () => {
-            console.log(44444);
+            options.callback && options.callback()
             div.remove()
         }, { once: true })
     }, duration);

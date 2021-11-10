@@ -3,15 +3,19 @@ lockfileVersion: 5.3
 specifiers:
   '@vue/cli-plugin-babel': ~4.5.0
   '@vue/cli-service': ~4.5.0
+  axios: ^0.24.0
   core-js: ^3.6.5
   less: ^3.0.4
   less-loader: ^5.0.0
+  mockjs: ^1.1.0
   vue: ^2.6.11
   vue-router: ^3.5.3
   vue-template-compiler: ^2.6.11
 
 dependencies:
+  axios: 0.24.0
   core-js: registry.npmmirror.com/core-js/3.19.1
+  mockjs: 1.1.0
   vue: registry.npmmirror.com/vue/2.6.14
   vue-router: 3.5.3
 
@@ -37,6 +41,14 @@ packages:
     dependencies:
       color-convert: 2.0.1
     dev: true
+
+  /axios/0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+    dependencies:
+      follow-redirects: 1.14.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /big.js/3.2.0:
     resolution: {integrity: sha512-+hN/Zh2D08Mx65pZ/4g5bsmNiZUuChDiQfTUQ7qJr4/kuopCr88xZsAXv6mBoZEsUI4OuGHlX59qE94K2mMW8Q==}
@@ -130,6 +142,17 @@ packages:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: true
 
+  /commander/2.17.1:
+    resolution: {integrity: sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==}
+    dev: true
+
+  /commander/2.19.0:
+    resolution: {integrity: sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==}
+    dev: true
+
+  /commander/2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+
   /emojis-list/2.1.0:
     resolution: {integrity: sha1-TapNnbAPmBmIDHn6RXrlsJof04k=}
     engines: {node: '>= 0.10'}
@@ -152,6 +175,15 @@ packages:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     dev: true
     optional: true
+
+  /follow-redirects/1.14.5:
+    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   /fsevents/1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
@@ -254,6 +286,13 @@ packages:
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
+
+  /mockjs/1.1.0:
+    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
+    hasBin: true
+    dependencies:
+      commander: 2.20.3
+    dev: false
 
   /nan/2.15.0:
     resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
@@ -3626,7 +3665,7 @@ packages:
     dependencies:
       camel-case: registry.nlark.com/camel-case/3.0.0
       clean-css: registry.npmmirror.com/clean-css/4.2.4
-      commander: registry.npmmirror.com/commander/2.17.1
+      commander: 2.17.1
       he: registry.nlark.com/he/1.2.0
       param-case: registry.nlark.com/param-case/2.1.1
       relateurl: registry.nlark.com/relateurl/0.2.7
@@ -3747,7 +3786,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: registry.nlark.com/eventemitter3/4.0.7
-      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.5_debug@4.3.2
+      follow-redirects: 1.14.5
       requires-port: registry.nlark.com/requires-port/1.0.0
     transitivePeerDependencies:
       - debug
@@ -7042,7 +7081,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      commander: registry.npmmirror.com/commander/2.20.3
+      commander: 2.20.3
       source-map: 0.6.1
       source-map-support: registry.nlark.com/source-map-support/0.5.20
     dev: true
@@ -9456,24 +9495,6 @@ packages:
       is-wsl: registry.nlark.com/is-wsl/2.2.0
     dev: true
 
-  registry.npmmirror.com/commander/2.17.1:
-    resolution: {integrity: sha1-vXerfebelCBc6sxy8XFtKfIKd78=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/commander/download/commander-2.17.1.tgz}
-    name: commander
-    version: 2.17.1
-    dev: true
-
-  registry.npmmirror.com/commander/2.19.0:
-    resolution: {integrity: sha1-9hmKqE5bg8RgVLlN3tv+1e6f8So=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/commander/download/commander-2.19.0.tgz}
-    name: commander
-    version: 2.19.0
-    dev: true
-
-  registry.npmmirror.com/commander/2.20.3:
-    resolution: {integrity: sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/commander/download/commander-2.20.3.tgz}
-    name: commander
-    version: 2.20.3
-    dev: true
-
   registry.npmmirror.com/core-js-compat/3.19.1:
     resolution: {integrity: sha1-/lmPGpvzcxDXfDgTlo6ffHu5lHY=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/core-js-compat/download/core-js-compat-3.19.1.tgz}
     name: core-js-compat
@@ -9676,21 +9697,6 @@ packages:
     dependencies:
       locate-path: registry.nlark.com/locate-path/5.0.0
       path-exists: registry.nlark.com/path-exists/4.0.0
-    dev: true
-
-  registry.npmmirror.com/follow-redirects/1.14.5_debug@4.3.2:
-    resolution: {integrity: sha1-8JpYSJgdPHcrU5Iwl3hSP42Fw4E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.14.5.tgz}
-    id: registry.npmmirror.com/follow-redirects/1.14.5
-    name: follow-redirects
-    version: 1.14.5
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: registry.nlark.com/debug/4.3.2
     dev: true
 
   registry.npmmirror.com/glob-parent/3.1.0:
@@ -10252,7 +10258,7 @@ packages:
     engines: {node: '>=0.8.0'}
     hasBin: true
     dependencies:
-      commander: registry.npmmirror.com/commander/2.19.0
+      commander: 2.19.0
       source-map: 0.6.1
     dev: true
 
@@ -10311,7 +10317,7 @@ packages:
       acorn-walk: registry.nlark.com/acorn-walk/7.2.0
       bfj: registry.nlark.com/bfj/6.1.2
       chalk: registry.nlark.com/chalk/2.4.2
-      commander: registry.npmmirror.com/commander/2.20.3
+      commander: 2.20.3
       ejs: registry.nlark.com/ejs/2.7.4
       express: registry.nlark.com/express/4.17.1
       filesize: registry.npmmirror.com/filesize/3.6.1
