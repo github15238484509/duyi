@@ -7,7 +7,7 @@
       :style="{ marginTop: currentTop }"
     >
       <li v-for="item in banners" :key="item.id">
-        <CarouselItem />
+        <CarouselItem :info="item"/>
       </li>
     </ul>
     <!-- 上下按钮 -->
@@ -138,6 +138,7 @@ export default {
     },
   },
   mounted() {
+    console.log(4125);
     this.containerHeight = this.$refs.carouselContainer.clientHeight;
   },
 };

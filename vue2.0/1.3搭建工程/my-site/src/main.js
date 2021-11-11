@@ -8,8 +8,7 @@ import "@/style/reset.less"
 import "@/mock"
 Vue.config.productionTip = false
 Vue.prototype.$showMessage = showMessage
-var aa = new Vue({
+new Vue({
     router,
     render: h => h(App),
 }).$mount('#app')
-console.log(aa);

@@ -7,5 +7,7 @@ module.exports = {
         },
         hot:true,//自动保存
         open : true,//自动启动
+        disableHostCheck:true,
+        compress:true
     }
 }

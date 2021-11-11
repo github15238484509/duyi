@@ -1,9 +1,17 @@
 <template>
-  <div class="carousel-item-container">嘿嘿</div>
+  <div class="carousel-item-container">
+    <ImageLoader :placeholder="info.midImg" :src="info.bigImg"> </ImageLoader>
+  </div>
 </template>
 
 <script>
-export default {};
+import ImageLoader from "@/components/ImageLoader";
+export default {
+  props: ["info"],
+  components: {
+    ImageLoader,
+  },
+};
 </script>
 
 <style lang="less" scoped>
