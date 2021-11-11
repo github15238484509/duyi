@@ -8,7 +8,7 @@ request.interceptors.request.use(function (res) {
 })
 request.interceptors.response.use(function (res) {
     const info = res.data
-    if (info.code !== 200) {
+    if (info.code !== 0) {
         showMessage({
             content: info.msg,
             type: "error"
