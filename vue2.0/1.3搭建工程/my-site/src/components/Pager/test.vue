@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Pager :total="total" :current="current" @ChangePage="ChangePage" :limit="8" />
+    <Pager :total="total" :current="current" @ChangePage="ChangePage" :limit="10" />
   </div>
 </template>
 <script>
-import Pager from "@/components/Pager";
+import Pager from "./index.vue";
 export default {
   name: "App",
   data() {

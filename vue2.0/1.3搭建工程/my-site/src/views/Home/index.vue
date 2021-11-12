@@ -1,13 +1,14 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" @wheel="wheellChange">
     <!-- 轮播图的盒子 -->
     <ul
       class="carousel-container"
       ref="carouselContainer"
       :style="{ marginTop: currentTop }"
+      @transitionend="handerTransiton"
     >
-      <li v-for="item in banners" :key="item.id">
-        <CarouselItem :info="item"/>
+      <li v-for="(item,i) in banners" :key="item.id">
+        <CarouselItem :index="index" :currentIndex="i" :info="item" />
       </li>
     </ul>
     <!-- 上下按钮 -->
@@ -28,6 +29,73 @@
     </ul>
   </div>
 </template>
+
+
+<script>
+import CarouselItem from "./CarouselItem.vue";
+import Icon from "@/components/Icon";
+import { getBanner } from "@/api";
+export default {
+  data() {
+    return {
+      banners: [],
+      index: 0,
+      containerHeight: 0,
+      isWheel: false,
+    };
+  },
+  components: {
+    CarouselItem,
+    Icon,
+  },
+  async created() {
+    this.banners = await getBanner();
+  },
+  computed: {
+    currentTop() {
+      return -this.containerHeight * this.index + "px";
+    },
+  },
+  methods: {
+    changeIndex(i) {
+      if (this.isWheel||i===this.index) {
+        return;
+      }
+      this.isWheel = true;
+      this.index = i;
+    },
+    changeIndexLoop(val) {
+      if (this.isWheel) {
+        return;
+      }
+      this.isWheel = true;
+      this.index =
+        (this.index + val + this.banners.length) % this.banners.length;
+    },
+    wheellChange(e) {
+      // e.deltaY >0  往下
+      // e.deltaY <0  往上
+      if (!this.isWheel) {
+        e.deltaY > 0 ? this.changeIndexLoop(1) : this.changeIndexLoop(-1);
+      }
+    },
+    handerTransiton() {
+      this.isWheel = false;
+    },
+    resizeChange() {
+      this.containerHeight = this.$refs.carouselContainer.clientHeight;
+    },
+  },
+  mounted() {
+    this.containerHeight = this.$refs.carouselContainer.clientHeight;
+    window.addEventListener("resize", this.resizeChange);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeChange);
+  },
+};
+</script>
+
 <style lang="less" scoped>
 @import "~@/style/mixin.less";
 .home-container {
@@ -103,44 +171,3 @@
   }
 }
 </style>
-
-<script>
-import CarouselItem from "./CarouselItem.vue";
-import Icon from "@/components/Icon";
-import { getBanner } from "@/api";
-export default {
-  data() {
-    return {
-      banners: [],
-      index: 0,
-      containerHeight: 0,
-    };
-  },
-  components: {
-    CarouselItem,
-    Icon,
-  },
-  async created() {
-    this.banners = await getBanner();
-  },
-  computed: {
-    currentTop() {
-      return -this.containerHeight * this.index + "px";
-    },
-  },
-  methods: {
-    changeIndex(i) {
-      this.index = i;
-    },
-    changeIndexLoop(val) {
-      this.index =
-        (this.index + val + this.banners.length) % this.banners.length;
-    },
-  },
-  mounted() {
-    console.log(4125);
-    this.containerHeight = this.$refs.carouselContainer.clientHeight;
-  },
-};
-</script>
-
