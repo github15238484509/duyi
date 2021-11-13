@@ -4,7 +4,7 @@
       <Layout>
         <template #left>
           <div class="left">
-            <!-- <SiteSidebar /> -->
+            <SiteSidebar />
           </div>
         </template>
         <template #default>
@@ -38,7 +38,7 @@ export default {
   .left {
     width: 250px;
     height: 100%;
-    // background: black;
+    background: black;
   }
 }
 </style>

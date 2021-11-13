@@ -7,7 +7,7 @@
       :style="{ marginTop: currentTop }"
       @transitionend="handerTransiton"
     >
-      <li v-for="(item, i) in lists" :key="item.id">
+      <li v-for="(item, i) in banners" :key="item.id">
         <CarouselItem :index="index" :currentIndex="i" :info="item" />
       </li>
     </ul>
@@ -22,7 +22,7 @@
     <ul class="indicator">
       <li
         :class="{ active: index == i }"
-        v-for="(item, i) in lists"
+        v-for="(item, i) in banners"
         :key="item.id"
         @click="changeIndex(i)"
       ></li>
@@ -36,20 +36,23 @@ import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
 
 import { getBanner } from "@/api";
-
-import fetchData from "@/mixin/fetchData";
 export default {
-  mixins: [fetchData([])],
   data() {
     return {
+      banners: [],
       index: 0,
       containerHeight: 0,
       isWheel: false,
+      isLoading: true,
     };
   },
   components: {
     CarouselItem,
     Icon,
+  },
+  async created() {
+    this.banners = await getBanner();
+    this.isLoading = false;
   },
   computed: {
     currentTop() {
@@ -57,9 +60,6 @@ export default {
     },
   },
   methods: {
-    getData() {
-      return getBanner();
-    },
     changeIndex(i) {
       if (this.isWheel || i === this.index) {
         return;
@@ -72,7 +72,8 @@ export default {
         return;
       }
       this.isWheel = true;
-      this.index = (this.index + val + this.lists.length) % this.lists.length;
+      this.index =
+        (this.index + val + this.banners.length) % this.banners.length;
     },
     wheellChange(e) {
       // e.deltaY >0  往下
@@ -120,11 +121,7 @@ export default {
   .self-center();
   font-size: 35px;
   cursor: pointer;
-  color: white;
-  .icon-container{
-      text-shadow: 1px 0 0 rgba(0, 0, 0, 0.5), -1px 0 0 rgba(0, 0, 0, 0.5),
-    0px 1px 0 rgba(0, 0, 0, 0.5), 0px -1px 0 rgba(0, 0, 0, 0.5);
-  }
+  // color: white;
   &.btn-up {
     top: 20px;
     transform: translateX(-50%);

@@ -10,7 +10,8 @@
         "test:Menu": "vue serve ./src/components/Menu/test.vue",
         "test:Empty": "vue serve ./src/components/Empty/test.vue",
         "test:SiteSidebar": "vue serve ./src/components/SiteSidebar/test.vue",
-        "test:Layout": "vue serve ./src/components/Layout/test.vue"
+        "test:Layout": "vue serve ./src/components/Layout/test.vue",
+        "test:Loading": "vue serve ./src/components/Loading/test.vue"
     },
     "dependencies": {
         "axios": "^0.24.0",

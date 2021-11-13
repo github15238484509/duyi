@@ -6,6 +6,12 @@ import showMessage from "@/utils/showMessage"
 import "@/style/reset.less"
 
 import "@/mock"
+
+
+// 自定义指令
+import Loading from "@/directive/Loading"
+Vue.directive("loading",Loading)
+
 Vue.config.productionTip = false
 Vue.prototype.$showMessage = showMessage
 new Vue({
