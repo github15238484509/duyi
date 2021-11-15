@@ -4,7 +4,7 @@
       <Layout>
         <template #left>
           <div class="left">
-            <SiteSidebar />
+            <!-- <SiteSidebar /> -->
           </div>
         </template>
         <template #default>

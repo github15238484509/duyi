@@ -10,7 +10,7 @@ import "@/mock"
 
 // 自定义指令
 import Loading from "@/directive/Loading"
-Vue.directive("loading",Loading)
+Vue.directive("loading", Loading)
 
 Vue.config.productionTip = false
 Vue.prototype.$showMessage = showMessage
@@ -18,3 +18,10 @@ new Vue({
     router,
     render: h => h(App),
 }).$mount('#app')
+
+
+// import { getblog } from "@/api"
+// console.log(getblog);
+// getblog().then(res => {
+//     console.log(res);
+// })
