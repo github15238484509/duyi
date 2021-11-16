@@ -13,6 +13,7 @@
 
 <script>
 import { formatDate } from "@/utils";
+import Events from "@/Event";
 export default {
   props: {
     data: {
@@ -22,15 +23,17 @@ export default {
   methods: {
     formatDate,
   },
+  created() {
+  
+  },
+  mounted() {
+
+  },
 };
 </script>
 
 <style lang="less" scoped>
 .deta-info-container {
-  overflow-y: scroll;
-  height: 100%;
   width: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 </style>

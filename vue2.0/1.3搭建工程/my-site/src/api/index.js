@@ -31,5 +31,10 @@ export async function getblogDetail(id) {
 
 // 获取评论
 export async function getcomment() {
+    return await request.get("/api/comment")
+}
+
+// 添加评论
+export async function addComment() {
     return await request.post("/api/comment")
 }

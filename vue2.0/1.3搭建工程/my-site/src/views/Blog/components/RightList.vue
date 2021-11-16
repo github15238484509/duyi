@@ -1,12 +1,12 @@
 <template>
   <ul class="right-list-container">
     <li v-for="(item, i) in list" :key="i">
-      <span :class="{ active: item.isSelect }" @click="clickInfo(item)">{{
+      <span :class="{ active: item.isSelset }" @click="clickInfo(item)">{{
         item.name
       }}</span>
       <span
         class="aside"
-        :class="{ active: item.isSelect }"
+        :class="{ active: item.isSelset}"
         @click="clickInfo(item)"
         >{{ item.aside }}</span
       >

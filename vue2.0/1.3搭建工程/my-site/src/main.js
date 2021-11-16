@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import router from "@/router"
 import App from './App.vue'
+import '@/filter'
 
 import showMessage from "@/utils/showMessage"
 import "@/style/reset.less"
@@ -19,9 +20,8 @@ new Vue({
     render: h => h(App),
 }).$mount('#app')
 
-
-// import { getblog } from "@/api"
-// console.log(getblog);
-// getblog().then(res => {
+// import { addComment } from "@/api"
+// console.log(addComment);
+// addComment().then(res => {
 //     console.log(res);
 // })

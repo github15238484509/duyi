@@ -1,7 +1,16 @@
 <template>
   <Layout>
     <template #default>
-      <Detainfo :data="lists" />
+      <div class="default" ref="commentBox">
+        <Detainfo v-loading="isLoading" :data="lists" />
+        <CommentInfo
+          v-if="!isLoading"
+          @handleSubmit="handleSubmit"
+          :list="getConList"
+          :aside="getAside"
+          :loading="isLoadCom"
+        />
+      </div>
     </template>
     <template #right>
       <div class="otc">
@@ -15,25 +24,87 @@
 import Layout from "@/components/Layout";
 import Detainfo from "./components/Detainfo";
 import DetaOTC from "./components/DetaOTC";
+import CommentInfo from "./components/CommentInfo";
 import fetchData from "@/mixin/fetchData";
-import { getblogDetail } from "@/api";
+import { throttle } from "@/utils";
+import Events from "@/Event";
+import { getblogDetail, addComment, getcomment } from "@/api";
 export default {
   mixins: [fetchData({})],
-  created() {},
+  data() {
+    return {
+      commentList: {},
+      disy: 100,
+      throttle: null,
+      isLoadCom: false,
+    };
+  },
   components: {
     Layout,
     Detainfo,
     DetaOTC,
+    CommentInfo,
   },
   methods: {
     async getData() {
       return await getblogDetail(5);
     },
+    async handleSubmit(e, callbak) {
+      const info = await addComment(e);
+      this.commentList.rows.unshift(info);
+      callbak("success");
+      this.commentList.total++;
+    },
+    commentBoxScroll() {
+      Events.$emit("commentScroll");
+    },
+    async getTop() {
+      const dom = this.$refs.commentBox;
+      const disY = Math.abs(
+        dom.scrollTop + dom.clientHeight - dom.scrollHeight
+      );
+      if (disY < this.disy && !this.isLoadCom) {
+        this.isLoadCom = true;
+        const result = await getcomment();
+        setTimeout(() => {
+          this.isLoadCom = false;
+          this.commentList.rows = this.commentList.rows.concat(result.rows);
+        }, 1000);
+      }
+    },
+  },
+  async created() {
+    this.commentList = await getcomment();
+    this.throttle = throttle(this.getTop, 100);
+    Events.$on("commentScroll", this.throttle);
+  },
+
+  computed: {
+    getAside() {
+      return "评论列表 (" + this.commentList.total + "篇)";
+    },
+    getConList() {
+      return this.commentList.rows;
+    },
+  },
+  mounted() {
+    this.$refs.commentBox.addEventListener("scroll", this.commentBoxScroll);
+  },
+  destroyed() {
+    this.$refs.commentBox.removeEventListener("scroll", this.commentBoxScroll);
+    Events.$off("commentScroll", this.throttle);
   },
 };
 </script>
 
 <style lang="less" scoped>
+.default {
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 .otc {
   width: 300px;
 }
