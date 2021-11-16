@@ -2,11 +2,11 @@
   <div id="app">
     <div class="app-container">
       <Layout>
-        <!-- <template #left>
+        <template #left>
           <div class="left">
             <SiteSidebar />
           </div>
-        </template> -->
+        </template>
         <template #default>
           <router-view></router-view>
         </template>

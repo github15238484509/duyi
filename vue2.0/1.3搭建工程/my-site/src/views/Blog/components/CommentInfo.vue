@@ -28,4 +28,7 @@ export default {
   width: 100%;
   position: relative;
 }
+.comment-content-container{
+  margin-top: 20px;
+}
 </style>

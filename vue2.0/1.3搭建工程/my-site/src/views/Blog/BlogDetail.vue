@@ -102,10 +102,14 @@ export default {
   overflow-y: scroll;
   height: 100%;
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 .otc {
-  width: 300px;
+  width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 </style>
