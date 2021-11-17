@@ -2,21 +2,24 @@
   <div id="app">
     <div class="app-container">
       <Layout>
-        <template #left>
+        <!-- <template #left>
           <div class="left">
             <SiteSidebar />
           </div>
-        </template>
+        </template> -->
         <template #default>
           <router-view></router-view>
         </template>
       </Layout>
     </div>
+    <ToTop />
   </div>
 </template>
 <script>
+import ToTop from "@/components/ToTop";
 import Layout from "@/components/Layout";
 import SiteSidebar from "@/components/SiteSidebar";
+import Events from "@/Event";
 export default {
   name: "App",
   data() {
@@ -25,6 +28,7 @@ export default {
   components: {
     Layout,
     SiteSidebar,
+    ToTop,
   },
   methods: {},
 };

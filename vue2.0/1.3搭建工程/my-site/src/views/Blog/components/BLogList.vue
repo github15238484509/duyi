@@ -11,7 +11,7 @@
               },
             }"
           >
-            <img :src="item.thumb" :alt="item.title" :title="item.title" />
+            <img v-lazy="item.thumb" :src="item.thumb" :alt="item.title" :title="item.title" />
           </router-link>
         </div>
         <div class="main">
@@ -62,10 +62,11 @@
 <script>
 import formatDate from "@/utils/formatDate";
 import fetchData from "@/mixin/fetchData";
+import ScrollToTop from "@/mixin/ScrollToTop";
 import { getblog } from "@/api";
 import Pager from "@/components/Pager";
 export default {
-  mixins: [fetchData([])],
+  mixins: [fetchData([]), ScrollToTop("container")],
   data() {
     return {};
   },
@@ -117,9 +118,6 @@ export default {
   },
   components: {
     Pager,
-  },
-  created() {
-    console.log(this.$route);
   },
   watch: {
     $route: async function () {

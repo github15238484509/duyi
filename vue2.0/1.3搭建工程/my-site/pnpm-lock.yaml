@@ -12,6 +12,7 @@ specifiers:
   vue: ^2.6.11
   vue-router: ^3.5.3
   vue-template-compiler: ^2.6.11
+  vuex: ^3.6.2
 
 dependencies:
   axios: 0.24.0
@@ -20,6 +21,7 @@ dependencies:
   querystring: 0.2.1
   vue: registry.npmmirror.com/vue/2.6.14
   vue-router: 3.5.3
+  vuex: 3.6.2_vue@2.6.14
 
 devDependencies:
   '@vue/cli-plugin-babel': registry.npmmirror.com/@vue/cli-plugin-babel/4.5.15_4c1e5ebbf041a85328f9984e4ede8f8a
@@ -371,6 +373,14 @@ packages:
 
   /vue-router/3.5.3:
     resolution: {integrity: sha512-FUlILrW3DGitS2h+Xaw8aRNvGTwtuaxrRkNSHWTizOfLUie7wuYwezeZ50iflRn8YPV5kxmU2LQuu3nM/b3Zsg==}
+    dev: false
+
+  /vuex/3.6.2_vue@2.6.14:
+    resolution: {integrity: sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==}
+    peerDependencies:
+      vue: ^2.0.0
+    dependencies:
+      vue: registry.npmmirror.com/vue/2.6.14
     dev: false
 
   /watchpack-chokidar2/2.0.1:

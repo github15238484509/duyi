@@ -29,8 +29,9 @@ import fetchData from "@/mixin/fetchData";
 import { throttle } from "@/utils";
 import Events from "@/Event";
 import { getblogDetail, addComment, getcomment } from "@/api";
+import ScrollToTop from "@/mixin/ScrollToTop";
 export default {
-  mixins: [fetchData({})],
+  mixins: [fetchData({}), ScrollToTop("commentBox")],
   data() {
     return {
       commentList: {},
@@ -54,9 +55,6 @@ export default {
       this.commentList.rows.unshift(info);
       callbak("success");
       this.commentList.total++;
-    },
-    commentBoxScroll() {
-      Events.$emit("commentScroll");
     },
     async getTop() {
       const dom = this.$refs.commentBox;
@@ -87,11 +85,7 @@ export default {
       return this.commentList.rows;
     },
   },
-  mounted() {
-    this.$refs.commentBox.addEventListener("scroll", this.commentBoxScroll);
-  },
   destroyed() {
-    this.$refs.commentBox.removeEventListener("scroll", this.commentBoxScroll);
     Events.$off("commentScroll", this.throttle);
   },
 };

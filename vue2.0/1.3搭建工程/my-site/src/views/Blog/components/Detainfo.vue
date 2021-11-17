@@ -13,7 +13,6 @@
 
 <script>
 import { formatDate } from "@/utils";
-import Events from "@/Event";
 export default {
   props: {
     data: {
