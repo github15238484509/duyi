@@ -18,14 +18,16 @@ Vue.directive("lazy", Lazy)
 
 Vue.config.productionTip = false
 Vue.prototype.$showMessage = showMessage
+
+store.dispatch("setting/getSetting")
 new Vue({
     router,
     store,
     render: h => h(App),
 }).$mount('#app')
 
-// import { addComment } from "@/api"
-// console.log(addComment);
-// addComment().then(res => {
+// import { getSetting } from "@/api"
+// console.log(getSetting);
+// getSetting().then(res => {
 //     console.log(res);
 // })

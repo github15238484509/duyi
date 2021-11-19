@@ -38,3 +38,9 @@ export async function getcomment() {
 export async function addComment() {
     return await request.post("/api/comment")
 }
+
+//获取全局设置
+
+export async function getSetting() {
+    return await request.get("/api/setting")
+}

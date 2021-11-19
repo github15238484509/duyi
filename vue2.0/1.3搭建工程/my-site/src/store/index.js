@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "Vuex"
+import setting from "./setting"
 Vue.use(Vuex)
 const state = {
     count: 0
@@ -24,10 +25,18 @@ const actions = {
     decrement(context) {
 
     }
+
+
+}
+const modules={
+    setting
+
+
 }
 
 export default new Vuex.Store({
     state,
     mutations,
-    actions
+    actions,
+    modules
 })

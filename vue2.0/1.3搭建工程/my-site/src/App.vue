@@ -2,14 +2,14 @@
   <div id="app">
     <div class="app-container">
       <Layout>
-        <!-- <template #left>
+        <template #left>
           <div class="left">
             <SiteSidebar />
           </div>
-        </template> -->
-        <template #default>
-          <router-view></router-view>
         </template>
+        <!-- <template #default>
+          <router-view></router-view>
+        </template> -->
       </Layout>
     </div>
     <ToTop />
