@@ -44,3 +44,9 @@ export async function addComment() {
 export async function getSetting() {
     return await request.get("/api/setting")
 }
+
+
+//获取关于我的外部链接
+export async function getAbout() {
+    return await request.get("/api/getAbout")
+}

@@ -26,8 +26,8 @@ new Vue({
     render: h => h(App),
 }).$mount('#app')
 
-// import { getSetting } from "@/api"
-// console.log(getSetting);
-// getSetting().then(res => {
-//     console.log(res);
-// })
+import { getAbout } from "@/api"
+console.log(getAbout);
+getAbout().then(res => {
+    console.log(res);
+})
