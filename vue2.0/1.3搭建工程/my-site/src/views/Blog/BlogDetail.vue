@@ -30,6 +30,8 @@ import { throttle } from "@/utils";
 import Events from "@/Event";
 import { getblogDetail, addComment, getcomment } from "@/api";
 import ScrollToTop from "@/mixin/ScrollToTop";
+
+import { setSiteTitle } from "@/utils/titleControl";
 export default {
   mixins: [fetchData({}), ScrollToTop("commentBox")],
   data() {
@@ -48,7 +50,9 @@ export default {
   },
   methods: {
     async getData() {
-      return await getblogDetail(5);
+      const result = await getblogDetail(5);
+      setSiteTitle(result.title);
+      return result;
     },
     async handleSubmit(e, callbak) {
       const info = await addComment(e);
@@ -76,7 +80,6 @@ export default {
     this.throttle = throttle(this.getTop, 100);
     Events.$on("commentScroll", this.throttle);
   },
-
   computed: {
     getAside() {
       return "评论列表 (" + this.commentList.total + "篇)";
@@ -86,6 +89,7 @@ export default {
     },
   },
   destroyed() {
+    setSiteTitle('');
     Events.$off("commentScroll", this.throttle);
   },
 };

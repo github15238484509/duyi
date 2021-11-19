@@ -7,9 +7,9 @@
             <SiteSidebar />
           </div>
         </template>
-        <!-- <template #default>
+        <template #default>
           <router-view></router-view>
-        </template> -->
+        </template>
       </Layout>
     </div>
     <ToTop />
