@@ -2,34 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
+import userInfo from './userInfo'
 export default new Vuex.Store({
-  state: {
-    
-  },
-  mutations: {
-    changeName(state,preload){
-        console.log(4444);
-    }
-  },
-  actions: {
-  },
+  strict: true,
   modules: {
-    userInfo: {
-      namespaced: true,
-      state: () => {
-        return {
-          name: ''
-        }
-      },
-      mutations:{
-        changeName(state,preload){
-          console.log(state);
-          console.log(preload);
-          console.log(this);
-          state.name = preload
-        }
-      }
-    },
+    userInfo
   }
 })

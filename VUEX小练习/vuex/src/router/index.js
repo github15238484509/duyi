@@ -14,18 +14,23 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    meta: {
+      auth: true
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+  },
+  {
+    path: '/user',
+    name: 'User',
+    meta: {
+      auth: true
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/User.vue')
   }
 ]
 
@@ -35,15 +40,25 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  console.log(to.path);
-  if (to.name == "About" && !store.state.userInfo.name) {
-    next({
-      path:"/login",
-      query:{
-        path:to.path
-      }
-    })
-    return
+  if(to.meta.auth){
+    const status = store.getters["userInfo/status"]
+    if(status=="loading"){
+      next({
+        path: "/loading",
+        query: {
+          returnurl: to.fullPath,
+        },
+      });
+    }else if(status=="login"){
+      next()
+    }else{
+      next({
+        path: "/login",
+        query: {
+          returnurl: to.fullPath,
+        },
+      });
+    }
   }
   next()
 })

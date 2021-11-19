@@ -1,6 +1,5 @@
 <template>
   <div @submit.prevent="sumbitHandle" class="login-container">
-    <div v-show="loading">登陆中...</div>
     <form>
       <label>
         用户名:
@@ -18,7 +17,6 @@
 </template>
 
 <script>
-import { login } from "@/api/user";
 export default {
   data() {
     return {
@@ -30,40 +28,32 @@ export default {
         name: "",
         password: "",
       },
-      loading: false,
     };
   },
   created() {
     console.log(this.$route);
   },
   methods: {
-    sumbitHandle() {
+    async sumbitHandle() {
       let nameError = this.userInfo.name ? "" : "请填写用户名";
       this.userInfoError.name = nameError;
       let passwordError = this.userInfo.password ? "" : "请填写用户密码";
       this.userInfoError.password = passwordError;
-
       if (nameError || passwordError) {
         console.log("就让你提交");
         return;
       }
-      this.loading = true;
-      login(this.userInfo).then((data) => {
-        this.loading = false;
-        console.log(data);
-        if (data.code === -1) {
-          this.userInfo.name = "";
-          this.userInfo.password = "";
-          alert(data.message);
-          return;
-        }
-        this.$store.commit("userInfo/changeName", data.data.name);
-        this.$router.push({
-          path: this.$route.query.path || "/",
-        });
-      });
+      const result = await this.$store.dispatch(
+        "userInfo/login",
+        this.userInfo
+      );
+      console.log(result);
+      if (result) {
+        this.$router.push("/")
+      }
     },
   },
+  computed: {},
 };
 </script>
 
