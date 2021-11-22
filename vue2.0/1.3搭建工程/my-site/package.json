@@ -20,6 +20,7 @@
         "axios": "^0.24.0",
         "core-js": "^3.6.5",
         "mockjs": "^1.1.0",
+        "nprogress": "^0.2.0",
         "querystring": "^0.2.1",
         "vue": "^2.6.11",
         "vue-router": "^3.5.3",
