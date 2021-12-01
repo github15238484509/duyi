@@ -3,11 +3,22 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      {{$store.state.userInfo.name}}
+      <NavTab />
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+import NavTab from "@/components/Nav";
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    NavTab,
+  },
+};
+</script>
 
 <style lang="less">
 #app {

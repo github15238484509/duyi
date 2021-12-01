@@ -9,19 +9,26 @@ function duration(duration = 1000) {
 export async function login(user) {
     await duration()
     if (user.name !== "admin" && user.password !== "123456") {
-        return {
-            code: -1,
-            message: "用户名或者密码不对"
-        }
+        return null
     }
-    return {
-        code: 0,
-        message: "登录成功",
-        data: {
-            name: '大帅哥'
-        }
+    const data = {
+        name: '大帅哥'
     }
+    localStorage.setItem("user", JSON.stringify(data))
+    return data
 }
 
+export async function logout() {
+    await duration()
+    localStorage.removeItem("user")
+}
 
+export async function whoAmi() {
+    await duration()
+    const data = localStorage.getItem("user")
+    if (data) {
+        return JSON.parse(data)
+    }
+    return null
+}
 

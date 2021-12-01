@@ -1,12 +1,12 @@
 <template>
-  <div class="site-sidebar">
+  <div class="site-sidebar" v-if="data">
     <div class="avatar">
       <Avatar
         :size="150"
-        url="https://img0.baidu.com/it/u=3767582544,843171437&fm=26&fmt=auto"
+        :url="data.avatar||''"
       />
     </div>
-    <h2 class="title">我是大帅哥</h2>
+    <h2 class="title">{{data.siteTitle}}</h2>
     <div class="menu">
       <Menu />
     </div>
@@ -20,12 +20,16 @@
 import Avatar from "@/components/Avatar";
 import Contact from "./Contact";
 import Menu from "./Menu";
+import {mapState} from "vuex"
 export default {
   components: {
     Avatar,
     Contact,
     Menu,
   },
+ computed:{
+   ...mapState("setting",['data'])
+ }
 };
 </script>
 
