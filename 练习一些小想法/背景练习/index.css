@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.one{
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    outline: 1px solid;
+    background-image: repeating-linear-gradient(45deg,red, yellow 10%, green 20%),
+                        repeating-linear-gradient(-45deg,red, yellow 10%, green 20%);
+    mix-blend-mode: multiply;
+    background-blend-mode:color-dodge;
+                        
+    background-image: conic-gradient(from -135deg, transparent 50%, #000);
+}
