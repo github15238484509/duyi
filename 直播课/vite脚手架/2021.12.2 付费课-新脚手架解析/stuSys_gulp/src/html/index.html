@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生管理系统javascript版本2</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+        <img src="../images/logo.png" alt="">
+        <span>渡一教育</span>
+    </header>
+    <!-- 下面的内容区域 -->
+    <div class="stuContainer">
+        <!-- 左边的导航栏 -->
+        <div class="leftMenu">
+            <h2>学生管理</h2>
+            <div class="leftMenuItem itemActive">学生列表</div>
+            <div class="leftMenuItem">新增学生</div>
+        </div>
+        <!-- 右侧的内容区域 -->
+        <div class="rightContent">
+            <!-- 一个是显示学生列表内容的 -->
+            <div>
+                <!-- 搜索框 -->
+                <div class="searchBox">
+                    <select name="" id="selectSearchItem">
+                        <option value="stuId">学号</option>
+                        <option value="stuName">姓名</option>
+                    </select>
+                    <input type="text" name="" id="searchStu" placeholder="请输入要搜索的内容">
+                    <button type="button" id="searchBtn" class="operationBtn searchBtn">搜索</button>
+                    <button type="button" id="backBtn" class="operationBtn backBtn">返回</button>
+                </div>
+                <!-- 添加学生按钮组 -->
+                <div class="addStuBtnGroup">
+                    <button type="button" id="addStuRandom" class="operationBtn">随机新增</button>
+                    <button type="button" id="addStuBtnByForm" class="operationBtn">自定义新增</button>
+                </div>
+                <!-- 显示学生数据 -->
+                <table id="stuTable" class="table">
+                    <!-- 这个表格正常来讲，不应该在 html 里面写死内容，而是应该通过 JS 动态生成 -->
+                    <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>邮箱</th>
+                            <th>年龄</th>
+                            <th>手机号</th>
+                            <th>住址</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>谢杰</td>
+                            <td>男</td>
+                            <td>123@qq.com</td>
+                            <td>18</td>
+                            <td>13112341234</td>
+                            <td>成都</td>
+                            <td>
+                                <button class="operationBtn editBtn">编辑</button>
+                                <button class="operationBtn delBtn">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 分页 -->
+                <div id="page">
+                    <!-- 里面的内容通过 JS 动态的生成 -->
+                    <ul id="pageSelect" class="pagination">
+                        <li class="prevPage">&lt;</li>
+                        <li class="pageNum">1</li>
+                        <li class="pageNum">2</li>
+                        <li class="pageNum currentPage">3</li>
+                        <li class="pageNum">4</li>
+                        <li class="pageNum">5</li>
+                        <li class="nextPage">&gt;</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 一个是新增或者修改学生信息  -->
+            <div class="addStu notShow">
+                <form id="addStuForm">
+                    <div>
+                        <label for="stuName">姓名</label>
+                        <input type="text" name="stuName" id="stuName" placeholder="请输入学生姓名">
+                        <span id="validateName" class="regValidate"></span>
+                    </div>
+                    <div>
+                        <label for="stuGender">性别</label>
+                        <span>
+                            男<input type="radio" class="gender" name="gender" value="男" id="male" checked>
+                        </span>
+                        <span>
+                            女<input type="radio" class="gender" name="gender" value="女" id="female">
+                        </span>
+                    </div>
+                    <div>
+                        <label for="stuEmail">邮箱</label>
+                        <input type="text" name="stuEmail" id="stuEmail" placeholder="请输入邮箱地址">
+                        <span id="validateEmail" class="regValidate"></span>
+                    </div>
+                    <div>
+                        <label for="stuAge">年龄</label>
+                        <input type="text" name="stuAge" id="stuAge" placeholder="请输入年龄">
+                        <span id="validateAge" class="regValidate"></span>
+                    </div>
+                    <div>
+                        <label for="stuTel">手机号</label>
+                        <input type="text" name="stuTel" id="stuTel" placeholder="请输入手机号">
+                        <span id="validateTel" class="regValidate"></span>
+                    </div>
+                    <div>
+                        <label for="stuAddr">地址</label>
+                        <input type="text" name="stuAddr" id="stuAddr" placeholder="请输入地址">
+                        <span id="validateAddr" class="regValidate"></span>
+                    </div>
+                    <div class="formBtn">
+                        <input id="addStuBtn" type="button" class="operationBtn" value="提交">
+                        <input id="backStuList" type="button" class="operationBtn" value="返回">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/util.js"></script>
+    <script src="../js/myMock.js"></script>
+    <script src="../js/validateForm.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>
