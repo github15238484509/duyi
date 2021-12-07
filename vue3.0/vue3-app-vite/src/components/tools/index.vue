@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <section class="todoapp">
       <header class="header">
         <h1>todos</h1>
@@ -8,7 +8,6 @@
           autofocus=""
           autocomplete="off"
           placeholder="What needs to be done?"
-          v-model="dotoTitleRef"
           @keyup.enter="addTodo"
         />
       </header>
@@ -16,26 +15,10 @@
         <input id="toggle-all" class="toggle-all" type="checkbox" />
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
-          <li class="todo">
+          <li class="todo" v-for="it in todoFilterRef" :key="it.id">
             <div class="view">
-              <input class="toggle" type="checkbox" />
-              <label>学习composition api</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" type="text" />
-          </li>
-          <li class="todo">
-            <div class="view">
-              <input class="toggle" type="checkbox" />
-              <label>投递50封简历</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" type="text" />
-          </li>
-          <li class="todo">
-            <div class="view">
-              <input class="toggle" type="checkbox" />
-              <label>上午10:30 参加面试</label>
+              <input class="toggle" type="checkbox" v-model="it.complete" />
+              <label>{{ it.title }}</label>
               <button class="destroy"></button>
             </div>
             <input class="edit" type="text" />
@@ -61,15 +44,18 @@
 </template>
 
 <script>
-import { fetchData } from "./fetch.js";
-import { useNewTodo } from "./newTodos.js";
+import useTodoList from "./useTodoList.js";
+import useNewTodos from "./useNewTodo..js";
+import useFilter from "./useFilter.js";
 export default {
   setup() {
-    let { todosRef } = fetchData();
+    let Todolist = useTodoList();
+    console.log(Todolist);
 
     return {
-      todosRef,
-      ...useNewTodo(todosRef),
+      Todolist,
+      ...useNewTodos(Todolist),
+      ...useFilter(Todolist),
     };
   },
 };
