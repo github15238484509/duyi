@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+        }
+    </style>
+</head>
+<div class="getEnable">链接钱包</div>
+<div class="getTokenBalance">查询余额</div>
+<div class="getAllowance">1.获取授权额度，满足就去充值，参数就是冲的钱数</div>
+<div class="getApprove">2.getApprove 授权额额度，参数为冲的钱数，授权成功后就是充值</div>
+<div class="recharge">3.recharge 充值，参数为冲的钱数</div>
+
+<div class="alert">alert信息</div>
+
+<body>
+
+    <script src="./web3.min.js"></script>
+    <script>
+        // regAbi 合约链的方法
+        var regAbi = [
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "tokenTwoTransfers",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getReserves",
+                "outputs": [
+                    {
+                        "name": "_reserve0",
+                        "type": "uint112"
+                    },
+                    {
+                        "name": "_reserve1",
+                        "type": "uint112"
+                    },
+                    {
+                        "name": "_blockTimestampLast",
+                        "type": "uint32"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "mainAddress",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "tokenOneTransfers",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "lastOrderId",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "remarks",
+                        "type": "string"
+                    }
+                ],
+                "name": "rechargeOne",
+                "outputs": [],
+                "payable": true,
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_tokenOneAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amountOne",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "_tokenTwoAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amountTwo",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "remarks",
+                        "type": "string"
+                    }
+                ],
+                "name": "rechargeTwo",
+                "outputs": [],
+                "payable": true,
+                "stateMutability": "payable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "remarks",
+                        "type": "string"
+                    }
+                ],
+                "name": "withdrawToken",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "orderInfos",
+                "outputs": [
+                    {
+                        "name": "userAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "tokenOneAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amountOne",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "tokenTwoAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amountTwo",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "functionName",
+                        "type": "string"
+                    },
+                    {
+                        "name": "remarks",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_subcoinAddress",
+                        "type": "address"
+                    }
+                ],
+                "name": "setSubcoinAddress",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "subcoinAddress",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "userAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "tokenAddress",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "withdrawalCoin",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            }
+        ]
+        var usdtAddress = '0xa71EdC38d189767582C38A3145b5873052c3e47a'; //usdt 的代币地址 总地址 不扣转账
+        var usdtAbi =
+            [
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "name",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_spender",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "approve",
+                    "outputs": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "totalSupply",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_from",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "transferFrom",
+                    "outputs": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "decimals",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint8"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "burn",
+                    "outputs": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "unfreeze",
+                    "outputs": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "balanceOf",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "owner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "symbol",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_to",
+                            "type": "address"
+                        },
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "transfer",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "freezeOf",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "freeze",
+                    "outputs": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        },
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "allowance",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "payable": true,
+                    "stateMutability": "payable",
+                    "type": "fallback"
+                }
+            ]
+
+        var tempDBAddress = "0x55d398326f99059ff775485246999027b3197955";//fuc的的代币地址  tempDBAddress  代币地址 就是就是一个合约的总地址 就是合约的总地址
+        var dappAddress = "0x6ca3a4f0dd91a65b77e6746c0a0403534c23d048";// 合约交互地址  dappAddress 转账地址
+
+        var wallet = {
+            walletAddress: null,//当期用户的地址
+            web3: null,
+            Balance: null,//当期用户的余额
+            // 登录
+            getEnable: function () {
+                if (window.ethereum) {
+                    if (!this.walletAddress) {
+                        window.ethereum.enable().then((res) => {
+                            this.walletAddress = res[0]
+                        });
+                    } else {
+                        console.log(5555);
+                        alert(`已经连接了，账户地址为:${this.walletAddress}`)
+                    }
+
+                } else {
+                    alert("Please install metamask Wallet");
+                }
+            },
+            // 获取余额
+            getTokenBalance() {
+                if (window.web3) {
+                    this.web3 = new Web3(window.web3.currentProvider);
+                    let fromAddress = this.web3.eth.accounts[0];
+                    let ethContract = this.web3.eth.contract(usdtAbi); //所有代币的abi可以通用
+                    let functionInstance = ethContract.at(tempDBAddress); //切换不同的代币地址
+                    functionInstance.balanceOf(fromAddress, (err, res) => { //balanceOf 调用合约的方法查看余额
+                        if (!err) {
+                            this.Balance = res.toNumber() / Math.pow(10, 18)
+                        } else {
+                            alert(err)
+                        }
+                    });
+                }
+            },
+            // 查询授权数量 参数为充钱的数
+            getAllowance(RechargeMoney) {
+                if (!RechargeMoney) {
+                    alert("传入正确的余额")
+                    return
+                }
+                if (window.web3) {
+                    let abiContract = this.web3.eth.contract(usdtAbi);
+                    let contractInstance = abiContract.at(tempDBAddress);
+                    let fromAddress = this.web3.eth.accounts[0];
+                    contractInstance.allowance(fromAddress, dappAddress, (err, res) => {
+                        if (!err) {
+                            var nums = res.toNumber() / Math.pow(10, 18);//nums 就是你的授权额度
+                            console.log("Authorized quantity==", nums);
+                            if (nums < RechargeMoney) {
+                                console.log('去授权');
+                                this.getApprove(RechargeMoney);
+                            } else {
+                                console.log('去充值');
+                                this.recharge(RechargeMoney);
+                            }
+                        }
+                    });
+                }
+            },
+            // 授权 查看授权的钱数够不够 参数为 冲的钱数； 就看看这个人的账户对合约总地址 授权的钱数，
+            getApprove(RechargeMoney) {
+                if (window.web3) {
+                    this.web3.eth.getGasPrice((err, res) => {
+                        console.log(res);
+                    });
+                    let abiContract = this.web3.eth.contract(usdtAbi);
+                    let contractInstance = abiContract.at(tempDBAddress);
+                    var fromAddress = this.web3.eth.accounts[0];
+                    var amount = 100000000 * Math.pow(10, 18);
+                    contractInstance.approve(
+                        dappAddress,
+                        amount,
+                        {
+                            gas: 500000,
+                            gasPrice: 5000000000,
+                            from: fromAddress,
+                        },
+                        (err, result) => {
+                            if (!err && result) {
+                                this.recharge(RechargeMoney);
+                            } else {
+                                console.log(result);
+                            }
+                        }
+                    );
+                }
+            },
+            recharge(RechargeMoney) {
+                // RechargeId 就是你和后台交互的这个订单的id  所以你需要请求一个后端的接口 获取这个id ，你可以看看在那个地方用获取这个id
+                var RechargeId = 132;
+                if (window.web3) {
+                    let ethContract = this.web3.eth.contract(regAbi);
+                    let functionInstance = ethContract.at(dappAddress); //
+                    let fromAddress = this.web3.eth.accounts[0];
+                    var amount = RechargeMoney * Math.pow(10, 18);
+                    functionInstance.rechargeOne(
+                        tempDBAddress,
+                        amount,
+                        RechargeId,
+                        {
+                            gas: 500000,
+                            gasPrice: 5000000000,
+                            from: fromAddress,
+                            value: 0,
+                        },
+                        (err, result) => {
+                            console.log(result);
+                        }
+                    );
+                }
+            }
+        }
+
+    </script>
+
+    <script>
+        var getEnable = document.querySelector(".getEnable")
+        var getTokenBalance = document.querySelector(".getTokenBalance")
+        var getAllowance = document.querySelector(".getAllowance")
+        var getApprove = document.querySelector(".getApprove")
+        var recharge = document.querySelector(".recharge")
+        var alerssst = document.querySelector(".alert")
+        alerssst.onclick = function () {
+            alert(`地址：${wallet.walletAddress};余额：${wallet.Balance};`)
+        }
+        getEnable.onclick = function () {
+            wallet.getEnable()
+        }
+        getTokenBalance.onclick = function () {
+            wallet.getTokenBalance()
+        }
+        getAllowance.onclick = function () {
+            wallet.getAllowance(1)
+        }
+        getApprove.onclick = function () {
+            wallet.getApprove(1)
+        }
+        recharge.onclick = function () {
+            wallet.recharge(1)
+        }
+    </script>
+</body>
+
+</html>
