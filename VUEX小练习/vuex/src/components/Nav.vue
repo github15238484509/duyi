@@ -2,7 +2,7 @@
   <div>
     <span v-if="status === 'loading'"> loading... </span>
 
-    <template v-if="status === 'login'">
+    <template v-else-if="status === 'login'">
       <router-link to="/user"> {{ data }} </router-link>
       <span @click="exitHandle"> 退出 </span>
     </template>
