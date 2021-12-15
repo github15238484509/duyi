@@ -27,7 +27,7 @@ export default [
         component: Async,
         children: [{
             path: "home",
-            component: defineAsyncComponent( () => import('../components/Home.vue'))
+            component: defineAsyncComponent(() => import('../components/Home.vue'))
             // component: getAsyncPage("../components/Home.vue")
         },
         {
@@ -39,6 +39,10 @@ export default [
                 NProgress.done();
                 return result
             }
+        },
+        {
+            path:"/gdp",
+            component:()=>import("../view/Gdp.vue")
         },
         ],
         meta: {
