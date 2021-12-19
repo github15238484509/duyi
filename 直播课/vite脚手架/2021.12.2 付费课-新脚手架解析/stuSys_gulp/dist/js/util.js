@@ -1,0 +1,1 @@
+"use strict";function $(e){return document.querySelector(e)}function $$(e){return document.querySelectorAll(e)}function createLi(e,r,t,c){for(var u=r;u<=t;u++)e+=(c===u?'<li class="pageNum currentPage">':'<li class="pageNum">').concat(u,"</li>");return e}

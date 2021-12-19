@@ -1,15 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
+  <!-- 25225 -->
+  <ToolList></ToolList>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import SwiperList from "./components/SwiperList.vue";
+// import HelloWorld from './components/HelloWorld.vue'
+import ToolList from './components/tools/index.vue'
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    // HelloWorld
+    // SwiperList,
+    ToolList
+  },
+};
 </script>

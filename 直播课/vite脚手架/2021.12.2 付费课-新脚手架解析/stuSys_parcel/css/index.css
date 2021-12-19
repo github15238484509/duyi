@@ -1,0 +1,268 @@
+/* 全局样式 */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #eee;
+}
+
+/* 挂上这个类后不在页面显示 */
+.notShow{
+    display: none;
+}
+
+.operationBtn{
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* 头部样式开始 */
+header{
+    height: 70px;
+    line-height: 70px;
+    background-color: #354457;
+    color: #b3bcc5;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+header>img{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+header>span{
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 70px;
+    margin-left: 5px;
+}
+
+/* 下面部分样式 */
+.stuContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 左侧菜单栏样式 */
+.leftMenu{
+    width: 15%;
+    background-color: #4d5e70;
+    color: #b3bcc5;
+    height: calc(100vh - 70px);
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.leftMenu>h2{
+    font-weight: 200;
+    font-size: 20px;
+    padding-left: 15px;
+    line-height: 50px;
+}
+.leftMenu>div{
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.leftMenu .itemActive{
+    background-color: #ddd;
+    color: #354457;
+}
+
+/* 右侧内容区样式开始 */
+
+.rightContent {
+    width: 85%;
+    height: calc(100vh - 70px);
+}
+
+/* 右侧内容区样式结束 */
+
+/* 搜索框样式开始 */
+
+.searchBox {
+    display: flex;
+    height: 60px;
+    align-items: center;
+}
+
+#selectSearchItem {
+    margin: 10px 0 10px 10px;
+}
+
+#searchStu {
+    width: 35%;
+    height: 20px;
+    padding: 5px;
+    margin: 10px;
+    border: none;
+    outline: none;
+}
+
+.searchBtn {
+    background-color: #5cb85c;
+}
+
+.backBtn {
+    background-color: #d9534f;
+    margin-left: 10px;
+}
+
+/* 搜索框样式结束 */
+
+/* 新增学生按钮组 */
+
+.addStuBtnGroup {
+    margin: 10px;
+}
+
+.addStuBtnGroup button {
+    /* color: white; */
+    margin: 0 5px;
+}
+
+#addStuRandom {
+    background-color: #5cb85c;
+}
+
+#addStuBtnByForm {
+    background-color: #d9534f;
+}
+
+/* 表格样式开始 */
+
+table {
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+#stuTable thead {
+    background-color: #e3e8ee;
+    color: #646987;
+}
+
+#stuTable tbody {
+    background-color: #fff;
+}
+
+#stuTable .editBtn {
+    background-color: #5cb85c;
+}
+
+#stuTable .delBtn {
+    background-color: #d9534f;
+}
+
+.regValidate {
+    color: red;
+    font-size: 14px;
+}
+
+/* 表格样式结束 */
+
+/* 新增学生模块样式开始 */
+
+.addStu {
+    width: 50%;
+    height: auto;
+    margin: 30px auto;
+}
+
+.stuGender {
+    margin-left: 30px;
+}
+
+.stuGenderSelect {
+    text-align: center;
+}
+
+.stuGenderSelect>span {
+    margin: 0 15px;
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+.addStu button {
+    margin-right: 10px;
+}
+
+form {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+form label:not(.gender) {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+form div {
+    margin: 10px 0;
+}
+
+#addStuBtn {
+    background-color: #5cb85c;
+}
+
+#backStuList {
+    background-color: #d9534f;
+}
+
+.formBtn {
+    padding-left: 100px;
+}
+
+/* 新增学生模块样式结束 */
+
+/* 外层的 ul */
+
+.pagination {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    /* 弹性盒布局，上面两行代码就是让我的子元素水平居中 */
+    list-style: none;
+    user-select: none;
+    /* 禁止用户选中 */
+}
+
+.pagination li {
+    cursor: pointer;
+    margin: 0 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    user-select: none;
+    /* 不允许用户选中 */
+}
+
+
+.pagination li:hover {
+    background-color: rgb(190, 190, 190);
+    color: #eee;
+}
+
+.pagination li.currentPage {
+    background-color: rgb(84, 138, 197);
+    color: #eee;
+}
