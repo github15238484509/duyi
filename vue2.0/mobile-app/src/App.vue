@@ -1,17 +1,15 @@
 <template>
   <div id="app">
-    <van-button type="primary">主要按钮</van-button> 
+    <router-view></router-view>
   </div>
 </template>
 
 <style lang="less">
-*{
+* {
   margin: 0;
   padding: 0;
 }
-#app{
+#app {
   width: 375px;
-  height: 100px;
-  background: red;
 }
 </style>
