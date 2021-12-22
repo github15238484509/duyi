@@ -1,29 +1,26 @@
 <template>
   <div class="classify-container">
     <div class="search-btn">我是大帅哥</div>
-    <div class="one-tabbar" ref="oneTabbar">
-      <div
-        class="tabbar-item"
-        v-for="(item, i) in menuList"
-        :key="i"
-        @click="changeCurrent(i, $event)"
-      >
-        <div class="img" :class="{ active: current === i }">
-          <img :src="item.imgURL" alt="" />
-        </div>
-        <div :class="{ active: current === i }">
-          {{ item.title }}
-        </div>
-      </div>
+    <OneTabbar :list="menuList" @onechange="onechange"></OneTabbar>
+    <div class="goodsinfo">
+      <TowTabbar :list="towList" @Towchange="Towchange"></TowTabbar>
+      <GoodsList :list="goodSidelist"></GoodsList>
+    </div>
+    <div class="loading" v-if="loading">
+      <van-loading size="24px" vertical>加载中...</van-loading>
     </div>
   </div>
 </template>
 
 <script>
+import OneTabbar from "@/components/OneTabbar";
+import TowTabbar from "@/components/TowTabbar/index.vue";
+import GoodsList from "@/components/GoodsList";
+
+import tool from "@/api/index.js";
 export default {
   data() {
     return {
-      current: 0,
       menuList: [
         {
           title: "时令水果",
@@ -131,36 +128,40 @@ export default {
             "https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/手表配饰.jpg",
         },
       ],
+      towList: [],
+      goodSidelist: [],
+      loading: false,
     };
   },
   methods: {
-    changeCurrent(i, e) {
-      this.current = i;
-      var { oneTabbar } = this.$refs;
-      var parentWidth = oneTabbar.offsetWidth;
-      var selfWidth = e.target.offsetWidth;
-      var selfleft = e.target.getBoundingClientRect().left;
-      this.speed(
-        oneTabbar.scrollLeft,
-        selfleft + selfWidth / 2 - parentWidth / 2
-      );
+    onechange(item) {
+      this.getMeSideList(item);
     },
-    speed(start, end) {
-      var speed = 100;
-      var dis = 0;
-      if (end < 0) {
-        speed *= -1;
-      }
-      clearInterval(timer);
-      var timer = setInterval(() => {
-        dis += speed;
-        this.$refs.oneTabbar.scrollLeft = start + dis;
-        if (Math.abs(dis) >= Math.abs(end)) {
-          this.$refs.oneTabbar.scrollLeft = start + end;
-          clearInterval(timer);
-        }
-      }, 60);
+    async getMeSideList(id = this.menuList[0].title) {
+      this.loading = true;
+      this.towList = await tool.getSideList(id);
+      this.towchange();
+      this.loading = false;
     },
+    async towchange(type = this.towList[0], page = 1, size = 10) {
+      var result = await tool.getGoodsList(type, page, size);
+      this.goodSidelist = result.list;
+      this.total = result.total;
+    },
+    Towchange(e) {
+      this.loading = true;
+      this.towchange(e);
+      this.loading = false;
+    },
+  },
+
+  components: {
+    OneTabbar,
+    GoodsList,
+    TowTabbar,
+  },
+  mounted() {
+    this.getMeSideList();
   },
 };
 </script>
@@ -168,6 +169,7 @@ export default {
 <style lang="less" scoped>
 .classify-container {
   width: 100%;
+  position: relative;
   .search-btn {
     width: 90%;
     height: 30px;
@@ -179,41 +181,21 @@ export default {
     color: white;
     font-size: 16px;
   }
-  .one-tabbar {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    overflow: auto;
-    .tabbar-item {
-      flex: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 60px;
-      height: 70px;
-      box-sizing: border-box;
-
-      .img {
-        border: 1px solid transparent;
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &.active {
-          border: 1px solid red;
-          color: pink;
-        }
-        img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          display: block;
-        }
-      }
-    }
-  }
+}
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.goodsinfo {
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - 104px);
+  overflow: hidden;
 }
 </style>
