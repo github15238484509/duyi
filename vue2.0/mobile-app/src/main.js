@@ -8,8 +8,8 @@ import Vant from "vant"
 import "vant/lib/index.css"
 Vue.use(Vant)
 
-
 Vue.config.productionTip = false
+store.commit("formatShop")
 
 new Vue({
     router,

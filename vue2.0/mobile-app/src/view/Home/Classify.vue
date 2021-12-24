@@ -1,10 +1,10 @@
 <template>
   <div class="classify-container">
-    <div class="search-btn">我是大帅哥</div>
-    <OneTabbar :list="menuList" @onechange="onechange"></OneTabbar>
+    <!-- <div class="search-btn">我是大帅哥</div> -->
+    <!-- <OneTabbar :list="menuList" @onechange="onechange"></OneTabbar> -->
     <div class="goodsinfo">
-      <TowTabbar :list="towList" @Towchange="Towchange"></TowTabbar>
-      <GoodsList :list="goodSidelist"></GoodsList>
+      <!-- <TowTabbar :list="towList" @Towchange="Towchange"></TowTabbar> -->
+      <GoodsList :list="goodSidelist" @increase="increase"></GoodsList>
     </div>
     <div class="loading" v-if="loading">
       <van-loading size="24px" vertical>加载中...</van-loading>
@@ -152,6 +152,27 @@ export default {
       this.loading = true;
       this.towchange(e);
       this.loading = false;
+    },
+
+    increase(item) {
+      var goods = localStorage.getItem("goods") || "{}";
+      console.log(goods);
+      goods = JSON.parse(goods);
+      console.log(goods[item.id]);
+      if (goods[item.id]) {
+        if (goods[item.id] >= 0) {
+          goods[item.id] += item.value;
+        } else {
+          return;
+        }
+      } else {
+        if (item.value === -1) {
+          return;
+        }
+        goods[item.id] = item.value;
+      }
+      localStorage.setItem("goods", JSON.stringify(goods));
+      this.$store.commit("formatShop")
     },
   },
 
