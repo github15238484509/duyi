@@ -12,3 +12,6 @@ https://www.makeapie.com/explore.html makeapie  饼状图
 https://v2.vuepress.vuejs.org/zh/ 创建自己的文档博客vuepress
 
 https://mp.weixin.qq.com/s/mStfUkDADsKqQx97XRlGwA  vuepress github 搭建静态文档
+
+
+https://developer.chrome.com/docs/devtools/overview/ 谷歌的开发工具文档教学

@@ -18,6 +18,7 @@ import TowTabbar from "@/components/TowTabbar/index.vue";
 import GoodsList from "@/components/GoodsList";
 
 import tool from "@/api/index.js";
+import Moverinfo from "@/tools/index.js";
 export default {
   data() {
     return {
@@ -156,9 +157,9 @@ export default {
 
     increase(item) {
       var goods = localStorage.getItem("goods") || "{}";
-      console.log(goods);
+      // console.log(goods);
       goods = JSON.parse(goods);
-      console.log(goods[item.id]);
+      // console.log(goods[item.id]);
       if (goods[item.id]) {
         if (goods[item.id] >= 0) {
           goods[item.id] += item.value;
@@ -172,7 +173,40 @@ export default {
         goods[item.id] = item.value;
       }
       localStorage.setItem("goods", JSON.stringify(goods));
-      this.$store.commit("formatShop")
+      this.$store.commit("formatShop");
+
+      if (item.value === -1) {
+        return;
+      }
+
+      var el = item.el[0];
+      var imgWidth = el.offsetWidth;
+      var imgHeight = el.offsetHeight;
+      var { left, top } = el.getBoundingClientRect();
+      var target = document.querySelector("#target");
+      var targetWidth = target.offsetWidth;
+      var targetHeight = target.offsetHeight;
+      var { left: targetleft, top: targettop } = target.getBoundingClientRect();
+      var targetmovex = targetWidth / 2 + targetleft;
+      var targetmovey = targetHeight / 2 + targettop;
+      /**
+       *
+       * @param {*} width 宽度
+       * @param {*} height 高度
+       * @param {*} left left
+       * @param {*} top top
+       * @param {*} moveX 移动到的位置的left
+       * @param {*} moveY 移动到的位置top
+       */
+      Moverinfo(
+        imgWidth,
+        imgHeight,
+        left,
+        top,
+        targetmovex,
+        targetmovey,
+        el.src
+      );
     },
   },
 

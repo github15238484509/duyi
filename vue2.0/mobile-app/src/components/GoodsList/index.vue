@@ -8,7 +8,7 @@
         @load="onLoad"
       >
         <div class="item" v-for="item in list" :key="item.id">
-          <!-- <img :src="item.images[0]" alt="" /> -->
+          <img :src="item.images[0]" alt="" :ref="'img' + item.id" />
           <div class="desbox">
             <h3 class="overflow">{{ item.title }}</h3>
             <p class="des overflow">{{ item.desc }}</p>
@@ -21,7 +21,7 @@
               <div class="money">￥{{ item.price }}</div>
               <div class="operate">
                 <template v-if="$store.getters.getShopNum(item.id)">
-                  <div class="decrease" @click="increase(item.id, -1)">
+                  <div class="decrease" @click="increase(item.id, -1, item)">
                     <img
                       src="https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/rec.png"
                       alt=""
@@ -31,7 +31,7 @@
                     {{ $store.getters.getShopNum(item.id) }}
                   </div>
                 </template>
-                <div class="increase" @click="increase(item.id, 1)">
+                <div class="increase" @click="increase(item.id, 1, item)">
                   <img
                     src="https://duyi-bucket.oss-cn-beijing.aliyuncs.com/img/add.png"
                     alt=""
@@ -57,6 +57,8 @@ export default {
   data() {
     return {
       isLoading: false,
+      loading: false,
+      finished: false,
     };
   },
   methods: {
@@ -66,12 +68,15 @@ export default {
         this.isLoading = false;
       }, 1000);
     },
-    increase(id, value) {
+    increase(id, value, item) {
       this.$emit("increase", {
         id,
         value,
+        item,
+        el: this.$refs["img" + id],
       });
     },
+    onLoad() {},
   },
   computed: {},
 };
