@@ -23,7 +23,9 @@
 <script>
 export default {
   props: {
-    list: {},
+    list: ()=>{
+      return []
+    },
     color: {
       type: String,
       default: "olivedrab",
