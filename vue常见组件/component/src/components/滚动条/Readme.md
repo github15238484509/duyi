@@ -4,7 +4,7 @@
 
 > 一定要使用 "作用域插槽" 不然无法监听盒子的高度
 
-```
+```vue
 <template>
   <div class="test">
     <ScrollBox :list="num" v-slot="{ list }">

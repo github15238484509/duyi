@@ -1,6 +1,6 @@
 # 滚动条
 
-```
+```vue
 <template>
   <div class="container">
     <HuaKuai @change="change" :leftDot="num" ></HuaKuai>
