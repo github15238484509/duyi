@@ -66,7 +66,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ![](./src/components/滚动条/1.png)
 
-# 滚动条
+# 双向滑块
 
 ```vue
 <template>
