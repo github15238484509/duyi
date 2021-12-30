@@ -1,28 +1,73 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="virtual">
+      <VirtualBox :list="list" :showNum="10">
+        <template v-slot:default="{ data }">
+          <div class="item" v-for="item in data" :key="item">{{ item }}</div>
+        </template>
+      </VirtualBox>
+    </div>
+    <div class="googs">
+      <GoodInfo></GoodInfo>
+    </div>
+
+    <TestTest />
+    <TestTest2 />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TestTest from "@/components/short/test.vue";
+
+import TestTest2 from "@/components/房子长列表/test.vue";
+
+import GoodInfo from "@/components/商品详情";
+import VirtualBox from "@/components/虚拟化列表";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      list: null,
+    };
+  },
+  created() {
+    var arr = [];
+    for (let i = 0; i < 2000; i++) {
+      arr.push(i);
+    }
+    this.list = arr;
+  },
   components: {
-    HelloWorld
-  }
-}
+    TestTest,
+    TestTest2,
+    GoodInfo,
+    VirtualBox,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  margin: 0;
+  padding: 0;
+}
+.googs {
+  width: 800px;
+  background: #1f222e;
+  margin: 50px auto;
+  padding: 20px;
+}
+.virtual {
+  width: 500px;
+  height: 600px;
+  margin: 20px auto;
+  border: 1px solid red;
+}
+.item {
+  height: 50px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  border: 1px solid red;
+  box-sizing: border-box;
 }
 </style>

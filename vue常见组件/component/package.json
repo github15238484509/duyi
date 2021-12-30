@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:gundong": "vue serve ./src/components/滚动条/test.vue",
-    "test:hk": "vue serve ./src/components/双向滑块/test.vue"
+    "test:hk": "vue serve ./src/components/双向滑块/test.vue",
+    "test:list": "vue serve ./src/components/房子短列表/test.vue",
+    "test:lang": "vue serve ./src/components/房子长列表/test.vue"
   },
   "dependencies": {
     "vue": "^2.6.11"
