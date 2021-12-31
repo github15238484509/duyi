@@ -3,7 +3,16 @@
     <div class="virtual">
       <VirtualBox :list="list" :showNum="10">
         <template v-slot:default="{ data }">
-          <div class="item" v-for="item in data" :key="item">{{ item }}</div>
+          <div
+            class="item"
+            v-for="item in data"
+            :key="item.item"
+            :style="{
+              transform: `translateY(${item.Y}px)`,
+            }"
+          >
+            {{ item.item }}
+          </div>
         </template>
       </VirtualBox>
     </div>
@@ -33,7 +42,7 @@ export default {
   },
   created() {
     var arr = [];
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 0; i < 1000; i++) {
       arr.push(i);
     }
     this.list = arr;
@@ -63,6 +72,7 @@ export default {
   height: 600px;
   margin: 20px auto;
   border: 1px solid red;
+  box-sizing: border-box;
 }
 .item {
   height: 50px;

@@ -1,14 +1,13 @@
 <template>
-  <div class="virtual-container" ref="conrHeight" @scroll="start">
+  <div class="virtual-container" ref="conrHeight" @scroll="scroll">
     <div
       class="virtualBox"
       :style="{
-        height: totalHeight,
-        transform: transform,
+        height: totalHeight + 'px',
       }"
       ref="virtualBox"
     >
-      <slot :data="data"></slot>
+      <slot :data="returnList"></slot>
     </div>
   </div>
 </template>
@@ -33,41 +32,41 @@ export default {
   },
   data() {
     return {
-      conrHeight: 0,
-      virScrollHeight: 0,
-      SSS: 0,
-      minShow: 0,
+      scrollTop1: 0,
+      totalHeight: 0,
+      returnList: [],
     };
   },
   methods: {
-    setHeight() {
-      this.conrHeight = this.$refs.conrHeight.offsetHeight;
-      this.virScrollHeight = this.$refs.virtualBox.scrollHeight;
-      this.minShow = Math.round(this.conrHeight / this.itemHeihgt);
+    scroll() {
+      console.log(this.scrollTop1,this.$refs.conrHeight.scrollTop);
+      this.scrollTop1 = this.$refs.conrHeight.scrollTop;
+      this.init()
     },
-    start() {
-      this.SSS = Math.round(this.$refs.conrHeight.scrollTop / this.itemHeihgt);
+    init() {
+      this.returnList = this.list.slice(
+        this.start,
+        this.end
+      ).map((item,i)=>{
+        return {
+          item,
+          Y: this.scrollTop1 
+        }
+      })
     },
   },
   mounted() {
-    this.setHeight();
+    this.totalHeight = this.list.length * this.itemHeihgt;
+    this.init();
   },
   computed: {
-    transform() {
-      return `translateY(${this.SSS * this.itemHeihgt}px)`;
-    },
-    totalHeight() {
-      return this.list.length * this.itemHeihgt - this.conrHeight + "px";
+    start() {
+      return Math.floor(this.scrollTop1 / this.itemHeihgt);
     },
     end() {
-      if (this.minShow > this.showNum) {
-        return this.SSS + this.minShow;
-      } else {
-        return this.SSS + this.showNum;
-      }
-    },
-    data() {
-      return this.list.slice(this.SSS, this.end);
+      return Math.ceil(
+        (this.scrollTop1 + this.$refs.conrHeight.offsetHeight) / this.itemHeihgt
+      );
     },
   },
 };
@@ -84,3 +83,10 @@ export default {
   height: 100%;
 }
 </style>
+
+
+3/2
+1/2
+
+2
+2/3
