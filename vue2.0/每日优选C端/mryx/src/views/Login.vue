@@ -81,6 +81,10 @@ export default {
           }else{
             this.$message.success(result.msg);
              console.log(result.data);
+             this.$store.commit("user/changeUser",result.data)
+             this.$router.push({
+               path:"/home"
+             })
           }
         }
       });
