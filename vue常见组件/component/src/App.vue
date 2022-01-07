@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div class="Fub">
+      <Fub></Fub>
+    </div>
+
     <div class="virtual">
       <VirtualBox :list="list" :showNum="10">
         <template v-slot:default="{ data }">
@@ -32,6 +36,7 @@ import TestTest2 from "@/components/房子长列表/test.vue";
 
 import GoodInfo from "@/components/商品详情";
 import VirtualBox from "@/components/虚拟化列表";
+import Fub from "@/components/富文本/test";
 
 export default {
   name: "App",
@@ -52,6 +57,7 @@ export default {
     TestTest2,
     GoodInfo,
     VirtualBox,
+    Fub,
   },
 };
 </script>
@@ -60,6 +66,10 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+.Fub {
+  width: 1000px;
+  height: 500px;
 }
 .googs {
   width: 800px;

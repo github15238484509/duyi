@@ -11,7 +11,11 @@
     "test:lang": "vue serve ./src/components/房子长列表/test.vue"
   },
   "dependencies": {
-    "vue": "^2.6.11"
+    "quill": "^1.3.7",
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0",
+    "vue": "^2.6.11",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "@vue/cli-service": "~4.5.0",
