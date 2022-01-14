@@ -104,3 +104,23 @@ function editNode(node, value, index) {
 }
 editNode(a, "123", 10000)
 console.log(a);
+
+/**
+ * 
+ * @param {node} node 要反转的节点
+ */
+function reverse(node) {
+    if (!node || !node.next) {
+        return
+    }
+    if (node.next.next === null) { //node.next 倒数最后一个
+        node.next.next = node
+        return node.next
+    } else {                    4
+        var result = reverse(node.next)
+        node.next.next = node
+        node.next = null
+        return result
+    }
+}
+console.log(reverse(a));
