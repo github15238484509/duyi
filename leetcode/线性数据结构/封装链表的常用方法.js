@@ -116,7 +116,7 @@ function reverse(node) {
     if (node.next.next === null) { //node.next 倒数最后一个
         node.next.next = node
         return node.next
-    } else {                    4
+    } else {                  
         var result = reverse(node.next)
         node.next.next = node
         node.next = null
@@ -124,3 +124,8 @@ function reverse(node) {
     }
 }
 console.log(reverse(a));
+
+
+
+
+
