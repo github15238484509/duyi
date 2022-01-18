@@ -24,13 +24,17 @@ function start(nums) {
                 total.push(arr11)
             }
         }
-        right++
+        while (nums[right] === nums[right + 1]) {
+            right++
+        }
         if (right > nums.length - 1) {
             left++;
             right = left + 1
         }
         if (left > nums.length - 2) {
-            current++;
+            while (nums[current] === nums[current + 1]) {
+                current++;
+            }
             left = current + 1;
             right = left + 1
         }
