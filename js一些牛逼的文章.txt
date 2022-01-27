@@ -28,3 +28,17 @@ https://www.qikegu.com/docs/4975 智能合约
 https://mp.weixin.qq.com/s/hwEU8tNgeO0f1XQob3B9QQ  前端常用的库
 
 https://mp.weixin.qq.com/s/mIbcSTAbokDGhdl77efYdw  一份简单够用的 Nginx Location 配置讲解
+
+https://mp.weixin.qq.com/s/WITd46XZee59pCstrf4IVQ 常用的js库
+
+
+
+
+
+
+
+
+
+
+
+
