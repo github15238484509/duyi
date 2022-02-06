@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" class="file">
+    <button class="submit">上传</button>
+    <script src="./upload.js"></script>
+</body>
+<!-- <script>
+    var uploadInput = document.querySelector(".file")
+    var submit = document.querySelector(".submit")
+
+
+    const CHUNK_SIZE = 1 * 1024 / 2;
+    var chunklist = []
+    uploadInput.onchange = function () {
+        file = uploadInput.files[0]
+        console.log(file);
+        const { name, size } = file;
+        console.log(name, size);
+        var cur = 0
+        while (cur < size) {
+            var end = cur + CHUNK_SIZE
+            if (end >= size) {
+                end = end
+            }
+            chunklist.push(
+                file.slice(cur, end)
+            )
+            cur = cur + CHUNK_SIZE
+        }
+        console.log(chunklist);
+
+        function up(data,index) {
+            var formdata = new FormData()
+            formdata.append("file", data)
+            formdata.append("filename", name+index)
+            let xhr = new XMLHttpRequest();
+            xhr.upload.onprogress = function (e) {
+            };
+            xhr.onload = () => { };
+            xhr.onabort = () => { };
+            xhr.onerror = err => { };
+            xhr.open("post", "./upload", true);
+            xhr.send(formdata);
+        }
+        chunklist.forEach((item,index)=>{
+            up(item,index)
+        })
+    }
+
+  
+</script> -->
+
+</html>
