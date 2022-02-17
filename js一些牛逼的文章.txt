@@ -44,8 +44,6 @@ https://mp.weixin.qq.com/s/r-h-Uo-2SftKaUcpOlrYdQ webpack babel 说明
 
 https://www.jianshu.com/p/f378e3f2e7e1?tdsourcetag=s_pcqq_aiomsg md文档语法
 
-https://www.cnblogs.com/shijingjing07/p/6227728.html 设计模式的六大原则
-
 
 
 
