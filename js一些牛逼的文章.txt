@@ -15,3 +15,37 @@ https://mp.weixin.qq.com/s/mStfUkDADsKqQx97XRlGwA  vuepress github 搭建静态�
 
 
 https://developer.chrome.com/docs/devtools/overview/ 谷歌的开发工具文档教学
+
+合约游戏编写
+https://blog.csdn.net/zw0Pi8G5C1x/article/details/113798270?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164126029616780255256018%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=164126029616780255256018&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-113798270.pc_search_insert_es_download_v2&utm_term=%E5%8C%BA%E5%9D%97%E9%93%BE&spm=1018.2226.3001.4187
+
+https://cryptozombies.io/zh/course 合约商城列表
+
+https://www.jb51.net/article/182078.htm  前端压缩图片
+
+https://www.qikegu.com/docs/4975 智能合约
+
+https://mp.weixin.qq.com/s/hwEU8tNgeO0f1XQob3B9QQ  前端常用的库
+
+https://mp.weixin.qq.com/s/mIbcSTAbokDGhdl77efYdw  一份简单够用的 Nginx Location 配置讲解
+
+https://mp.weixin.qq.com/s/WITd46XZee59pCstrf4IVQ 常用的js库
+
+https://juejin.cn/post/6844904046436843527#heading-18  大文件上传
+
+https://www.yuque.com/cuggz/interview/egkyxm   面试题
+https://lurongtao.gitee.io/felixbooks-interview2/  千锋教育的面试题
+
+https://mp.weixin.qq.com/s/hYBRLIgWJrwB45NC-XmRNw 很牛逼的动画源码
+https://mp.weixin.qq.com/s/gLpTNnLWiQrS9h_Qfa9stg 动画思想
+
+
+
+
+
+
+
+
+
+
+

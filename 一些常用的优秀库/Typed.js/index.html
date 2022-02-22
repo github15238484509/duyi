@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <p><a target="blank" href="https://www.cnblogs.com/Aaxuan/p/14146418.html">https://www.cnblogs.com/Aaxuan/p/14146418.html</a> 参考文档</p>
+    <div id="typed-strings">
+        <p>Typed.js is a <strong>JavaScript</strong> library.</p>
+    </div>
+    <span id="typed"></span>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+
+    <script>
+        var typed = new Typed('#typed', {
+          strings: [
+            'These are the default values...',
+            'You know what you should do?',
+            'Use your own!',
+            'Have a great day!'
+          ],
+          // stringsElement: '#typed-strings',
+          typeSpeed:50,
+          loopCount:1,
+          showCursor:false
+        });
+        console.log(typed);
+      </script>
+</body>
+</html>
