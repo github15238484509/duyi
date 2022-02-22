@@ -199,3 +199,130 @@
         }
     }
 })()
+
+
+
+
+
+;
+(() => {
+    function Verification() {
+        this.cache = []
+    }
+    /**
+     * 
+     * @param {DOM} dom input 元素
+     * @param {errorDOM} errorDom 错误提示 元素
+     * @param {Array} Verifica [{method:'adas',errorMessage:'你发的不对'}]
+     */
+    Verification.prototype.add = function (dom, errorDom, Verifica = []) {
+        this.cache.push(() => {
+            var flage = true
+            for (let i = 0; i < Verifica.length; i++) {
+                var arr = Verifica[i].method.split(":")
+                var method = arr.shift()
+                arr.unshift(dom.value)
+                arr.push(Verifica[i].errorMessage)
+                var status = this.verificaList[method](...arr)
+                if (status !== true) {
+                    errorDom.innerText = status
+                    return false
+                } else {
+                    errorDom.innerText = ""
+                }
+            }
+
+            return flage
+        })
+    }
+    Verification.prototype.start = function () {
+        var flage = true
+        this.cache.forEach((fn) => {
+            if (fn() === false) {
+                flage = false
+                return
+            }
+        })
+        return flage
+    }
+    Verification.prototype.extend = function (config) {
+        console.log(config);
+        for (const key in config) {
+            if (Object.hasOwnProperty.call(config, key)) {
+                this.verificaList[key] = config[key]
+            }
+        }
+    }
+    Verification.prototype.verificaList = {
+        maxLength(value, lenght, errorMessage) {
+            if (value.length > lenght) {
+                return errorMessage
+            }
+            return true
+        },
+        empty(value, errorMessage) {
+            if (value == "") {
+                return errorMessage
+            }
+            return true
+        },
+        minLength(value, lenght, errorMessage) {
+            if (value.length < lenght) {
+                return errorMessage
+            }
+            return true
+        },
+
+
+    }
+    var account = document.querySelector(".account")
+    var accountError = document.querySelector(".accountError")
+
+    var account1 = document.querySelector(".account1")
+    var accountError1 = document.querySelector(".accountError1")
+
+    var submit = document.querySelector(".submit")
+    console.log(account, accountError);
+    var cache = new Verification()
+    cache.extend({
+        phone: function (value, errorMessage) {
+            if (value.length !== 11) {
+                return errorMessage
+            }
+            return true
+        }
+    })
+
+    cache.add(account, accountError, [{
+        method: 'empty',
+        errorMessage: "不能为空"
+    }, {
+        method: 'maxLength:6',
+        errorMessage: "长度大于6"
+    }, {
+        method: 'minLength:4',
+        errorMessage: "长度不能小于4"
+    }])
+
+    var cache1 = new Verification()
+    cache1.add(account1, accountError1, [{
+        method: 'empty',
+        errorMessage: "不能为空"
+    }, {
+        method: 'phone',
+        errorMessage: "不是手机号"
+    }])
+
+    submit.onclick = function () {
+        if (cache.start()) {
+            console.log("ok");
+        } else {
+            console.log("error");
+        }
+        if (cache1.start()) {
+            console.log("ok");
+        } else {
+            console.log("error");
+        }
+    }
+})()
