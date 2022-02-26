@@ -47,6 +47,8 @@ https://www.jianshu.com/p/f378e3f2e7e1?tdsourcetag=s_pcqq_aiomsg md文档语法
 
 https://mp.weixin.qq.com/s/mLiViWTnNZ_o90kAOkTQrQ vue3的几种通信方式
 
+https://24kcs.github.io/vue3_study/00_%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.html  typescript 和vue
+
 
 
 
