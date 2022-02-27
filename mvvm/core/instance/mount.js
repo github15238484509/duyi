@@ -1,7 +1,11 @@
 import Vnode from "./vnode/index.js"
+import {
+  preRender
+} from "./render.js"
+
 export default function mount(vm, elm) {
   vm._vnode = constructorVnode(vm, elm, null)
-
+  preRender(vm,vm._vnode)
 }
 
 function constructorVnode(vm, elm, parent) {
@@ -12,7 +16,6 @@ function constructorVnode(vm, elm, parent) {
   var children = []
   var text = getNodeText(elm)
   var data = ""
-  console.log(tag, elm);
   vnode = new Vnode(el, tag, nodeType, children, parent, text, data);
   var childernList = elm.childNodes
   for (let i = 0; i < childernList.length; i++) {
