@@ -14,8 +14,26 @@ var Vnode2Template = new Map()
 export function renderMinix(Due) {
   Due.prototype._render = function () {
     rednerNode(this, this._vnode)
+    console.log(Template2Vnode);
+    console.log(Vnode2Template);
   }
 }
+export function renderData(vm, namespace) {
+  console.log(Template2Vnode);
+  console.log(Vnode2Template);
+  // console.log(namespace);
+  var resultList = getNameVnode(namespace)
+  if (resultList) {
+    for (let i = 0; i < resultList.length; i++) {
+      rednerNode(vm, resultList[i])
+    }
+  }
+}
+
+function getNameVnode(name) {
+  return Template2Vnode.get(name)
+}
+
 export function rednerNode(vm, vnode) {
   if (vnode.nodeType === 3) {
     var getVnodeList = Vnode2Template.get(vnode)
@@ -23,6 +41,7 @@ export function rednerNode(vm, vnode) {
       var vnodeText = vnode.text
       for (let i = 0; i < getVnodeList.length; i++) {
         var objValue = getObjValue([vm._data], getVnodeList[i])
+        console.log(objValue);
         if (objValue) {
           vnodeText = vnodeText.replace(`{{${getVnodeList[i]}}}`, objValue)
         }
@@ -47,22 +66,35 @@ function getObjValue(objs, name) {
 }
 
 function getValue(obj, name) {
-  var names = name.split(".")
-  var result = obj
-  for (let i = 0; i < names.length; i++) {
-    if (result[names[i]]) {
-      result = result[names[i]]
+  console.log(111, obj, name);
+  if (/\[\d]/.test(name)) {
+    var resultName = name.split("[")[0]
+    var resultIndex = name.replace(/.+(\d).+/, "$1")
+    if (name.split(".").length >= 2) {
+      var reightName = name.split(".")
+      reightName.shift()
+      return getValue(obj[resultName][resultIndex], reightName.join())
     } else {
-      return null
+      return JSON.stringify(obj[resultName][resultIndex])
     }
+  } else {
+    var names = name.split(".")
+    var result = obj
+    for (let i = 0; i < names.length; i++) {
+      if (result[names[i]]) {
+        result = result[names[i]]
+      } else {
+        return null
+      }
+    }
+    return result
   }
-  return result
 }
 
 
 
 function parseString(vnode) {
-  var parseList = vnode.text.match(/{{[a-zA-Z0-9_]+}}/g)
+  var parseList = vnode.text.match(/{{[a-zA-Z0-9_.\[\]]+}}/g)
   for (let i = 0; parseList && i < parseList.length; i++) {
     setTemplate2Vnode(sbuSting(parseList[i]), vnode)
     setVnode2Template(sbuSting(parseList[i]), vnode)

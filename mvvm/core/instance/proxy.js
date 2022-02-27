@@ -1,3 +1,5 @@
+import { renderData } from "./render.js";
+
 export function constructProxy(vm, obj, namespace) {
   var proxyObj = null
   if (obj instanceof Array) {
@@ -25,9 +27,10 @@ function defineArrayFfun(vm, arrobj, type, namespace) {
       var fn = arrPrototype[type]
       var list = []
       for (let i = 0; i < arg.length; i++) {
-        list.push(proxyObject(vm, arg[i], namespace))
+        list.push(constructProxy(vm, arg[i], namespace))
       }
       var result = fn.apply(this, list)
+      renderData(vm,namespace)
       return result
     }
   })
@@ -37,6 +40,7 @@ function proxyArray(vm, arr, namespace) {
   var arrobj = {
     eleTyle: "Array",
     toString() {
+      return JSON.stringify(this)
       var result = ""
       for (let index = 0; index < arr.length; index++) {
         result += arr[index] + ', '
@@ -62,13 +66,14 @@ function proxyObject(vm, obj, namespace) {
     if (Object.hasOwnProperty.call(obj, props)) {
       Object.defineProperty(proxyObj, props, {
         configurable: true,
-        enumerable: false,
+        enumerable: true,
         get() {
           return obj[props]
         },
         set: function (value) {
           console.log(getRightName(namespace, props));
           obj[props] = value
+          renderData(vm ,getRightName(namespace, props))
         }
       })
       Object.defineProperty(vm, props, {
@@ -80,6 +85,7 @@ function proxyObject(vm, obj, namespace) {
         set: function (value) {
           console.log(getRightName(namespace, props));
           obj[props] = value
+          renderData(vm ,getRightName(namespace, props))
         }
       })
     }

@@ -10,8 +10,11 @@
 
 <body>
     <div id="box">
-        <p>你好{{name}}帅哥{{description2}}</p>
-        <p>{{description}}</p>
+        <p>你好{{name}}帅哥{{description}}</p>
+        <p>{{description}}</p><br>
+        {{objinfo.age}}
+        <br>
+        {{list[0].age}}
     </div>
     <script type="module">
         import Due from "./core/index.js";
@@ -57,7 +60,8 @@
                         age: 15
                     }
                 }
-            }
+            },
+            // el: "#box",
         })
     </script>
 </body>
