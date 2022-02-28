@@ -12,9 +12,12 @@
     <div id="box">
         <p>你好{{name}}帅哥{{description}}</p>
         <p>{{description}}</p><br>
-        {{objinfo.age}}
+        {{objinfo.name1}}
         <br>
         {{list[0].age}}
+        <br>
+        <input type="text" vmodel="objinfo.name1">
+        <input type="text" vmodel="name">
     </div>
     <script type="module">
         import Due from "./core/index.js";
@@ -32,7 +35,7 @@
                         age: 15
                     }, 5],
                     objinfo: {
-                        name: '二哈',
+                        name1: '二哈',
                         age: 15
                     }
                 }

@@ -76,18 +76,18 @@ function proxyObject(vm, obj, namespace) {
           renderData(vm ,getRightName(namespace, props))
         }
       })
-      Object.defineProperty(vm, props, {
-        configurable: true,
-        enumerable: false,
-        get() {
-          return obj[props]
-        },
-        set: function (value) {
-          console.log(getRightName(namespace, props));
-          obj[props] = value
-          renderData(vm ,getRightName(namespace, props))
-        }
-      })
+      // Object.defineProperty(vm, props, {
+      //   configurable: true,
+      //   enumerable: false,
+      //   get() {
+      //     return obj[props]
+      //   },
+      //   set: function (value) {
+      //     console.log(getRightName(namespace, props));
+      //     obj[props] = value
+      //     renderData(vm ,getRightName(namespace, props))
+      //   }
+      // })
     }
     if (obj[props] instanceof Object) {
       obj[props] = constructProxy(vm, obj[props], getRightName(namespace, props))

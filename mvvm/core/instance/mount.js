@@ -1,4 +1,5 @@
 import Vnode from "./vnode/index.js"
+import { vmodel } from "./directive/vmodel.js"
 import {
   preRender
 } from "./render.js"
@@ -9,6 +10,7 @@ export default function mount(vm, elm) {
 }
 
 function constructorVnode(vm, elm, parent) {
+  vmodel(vm,elm)
   var vnode = null
   var el = elm;
   var tag = elm.nodeName;

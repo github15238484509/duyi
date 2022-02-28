@@ -14,13 +14,13 @@ var Vnode2Template = new Map()
 export function renderMinix(Due) {
   Due.prototype._render = function () {
     rednerNode(this, this._vnode)
-    console.log(Template2Vnode);
-    console.log(Vnode2Template);
+    // console.log(Template2Vnode);
+    // console.log(Vnode2Template);
   }
 }
 export function renderData(vm, namespace) {
-  console.log(Template2Vnode);
-  console.log(Vnode2Template);
+  // console.log(Template2Vnode);
+  // console.log(Vnode2Template);
   // console.log(namespace);
   var resultList = getNameVnode(namespace)
   if (resultList) {
@@ -41,7 +41,7 @@ export function rednerNode(vm, vnode) {
       var vnodeText = vnode.text
       for (let i = 0; i < getVnodeList.length; i++) {
         var objValue = getObjValue([vm._data], getVnodeList[i])
-        console.log(objValue);
+        // console.log(objValue);
         if (objValue) {
           vnodeText = vnodeText.replace(`{{${getVnodeList[i]}}}`, objValue)
         }
@@ -65,8 +65,7 @@ function getObjValue(objs, name) {
   return null
 }
 
-function getValue(obj, name) {
-  console.log(111, obj, name);
+export function getValue(obj, name) {
   if (/\[\d]/.test(name)) {
     var resultName = name.split("[")[0]
     var resultIndex = name.replace(/.+(\d).+/, "$1")
@@ -89,6 +88,19 @@ function getValue(obj, name) {
     }
     return result
   }
+}
+export function setValue(vm, name, value) {
+  var names = name.split(".")
+  console.log(names, value);
+  var result = vm._data
+  for (let i = 0; i < names.length - 1; i++) {
+    if (result[names[i]]) {
+      result = result[names[i]]
+    } else {
+      return null
+    }
+  }
+  result[names[names.length - 1]] = value
 }
 
 
