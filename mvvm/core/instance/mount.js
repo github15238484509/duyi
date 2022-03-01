@@ -1,16 +1,23 @@
 import Vnode from "./vnode/index.js"
-import { vmodel } from "./directive/vmodel.js"
+import {
+  vmodel
+} from "./directive/vmodel.js"
 import {
   preRender
 } from "./render.js"
+import {
+  getAttributes
+} from "./utils/index.js"
 
 export default function mount(vm, elm) {
   vm._vnode = constructorVnode(vm, elm, null)
-  preRender(vm,vm._vnode)
+  preRender(vm, vm._vnode)
 }
 
 function constructorVnode(vm, elm, parent) {
-  vmodel(vm,elm)
+  if (elm.nodeType === 1) {
+    analysisAttr(vm, elm, parent)
+  }
   var vnode = null
   var el = elm;
   var tag = elm.nodeName;
@@ -19,9 +26,9 @@ function constructorVnode(vm, elm, parent) {
   var text = getNodeText(elm)
   var data = ""
   vnode = new Vnode(el, tag, nodeType, children, parent, text, data);
-  var childernList = elm.childNodes
+  var childernList = elm.childNodes;
   for (let i = 0; i < childernList.length; i++) {
-    var chilVnode = constructorVnode(vm, childernList[i], elm);
+    var chilVnode = constructorVnode(vm, childernList[i], vnode);
     if (chilVnode instanceof constructorVnode) {
       vnode.children.push(chilVnode)
     } else {
@@ -36,5 +43,12 @@ function getNodeText(dom) {
     return dom.nodeValue
   } else {
     return ""
+  }
+}
+
+function analysisAttr(vm, elm, parent) {
+  var atts = getAttributes(elm)
+  if (atts.indexOf("vmodel") > -1) {
+    vmodel(vm, elm)
   }
 }

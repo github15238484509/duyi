@@ -1,4 +1,6 @@
-import { renderData } from "./render.js";
+import {
+  renderData
+} from "./render.js";
 
 export function constructProxy(vm, obj, namespace) {
   var proxyObj = null
@@ -30,7 +32,7 @@ function defineArrayFfun(vm, arrobj, type, namespace) {
         list.push(constructProxy(vm, arg[i], namespace))
       }
       var result = fn.apply(this, list)
-      renderData(vm,namespace)
+      renderData(vm, namespace)
       return result
     }
   })
@@ -73,21 +75,23 @@ function proxyObject(vm, obj, namespace) {
         set: function (value) {
           console.log(getRightName(namespace, props));
           obj[props] = value
-          renderData(vm ,getRightName(namespace, props))
+          renderData(vm, getRightName(namespace, props))
         }
       })
-      // Object.defineProperty(vm, props, {
-      //   configurable: true,
-      //   enumerable: false,
-      //   get() {
-      //     return obj[props]
-      //   },
-      //   set: function (value) {
-      //     console.log(getRightName(namespace, props));
-      //     obj[props] = value
-      //     renderData(vm ,getRightName(namespace, props))
-      //   }
-      // })
+      if (namespace === "") {
+        Object.defineProperty(vm, props, {
+          configurable: true,
+          enumerable: false,
+          get() {
+            return obj[props]
+          },
+          set: function (value) {
+            console.log(getRightName(namespace, props));
+            obj[props] = value
+            renderData(vm, getRightName(namespace, props))
+          }
+        })
+      }
     }
     if (obj[props] instanceof Object) {
       obj[props] = constructProxy(vm, obj[props], getRightName(namespace, props))

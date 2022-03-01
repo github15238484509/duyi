@@ -1,7 +1,11 @@
+import {
+  getAttributes
+} from "./utils/index.js"
 export function preRender(vm, vnode) {
   if (vnode.nodeType === 3) {
     parseString(vnode)
   } else if (vnode.nodeType === 1) {
+    analysisVmodel(vm, vnode)
     var children = vnode.children
     for (let i = 0; i < children.length; i++) {
       preRender(vm, children[i])
@@ -30,6 +34,16 @@ export function renderData(vm, namespace) {
   }
 }
 
+function analysisVmodel(vm, vnode) {
+  if (vnode.tag === "INPUT") {
+    var atts = getAttributes(vnode.elm)
+    if (atts.includes("vmodel")) {
+      setTemplate2Vnode(vnode.elm.getAttribute("vmodel"), vnode)
+      setVnode2Template(vnode.elm.getAttribute("vmodel"), vnode)
+    }
+  }
+}
+
 function getNameVnode(name) {
   return Template2Vnode.get(name)
 }
@@ -41,13 +55,19 @@ export function rednerNode(vm, vnode) {
       var vnodeText = vnode.text
       for (let i = 0; i < getVnodeList.length; i++) {
         var objValue = getObjValue([vm._data], getVnodeList[i])
-        // console.log(objValue);
-        if (objValue) {
-          vnodeText = vnodeText.replace(`{{${getVnodeList[i]}}}`, objValue)
-        }
+        vnodeText = vnodeText.replace(`{{${getVnodeList[i]}}}`, objValue)
       }
       vnode.elm.nodeValue = vnodeText
     }
+  } else if (vnode.nodeType === 1 && vnode.tag == "INPUT") {
+    var getVnodeList = Vnode2Template.get(vnode)
+    var vnodeText = ''
+    if (getVnodeList) {
+      for (let i = 0; i < getVnodeList.length; i++) {
+        var objValue = getObjValue([vm._data], getVnodeList[i])
+      }
+    }
+    vnode.elm.value = objValue
   } else {
     for (let i = 0; i < vnode.children.length; i++) {
       rednerNode(vm, vnode.children[i])
@@ -62,7 +82,7 @@ function getObjValue(objs, name) {
       return result
     }
   }
-  return null
+  return ""
 }
 
 export function getValue(obj, name) {
@@ -79,19 +99,25 @@ export function getValue(obj, name) {
   } else {
     var names = name.split(".")
     var result = obj
-    for (let i = 0; i < names.length; i++) {
-      if (result[names[i]]) {
-        result = result[names[i]]
-      } else {
-        return null
+    try {
+      for (let i = 0; i < names.length; i++) {
+        console.log(result[names[i]]);
+        if (result[names[i]]) {
+          result = result[names[i]]
+        } else {
+          return ""
+        }
       }
+      return result
+    } catch (error) {
+      console.log(11, error);
     }
-    return result
+
   }
 }
 export function setValue(vm, name, value) {
   var names = name.split(".")
-  console.log(names, value);
+  // console.log(names, value);
   var result = vm._data
   for (let i = 0; i < names.length - 1; i++) {
     if (result[names[i]]) {
