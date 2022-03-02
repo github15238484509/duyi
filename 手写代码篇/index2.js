@@ -49,3 +49,56 @@ var therr = {
     },
 }
 // console.log(mergeObject(one, two, therr));
+//1.合并对象
+function mergeObject(...arg) {
+    var result = {}
+    for (let i = 0; i < arg.length; i++) {
+        var obj = arg[i]
+        var names = Object.getOwnPropertyNames(obj)
+        for (let index = 0; index < names.length; index++) {
+            var currentData = obj[names[i]]
+            var type = Object.prototype.toString.call(currentData).slice(8, -1)
+            if (type === "Array") {
+                if (result[names[index]]) {
+                    result[names[index]] = deepClone(currentData);
+                } else {
+                    result[names[index]] = new Array(currentData.length)
+                    for (let i = 0; i < currentData.length; i++) {
+                        result[names[index]][i] = deepClone(currentData[i]);
+                    }
+                }
+            } else if (type === "Object") {
+                if (result[names[index]]) {
+                    result[names[index]] = mergeObject(result[names[index]], currentData)
+                } else {
+                    result[names[index]] = deepClone(currentData);
+                }
+            } else {
+                result[names[index]] = obj[names[index]]
+            }
+        }
+    }
+    return result
+}
+
+function deepClone(obj) {
+    var type = Object.prototype.toString.call(obj).slice(8, -1)
+    var result
+    if (type === "Array") {
+        result = new Array(obj.length)
+        for (let i = 0; i < obj.length; i++) {
+            result[i] = deepClone(obj[i]);
+        }
+    } else if (type === "Object") {
+        result = {}
+        var names = Object.getOwnPropertyNames(obj)
+        for (let i = 0; i < names.length; i++) {
+            result[names[i]] = deepClone(obj[names[i]]);
+        }
+    } else {
+        return obj
+    }
+    return result
+}
+
+// console.log(mergeObject(one, two, therr));
