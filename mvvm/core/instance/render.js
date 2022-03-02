@@ -27,6 +27,7 @@ export function renderData(vm, namespace) {
   // console.log(Vnode2Template);
   // console.log(namespace);
   var resultList = getNameVnode(namespace)
+  console.log(resultList, namespace);
   if (resultList) {
     for (let i = 0; i < resultList.length; i++) {
       rednerNode(vm, resultList[i])
@@ -54,7 +55,7 @@ export function rednerNode(vm, vnode) {
     if (getVnodeList) {
       var vnodeText = vnode.text
       for (let i = 0; i < getVnodeList.length; i++) {
-        var objValue = getObjValue([vm._data], getVnodeList[i])
+        var objValue = getObjValue([vm._data, vnode.env], getVnodeList[i])
         vnodeText = vnodeText.replace(`{{${getVnodeList[i]}}}`, objValue)
       }
       vnode.elm.nodeValue = vnodeText
@@ -64,7 +65,7 @@ export function rednerNode(vm, vnode) {
     var vnodeText = ''
     if (getVnodeList) {
       for (let i = 0; i < getVnodeList.length; i++) {
-        var objValue = getObjValue([vm._data], getVnodeList[i])
+        var objValue = getObjValue([vm._data, vm.env], getVnodeList[i])
       }
     }
     vnode.elm.value = objValue
@@ -76,6 +77,7 @@ export function rednerNode(vm, vnode) {
 }
 
 function getObjValue(objs, name) {
+  console.log(objs, name);
   for (let i = 0; i < objs.length; i++) {
     var result = getValue(objs[i], name)
     if (result) {
@@ -101,7 +103,7 @@ export function getValue(obj, name) {
     var result = obj
     try {
       for (let i = 0; i < names.length; i++) {
-        console.log(result[names[i]]);
+        // console.log(result[names[i]]);
         if (result[names[i]]) {
           result = result[names[i]]
         } else {
@@ -110,7 +112,7 @@ export function getValue(obj, name) {
       }
       return result
     } catch (error) {
-      console.log(11, error);
+      // console.log(11, error);
     }
 
   }

@@ -18,6 +18,12 @@
         <br>
         <input type="text" vmodel="objinfo.name1">
         <input type="text" vmodel="name">
+        <ul>
+            <li v-for="item in list">
+                名字：{{item.name}} <br>
+                年纪：{{item.age}}
+            </li>
+        </ul>
     </div>
     <script type="module">
         import Due from "./core/index.js";
@@ -32,11 +38,11 @@
                         age: 15
                     }, {
                         name: '二哈',
-                        age: 15
-                    }, 5],
+                        age: 15,
+                    }],
                     objinfo: {
                         name1: '二哈',
-                        age: 15
+                        age: 15,
                     }
                 }
             }

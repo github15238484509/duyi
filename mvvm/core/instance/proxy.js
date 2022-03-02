@@ -68,12 +68,12 @@ function proxyObject(vm, obj, namespace) {
     if (Object.hasOwnProperty.call(obj, props)) {
       Object.defineProperty(proxyObj, props, {
         configurable: true,
-        enumerable: true,
+        enumerable: false,
         get() {
           return obj[props]
         },
         set: function (value) {
-          console.log(getRightName(namespace, props));
+          // console.log(getRightName(namespace, props));
           obj[props] = value
           renderData(vm, getRightName(namespace, props))
         }
@@ -86,7 +86,7 @@ function proxyObject(vm, obj, namespace) {
             return obj[props]
           },
           set: function (value) {
-            console.log(getRightName(namespace, props));
+            // console.log(getRightName(namespace, props));
             obj[props] = value
             renderData(vm, getRightName(namespace, props))
           }

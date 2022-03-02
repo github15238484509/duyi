@@ -26,4 +26,4 @@ function add(...arg1) {
   return Fn
 }
 var a = add(3, 5)(6)(20, 10)
-console.log(a);
+// console.log(a);
