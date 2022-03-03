@@ -102,3 +102,24 @@ function deepClone(obj) {
 }
 
 // console.log(mergeObject(one, two, therr));
+
+//实现一个一直递归的函数
+function say() {
+    return new Promise((resolve) => {
+        var num = Math.random() * 100
+        setTimeout(() => {
+            console.log(55);
+            console.log(num > 95);
+            resolve(num > 90)
+        }, Math.random() * 3000)
+    })
+}
+async function online(fn) {
+    var result = await fn()
+    if (result) {
+        return result
+    } else {
+        online(fn)
+    }
+}
+// online(say)
