@@ -123,3 +123,33 @@ async function online(fn) {
     }
 }
 // online(say)
+
+
+//实现一个管道输出
+function increment(value) {
+    return value + 1
+}
+
+function decrement(value) {
+    return value - 1
+}
+
+function nultiply(value) {
+    return value * 2
+}
+/**
+ * 
+ * @param  {Function} arg 函数裂变
+ */
+function pipe(...arg) {
+    return (value) => {
+        var i = 0
+        while (i < arg.length) {
+            value = arg[i](value)
+            i++
+        }
+        return value
+    }
+}
+var result = pipe(increment, nultiply, decrement)
+// console.log(result(2)); //5
