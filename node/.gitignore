@@ -1,0 +1,4 @@
+node_modules
+~*.ppt*
+.DS_Store
+
