@@ -50,6 +50,11 @@ https://mp.weixin.qq.com/s/mLiViWTnNZ_o90kAOkTQrQ vue3的几种通信方式
 https://24kcs.github.io/vue3_study/00_%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.html  typescript 和vue
 
 
+https://vuejs.org/ vue3的英文文档
+
+https://mp.weixin.qq.com/s/0PKUY7Nh2oSqiwovL6zG8A  45 个 Git 经典操作场景，专治不会合代码
+
+
 
 
 
