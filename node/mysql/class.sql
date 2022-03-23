@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 22/03/2022 13:55:14
+ Date: 23/03/2022 15:36:45
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `class`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`teacher`) USING BTREE,
   CONSTRAINT `id` FOREIGN KEY (`teacher`) REFERENCES `teacher` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of class
@@ -48,7 +48,7 @@ CREATE TABLE `company`  (
   `location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `buildDate` date NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of company
@@ -69,7 +69,7 @@ CREATE TABLE `department`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `companyId`(`companyId`) USING BTREE,
   CONSTRAINT `department_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `company` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of department
@@ -105,7 +105,7 @@ CREATE TABLE `employee`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_deptId_department`(`deptId`) USING BTREE,
   CONSTRAINT `FK_deptId_department` FOREIGN KEY (`deptId`) REFERENCES `department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 701 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 700 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of employee
@@ -821,7 +821,7 @@ CREATE TABLE `teacher`  (
   `sex` bit(1) NOT NULL DEFAULT b'0' COMMENT '老师的性别',
   `birth` date NOT NULL COMMENT '老师的出生日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of teacher
@@ -836,7 +836,7 @@ CREATE TABLE `test`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of test
@@ -852,7 +852,7 @@ CREATE TABLE `user`  (
   `loginId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `loginPwd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
@@ -860,5 +860,11 @@ CREATE TABLE `user`  (
 INSERT INTO `user` VALUES (1, 'admin', '123123');
 INSERT INTO `user` VALUES (2, 'jicheng', '123456');
 INSERT INTO `user` VALUES (3, 'yuanjin', '345678');
+
+-- ----------------------------
+-- View structure for one
+-- ----------------------------
+DROP VIEW IF EXISTS `one`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `one` AS select `em`.`id` AS `id`,`em`.`name` AS `name`,`em`.`location` AS `location`,`em`.`ismale` AS `ismale`,`em`.`joinDate` AS `joinDate`,`em`.`salary` AS `salary`,`em`.`deptId` AS `deptId`,`em`.`birthday` AS `birthday` from ((`employee` `em` join `department` `de` on((`em`.`deptId` = `de`.`id`))) join `company` `co` on((`de`.`companyId` = `co`.`id`)));
 
 SET FOREIGN_KEY_CHECKS = 1;
