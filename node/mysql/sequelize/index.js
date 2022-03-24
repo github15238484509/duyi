@@ -1,1 +1,2 @@
-require("./models/init.js")
+// 模拟数据
+// 数据的抓取

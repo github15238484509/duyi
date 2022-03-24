@@ -18,5 +18,5 @@ const ClassGrand = db.define("Class", {
 }, {
     paranoid: true
 })
-ClassGrand.hasMany(student)
+// ClassGrand.hasMany(student)
 module.exports = ClassGrand
