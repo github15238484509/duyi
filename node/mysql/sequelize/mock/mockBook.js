@@ -68,4 +68,4 @@ async function getBookPageList() {
         }
     }
 }
-// getBookPageList()
+getBookPageList()

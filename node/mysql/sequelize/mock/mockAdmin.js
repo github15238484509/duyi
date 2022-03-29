@@ -2,9 +2,9 @@ const Mock = require('mockjs')
 const admin = require("../models/Admin")
 function addAdmin() {
     const result = Mock.mock({
-        'data|1-20': [{
+        'data|20': [{
             "account": "@word(5,10)",
-            "password": "@word(6)",
+            "password":"@word(6)",
             'name': '@name()',
             'descript': '@csentence()'
         }]

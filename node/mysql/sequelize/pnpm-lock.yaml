@@ -1,13 +1,17 @@
 lockfileVersion: 5.3
 
 specifiers:
+  axios: ^0.26.1
   cheerio: ^1.0.0-rc.10
+  js-md5: ^0.7.3
   mockjs: ^1.1.0
   mysql2: ^2.3.3
   sequelize: ^6.17.0
 
 dependencies:
+  axios: registry.npmmirror.com/axios/0.26.1
   cheerio: registry.npmmirror.com/cheerio/1.0.0-rc.10
+  js-md5: registry.npmmirror.com/js-md5/0.7.3
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   mysql2: registry.npmmirror.com/mysql2/2.3.3
   sequelize: registry.npmmirror.com/sequelize/6.17.0_mysql2@2.3.3
@@ -38,6 +42,16 @@ packages:
     resolution: {integrity: sha512-I6OUIZ5cYRk5lp14xSOAiXjWrfVoMZVjDuevBYgQDYzZIjsf2CAISpEcXOkFAtpAHbmWIDLcZObejqny/9xq5Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/validator/-/validator-13.7.1.tgz}
     name: '@types/validator'
     version: 13.7.1
+    dev: false
+
+  registry.npmmirror.com/axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/axios/-/axios-0.26.1.tgz}
+    name: axios
+    version: 0.26.1
+    dependencies:
+      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.9
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   registry.npmmirror.com/boolbase/1.0.0:
@@ -167,6 +181,18 @@ packages:
     version: 2.2.0
     dev: false
 
+  registry.npmmirror.com/follow-redirects/1.14.9:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.14.9.tgz}
+    name: follow-redirects
+    version: 1.14.9
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   registry.npmmirror.com/generate-function/2.3.1:
     resolution: {integrity: sha512-eeB5GfMNeevm/GRYq20ShmsaGcmI81kIX2K9XQx5miC8KdHaC6Jm0qQ8ZNeGOi7wYB8OsdxKs+Y2oVuTFuVwKQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/generate-function/-/generate-function-2.3.1.tgz}
     name: generate-function
@@ -206,6 +232,12 @@ packages:
     resolution: {integrity: sha512-Ks/IoX00TtClbGQr4TWXemAnktAQvYB7HzcCxDGqEZU6oCmb2INHuOoKxbtR+HFkmYWBKv/dOZtGRiAjDhj92g==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/is-property/-/is-property-1.0.2.tgz}
     name: is-property
     version: 1.0.2
+    dev: false
+
+  registry.npmmirror.com/js-md5/0.7.3:
+    resolution: {integrity: sha512-ZC41vPSTLKGwIRjqDh8DfXoCrdQIyBgspJVPXHBGu4nZlAEvG3nf+jO9avM9RmLiGakg7vz974ms99nEV0tmTQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-md5/-/js-md5-0.7.3.tgz}
+    name: js-md5
+    version: 0.7.3
     dev: false
 
   registry.npmmirror.com/lodash/4.17.21:

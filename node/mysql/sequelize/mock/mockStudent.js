@@ -10,7 +10,7 @@ function getClass() {
             "isMale": '@boolean()',
             'moblie': /1\d{10}/,
             'stuId': /1\d{5}/,
-            "ClassId|1-15": 2
+            "ClassId|1-17": 2
         }]
     }).data
     // console.log(result);
