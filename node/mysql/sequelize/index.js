@@ -1,20 +1,24 @@
-const {
-  getAllAdmin,
-  addAdmin,
-  login
-} = require("./services/adminServer")
-
-
-// getAllAdmin()
-
-// addAdmin({
-//   account:'tmdtmd',
-//   password:'11231123',
-//   name:"tmd",
-//   descript:'tmd'
-// })
-login("tmdtmd", "11231123").then(e => {
-  console.log(e);
-}).catch(e => {
-  console.log(e);
+const exporess = require("express")
+const app = exporess()
+app.get("/:info", (req, res, next) => {
+  // 相应信息
+  // console.log(req.headers);
+  // console.log(req.query);
+  // console.log(req.params);
+  // console.log(req.headers.cookie);
+  // res.cookie("fas", "asdf")
+  // res.send("132")
+  next()
 })
+app.get("/new", (req, res) => {
+  res.send({
+    info: 132
+  })
+})
+app.get("*", (req, res) => {
+  // res.send("456")
+  res.redirect("/new")
+})
+app.listen(3000, () => {
+  console.log('服务在host：localhost:3000');
+})  
