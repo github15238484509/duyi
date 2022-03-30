@@ -94,3 +94,22 @@ exports.updataStudent = async function (bookId, option) {
         }
     }
 }
+exports.getAllStudent = async function ({
+    page = 1,
+    limit = 10
+}) {
+    let {
+        count,
+        rows
+    } = await Student.findAndCountAll({
+        limit: limit,
+        offset: (page - 1) * limit,
+    })
+    rows = rows.map((el) => {
+        return el.toJSON()
+    })
+    return {
+        count,
+        rows
+    }
+}
