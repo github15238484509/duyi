@@ -1,6 +1,7 @@
 {
 	"scripts": {
 		"dev": "nodemon --watch src -e ts --exec ts-node src/index.ts",
+		"poker": "nodemon --watch src -e ts --exec ts-node src/poker.ts",
 		"build":"tsc"
 	},  
 	"devDependencies": {
