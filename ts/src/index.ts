@@ -75,6 +75,23 @@ function choosable(a: number, b: number, c?: number): number {
     return a + b
   }
 }
-let choosablenum = choosable(1,2,5)
+let choosablenum = choosable(1, 2, 5)
+
+
+// 枚举
+// 枚举会在编译结果中出现
+enum Enumerable {
+  level1,
+  level2,
+  level3,
+}
+console.log(Enumerable.level1);
+
+enum Enumerable2 {
+  level1='等级一',
+  level2='等级二',
+  level3='等级三',
+}
+console.log(Enumerable2.level1);
 
 
