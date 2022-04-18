@@ -27,23 +27,46 @@ var Value;
     Value["level12"] = "q";
     Value["level13"] = "kk";
 })(Value || (Value = {}));
+var type;
+(function (type) {
+    type["small"] = "small";
+    type["big"] = "big";
+})(type || (type = {}));
 function createPokerDeck() {
     const Deck = [];
     var Vlaues = Object.values(Value);
     var Colors = Object.values(Color);
     for (const c of Colors) {
         for (const v of Vlaues) {
-            Deck.push({
+            let item = {
                 value: v,
-                color: c
-            });
+                color: c,
+                getValue() {
+                    return this.value + '_' + this.color;
+                }
+            };
+            Deck.push(item);
         }
     }
+    let joke = {
+        type: type.big,
+        getValue() {
+            return this.type;
+        }
+    };
+    Deck.push(joke);
+    joke = {
+        type: type.small,
+        getValue() {
+            return this.type;
+        }
+    };
+    Deck.push(joke);
     return Deck;
 }
 function printPokerDeck(pokerDeck) {
     pokerDeck.forEach(el => {
-        console.log(el.color, el.value);
+        console.log(el.getValue());
     });
 }
 let pokerdeck = createPokerDeck();

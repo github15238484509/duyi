@@ -3,6 +3,7 @@
 		"dev": "nodemon --watch src -e ts --exec ts-node src/index.ts",
 		"poker": "nodemon --watch src -e ts --exec ts-node src/poker.ts",
 		"module": "nodemon --watch src -e ts --exec ts-node src/myIndex.ts",
+		"class": "nodemon --watch src -e ts --exec ts-node src/class.ts",
 		"build":"tsc"
 	},  
 	"devDependencies": {
