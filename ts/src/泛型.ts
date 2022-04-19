@@ -28,5 +28,16 @@ function changeName<T extends Name>(user:T):T{
     return user
 }
 let user2 = changeName(info)
-user2.age
 
+//多种类型的泛型合并
+function combin<T,K>(arr1:T[],arr2:K[]){
+  let arr:(T|K)[] = []
+  for (let i = 0; i < arr1.length; i++) {
+    arr.push(arr1[i]);
+    arr.push(arr2[i]);
+  }
+  return arr
+}
+var arr1 = [1,2,34,4]
+var arr2 = ["2","6","7","2"]
+let result = combin(arr1,arr2)
