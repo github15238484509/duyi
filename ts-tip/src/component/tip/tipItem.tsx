@@ -16,7 +16,7 @@ export default function TipItem(porp: TipType) {
   return (
     <div className="tipItem" onClick={
       () => {
-        if (porp.type !== Classtype.none) {
+        if (porp.type === Classtype.none) {
           porp.onClick && porp.onClick()
         }
       }

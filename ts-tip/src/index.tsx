@@ -1,22 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BoardComp } from './component/tip/boardComp';
 import { Classtype } from './component/tip/enum';
-import TipItem from './component/tip/tipItem';
+import TipItem, { TipType } from './component/tip/tipItem';
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+var arr: Classtype[] = [
+  Classtype.black,
+  Classtype.red,
+  Classtype.none,
+  Classtype.black,
+  Classtype.none,
+  Classtype.red,
+  Classtype.none,
+  Classtype.black,
+  Classtype.black,
+]
 root.render(
   <React.StrictMode>
-    <TipItem type={Classtype.none} onClick={() => {
-      console.log(5545);
-    }}></TipItem>
-    <TipItem type={Classtype.black} onClick={() => {
-      console.log(5545);
-    }}></TipItem>
-    <TipItem type={Classtype.red} onClick={() => {
-      console.log(5545);
-    }}></TipItem>
+    <BoardComp arr={arr} onClick={(index)=>{
+      console.log(index);
+    }}></BoardComp>
   </React.StrictMode>
 );
 

@@ -1,0 +1,6 @@
+.boardComp{
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+  margin: 2rem auto;
+}
