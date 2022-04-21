@@ -2,27 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BoardComp } from './component/tip/boardComp';
 import { Classtype } from './component/tip/enum';
+import { GameComp } from './component/tip/gameComp';
 import TipItem, { TipType } from './component/tip/tipItem';
 import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-var arr: Classtype[] = [
-  Classtype.black,
-  Classtype.red,
-  Classtype.none,
-  Classtype.black,
-  Classtype.none,
-  Classtype.red,
-  Classtype.none,
-  Classtype.black,
-  Classtype.black,
-]
+
 root.render(
   <React.StrictMode>
-    <BoardComp arr={arr} onClick={(index)=>{
-      console.log(index);
-    }}></BoardComp>
+      <GameComp></GameComp>
   </React.StrictMode>
 );
 

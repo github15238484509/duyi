@@ -1,0 +1,27 @@
+.box {
+    width: 200px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.red {
+    color: #f40;
+}
+
+.black {
+    color: black;
+}
+
+.redWin {
+    border: 2px solid;
+}
+
+.blackWin {
+    border: 2px solid;
+}
+
+.dard {
+    color: #abcdef;
+    border: 2px solid;
+}

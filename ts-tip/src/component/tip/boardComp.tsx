@@ -4,6 +4,7 @@ import "./boardComp.css"
 interface Iporp {
   arr: Classtype[],
   onClick?: (index: number) => void
+  gameover: boolean
 }
 
 export function BoardComp(porp: Iporp) {
@@ -11,7 +12,9 @@ export function BoardComp(porp: Iporp) {
     return <TipItem
       key={i}
       onClick={() => {
-        console.log(555);
+        if (!porp.gameover) {
+          porp.onClick && porp.onClick(i)
+        }
       }}
       type={it} />
   })
