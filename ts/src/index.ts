@@ -88,10 +88,28 @@ enum Enumerable {
 console.log(Enumerable.level1);
 
 enum Enumerable2 {
-  level1='等级一',
-  level2='等级二',
-  level3='等级三',
+  level1 = '等级一',
+  level2 = '等级二',
+  level3 = '等级三',
 }
 console.log(Enumerable2.level1);
+
+console.log('=========');
+
+abstract class OneUser {
+  name: string = '465'
+  sayHello(){
+    console.log(`===${this.name}`);
+  }
+  abstract age:number
+}
+class tow extends OneUser{
+  age: number=132;
+  say(){
+    super.sayHello()
+  }
+}
+new tow().say()
+
 
 

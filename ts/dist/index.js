@@ -60,3 +60,22 @@ var Enumerable2;
     Enumerable2["level3"] = "\u7B49\u7EA7\u4E09";
 })(Enumerable2 || (Enumerable2 = {}));
 console.log(Enumerable2.level1);
+console.log('=========');
+class OneUser {
+    constructor() {
+        this.name = '465';
+    }
+    sayHello() {
+        console.log(`===${this.name}`);
+    }
+}
+class tow extends OneUser {
+    constructor() {
+        super(...arguments);
+        this.age = 132;
+    }
+    say() {
+        super.sayHello();
+    }
+}
+new tow().say();
