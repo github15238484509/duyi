@@ -5,6 +5,7 @@
 		"module": "nodemon --watch src -e ts --exec ts-node src/myIndex.ts",
 		"class": "nodemon --watch src -e ts --exec ts-node src/class.ts",
 		"chou": "nodemon --watch src -e ts --exec ts-node src/抽象类.ts",
+		"zhuang": "nodemon --watch src -e ts --exec ts-node src/装饰器.ts",
 		"build":"tsc"
 	},  
 	"devDependencies": {
