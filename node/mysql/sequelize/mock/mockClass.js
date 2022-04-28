@@ -9,7 +9,6 @@ function getClass() {
             'createTime': '@date("yyyy-MM-dd")',
         }]
     }).data
-    console.log(result);
     return result
 }
 

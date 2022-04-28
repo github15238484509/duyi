@@ -1,39 +1,41 @@
 const Student = require("../models/Student")
 
 exports.addStudent = async function (option) {
-    // const info = await Student.build(option)
-    // try {
-    //     info.save()
-    //     return {
-    //         type:true,
-    //         data:info.toJSON()
-    //     }
-    // } catch (error) {
-    //     return {
-    //         type:false,
-    //         data:error
-    //     }
-    // }
-
+    const info = await Student.build(option)
     try {
-        const info = Student.create(option)
+        info.save()
         return {
-            type: true,
-            data: info.toJSON()
+            type:true,
+            data:info.toJSON()
         }
     } catch (error) {
         return {
-            type: false,
-            data: error
+            type:false,
+            data:error
         }
     }
 
-
+    // try {
+    //     console.log(option);
+    //     const info = Student.create(option)
+    //     return {
+    //         type: true,
+    //         data: info.toJSON()
+    //     }
+    // } catch (error) {
+    //     return {
+    //         type: false,
+    //         data: error
+    //     }
+    // }
 }
 
 exports.deleteStudent = async function (id) {
     // 第一中
-    // const info = await Student.findByPk(id)
+    // var info = await Student.findByPk(id)
+    // if (info === null) {
+    //     return '暂无此用户'
+    // }
     // try {
     //     const result = await info.destroy()
     //     return {
@@ -48,11 +50,22 @@ exports.deleteStudent = async function (id) {
     // }
 
     // 第二种
-    const info = Student.destroy({
-        where: {
-            id: id
+    try {
+        const info = Student.destroy({
+            where: {
+                id: id
+            }
+        })
+        return {
+            type: true,
+            data: info.toJSON()
         }
-    })
+    } catch (error) {
+        return {
+            type: false,
+            data: error
+        }
+    }
 }
 
 
@@ -102,8 +115,8 @@ exports.getAllStudent = async function ({
         count,
         rows
     } = await Student.findAndCountAll({
-        limit: limit,
-        offset: (page - 1) * limit,
+        limit: limit * 1,
+        offset: (page * 1 - 1) * limit,
     })
     rows = rows.map((el) => {
         return el.toJSON()
@@ -112,4 +125,8 @@ exports.getAllStudent = async function ({
         count,
         rows
     }
+}
+exports.getOneStudent = async function (id) {
+    let result = await Student.findByPk(id)
+    return result
 }

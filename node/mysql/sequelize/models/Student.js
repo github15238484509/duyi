@@ -8,7 +8,8 @@ const student = db.define("Student", {
     },
     birthTime: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue:new Date()
     },
     isMale: {
         type: DataTypes.BOOLEAN,
@@ -22,7 +23,7 @@ const student = db.define("Student", {
         type: DataTypes.STRING,
         allowNull: false,
         comment: '学号'
-    }
+    },
 }, {
     paranoid: true
 })

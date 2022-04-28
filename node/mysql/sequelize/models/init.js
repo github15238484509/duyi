@@ -1,2 +1,2 @@
-require("./sync")
 require("./relation")
+require("./sync")
