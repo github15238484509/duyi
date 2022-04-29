@@ -10,11 +10,9 @@ const md5 = require("js-md5")
  * @returns 
  */
 exports.addAdmin = async function (adminInfo) {
-    // adminInfo.password = md5(adminInfo.password)
     const ins = admin.build(adminInfo)
     try {
         const result = await ins.save()
-        
         console.log(result.allNameDes);
         return {
             type: true,
@@ -144,23 +142,29 @@ exports.getAllAdmin = async function () {
         count,
         rows: result
     } = await admin.findAndCountAll({
-        limit: 2
+        limit: 10
     })
-    console.log(count);
-    console.log(result);
-    console.log(JSON.parse(JSON.stringify(result)));
     return result
 }
 
 // 登录管理员
 exports.login = async function (account, password) {
+
     const result = await admin.findOne({
         where: {
             account,
             password: md5(password)
         }
     })
-    if(result){
-        return result.toJSON()
+    if (result) {
+        return {
+            type: true,
+            data: result.toJSON()
+        }
+    }else{
+        return {
+            type: false,
+            data: null
+        }
     }
 }
