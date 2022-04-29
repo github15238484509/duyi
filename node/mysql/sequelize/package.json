@@ -19,6 +19,7 @@
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.5.1",
     "mockjs": "^1.1.0",
+    "multer": "^1.4.4",
     "mysql2": "^2.3.3",
     "sequelize": "^6.17.0"
   },

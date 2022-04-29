@@ -21,6 +21,8 @@ app.use(cookieParser())
 app.use("/api/students", require("./router/students"))
 //管理员的接口
 app.use("/api/admin", require("./router/api/admin"))
+//上传文件
+app.use("/api/upload",require("./router/api/upload"))
 
 app.listen(3000, () => {
   console.log("localhost:3000");
