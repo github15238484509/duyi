@@ -14,6 +14,8 @@ app.use((req, res, next) => {
     }
     next()
 })
+//代理服务器
+app.use(require("./router/proxy"))
 
 //静态资源服务器
 app.use(exporess.static(public))
