@@ -23,7 +23,8 @@ app.use("/api/students", require("./router/students"))
 app.use("/api/admin", require("./router/api/admin"))
 //上传文件
 app.use("/api/upload",require("./router/api/upload"))
-
+//下载文件
+app.use("/api/download",require("./router/api/download"))
 app.listen(3000, () => {
   console.log("localhost:3000");
 })
